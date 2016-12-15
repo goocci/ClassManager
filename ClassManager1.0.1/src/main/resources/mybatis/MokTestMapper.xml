@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace= "com.gys.classmanager.dao.MokTestDao" >
+	
+	<select id="moktest_list_Dao" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} ORDER BY GRADE, MONTH ASC
+	</select>
+	
+	<insert id="moktest_input_Dao">
+		INSERT INTO MOK_TEST (GRADE, MONTH, SUBJECT, RATE, STANDARD, PERCENT, STUDENTNUM, STDTGRADE, STDTCLASSNUM) VALUES (#{0}, #{1}, #{2}, #{3}, #{4}, #{5}, #{6}, #{7}, #{8})
+	</insert>
+	
+	<update id="moktest_update1_Dao">
+		UPDATE MOK_TEST SET GRADEMONTH = CONCAT(GRADE,' ',MONTH)
+	</update>
+	
+	<update id="moktest_update2_Dao">
+		UPDATE MOK_TEST SET GRADEMONTHSUBJECT = CONCAT(GRADEMONTH,' ',SUBJECT) 
+	</update>
+	
+	<select id="moktest_chart_language" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} AND SUBJECT = '언어' ORDER BY GRADE, MONTH ASC
+	</select>
+	<select id="moktest_chart_math" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} AND SUBJECT = '수리' ORDER BY GRADE, MONTH ASC
+	</select>
+	<select id="moktest_chart_english" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} AND SUBJECT = '외국어' ORDER BY GRADE, MONTH ASC
+	</select>
+	<select id="moktest_chart_science" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * 
+		FROM MOK_TEST
+		WHERE 
+			STUDENTNUM = #{0} AND 
+			STDTGRADE = #{1} AND 
+			STDTCLASSNUM = #{2} AND 
+			(SUBJECT = '물리1' OR 
+			SUBJECT = '물리2' OR 
+			SUBJECT = '화학1' OR 
+			SUBJECT = '화학2' OR
+			SUBJECT = '생물1' OR
+			SUBJECT = '생물2' OR
+			SUBJECT = '지구과학1' OR
+			SUBJECT = '지구과학2')
+		ORDER BY GRADE, MONTH ASC
+	</select>
+	<select id="moktest_chart_society" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * 
+		FROM MOK_TEST
+		WHERE 
+			STUDENTNUM = #{0} AND 
+			STDTGRADE = #{1} AND 
+			STDTCLASSNUM = #{2} AND 
+			(SUBJECT = '한국사' OR 
+			SUBJECT = '경제' OR 
+			SUBJECT = '동아시아사' OR 
+			SUBJECT = '법과정치' OR
+			SUBJECT = '사회문화' OR
+			SUBJECT = '생활과윤리' OR
+			SUBJECT = '세계사' OR
+			SUBJECT = '세계지리'OR
+			SUBJECT = '윤리와사상' OR
+			SUBJECT = '한국지리')
+		ORDER BY GRADE, MONTH ASC
+	</select>
+</mapper>

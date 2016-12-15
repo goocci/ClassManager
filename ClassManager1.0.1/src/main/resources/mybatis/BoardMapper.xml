@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gys.classmanager.dao.BoardDao">
+
+	<select id="listBoard" resultType="com.gys.classmanager.dto.BoardDto">
+		SELECT * FROM BOARD WHERE stdtGrade = #{0} AND stdtClassNum = #{1} ORDER BY teacherNum DESC, IDX DESC
+	</select>
+
+	<select id="listComment" resultType="com.gys.classmanager.dto.CommentDto">
+		SELECT
+		*
+		FROM
+		comment
+		WHERE boardIdx = #{param1}
+		ORDER BY IDX DESC
+	</select>
+
+	<update id="upHit">
+		UPDATE
+		board
+		SET hit = hit + 1
+		WHERE idx = #{param1}
+	</update>
+
+	<select id="viewBoard" resultType="com.gys.classmanager.dto.BoardDto">
+		SELECT
+		*
+		FROM
+		board
+		WHERE IDX = #{param1}
+	</select>
+
+	<insert id="writeBoard">
+		INSERT
+		INTO
+		board (category, title, content, writer, hit, stdtGrade, stdtClassNum, teacherNum)
+		VALUES
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8})
+	</insert>
+
+	<delete id="deleteBoard">
+		DELETE
+		FROM
+		board
+		WHERE idx = #{param1}
+		<!-- 포스트의 인덱스입니당 -->
+	</delete>
+
+	<select id="modifyViewBoard" resultType="com.gys.classmanager.dto.BoardDto">
+		SELECT
+		*
+		FROM
+		board
+		WHERE idx = #{param1}
+	</select>
+
+	<update id="modifyBoard">
+		UPDATE
+		board
+		SET
+		category = #{param1}, title = #{param2}, content = #{param3}
+		WHERE idx
+		= #{param4}
+	</update>
+
+</mapper>

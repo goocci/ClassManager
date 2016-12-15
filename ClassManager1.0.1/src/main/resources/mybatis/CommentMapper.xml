@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.gys.classmanager.dao.CommentDao" >
+	
+	<insert id="writeComment">
+	    INSERT
+        INTO
+        comment (boardIdx, writer, content)
+        VALUES
+        (#{param1}, #{param2}, #{param3})
+	</insert>
+	
+	<delete id ="deleteComment">
+		DELETE
+		FROM
+		comment
+		WHERE idx = #{param1}
+	</delete>
+		
+</mapper>

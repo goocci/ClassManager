@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gys.classmanager.dao.memberDao">
+	<insert id="memberInsert">
+		INSERT INTO MEMBER(ID, PWD, NAME, PHONENUM, ADDRESS,
+		EMAIL, GRADE, CLASSNUM, TEACHERNUM, STUDENTNUM, PROFILEPHOTO,
+		STDTGRADE, STDTCLASSNUM) VALUES (#{0}, #{1}, #{2}, #{3}, #{4}, #{5},
+		#{6}, #{7},#{8},#{9},#{10},#{11},#{12})
+	</insert>
+	<select id="memberByID" resultType="com.gys.classmanager.dto.MemberDto"
+		resultOrdered="true">
+		SELECT * FROM MEMBER WHERE ID = #{0}
+	</select>
+	<select id="stdtByGradeClass" resultType="com.gys.classmanager.dto.MemberDto">
+		SELECT * FROM MEMBER
+		WHERE STDTGRADE = #{0} AND STDTCLASSNUM = #{1} AND TEACHERNUM = 0
+		ORDER BY STUDENTNUM ASC
+	</select>
+	<select id="stdtInfo" resultType="com.gys.classmanager.dto.MemberDto">
+		SELECT * FROM MEMBER WHERE
+		STDTGRADE = #{0} AND STDTCLASSNUM = #{1} AND STUDENTNUM = #{2}
+	</select>
+	<update id="memberUpdate">
+		UPDATE MEMBER SET PWD = #{1}, PHONENUM= #{2}, ADDRESS
+		= #{3}, EMAIL=#{4}, GRADE=#{5}, CLASSNUM = #{6}, PROFILEPHOTO = #{7}
+		where ID =#{0}
+	</update>
+	
+	<update id="memberUpdate2">
+		UPDATE MEMBER SET PWD = #{1}, PHONENUM= #{2}, ADDRESS = #{3}, EMAIL=#{4}, STUDENTNUM=#{5},PROFILEPHOTO = #{6},STDTGRADE = #{7},STDTCLASSNUM = #{8}  WHERE ID =#{0} 
+	</update>
+</mapper>

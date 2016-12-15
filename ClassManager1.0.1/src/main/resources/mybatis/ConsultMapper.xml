@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace= "com.gys.classmanager.dao.ConsultDao" >
+	
+	<insert id="consultInsert">
+		INSERT INTO CONSULT_BOARD(CATEGORY, CONTENT, CONSULTTIME, ID) VALUES(#{0},#{1},#{2},#{3})
+	</insert>
+	
+	<select id="listById" resultType="com.gys.classmanager.dto.ConsultDto">
+		
+		SELECT * FROM CONSULT_BOARD WHERE ID = #{0}	ORDER BY IDX DESC 
+	</select>
+
+	<select id="contentByIdx" resultType="com.gys.classmanager.dto.ConsultDto">
+		SELECT * FROM CONSULT_BOARD WHERE IDX = #{0} 
+	</select>
+</mapper>
