@@ -205,7 +205,7 @@ body{background-color: black;}
 									<div class="btn-group pull-right"></div>
 								</div>
 								<div class="file-tab panel-body">
-									<label class="btn btn-default btn-file"> <span>사진 찾기</span>
+									<label class="btn btn-default btn-file"> <span>browse</span>
 										<!-- The file is stored here. --> <input type="file"
 										name="imgFile">
 									</label>
