@@ -250,6 +250,11 @@ body{background-color: black;}
 		<script type="text/javascript"
 			src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.js"></script>
 		<script src="<%=cp%>/resources/script/bootstrap-imageupload.js"></script>
+		<script type="text/javascript">
+			$('.imageupload').imageupload();
+		
+		
+		</script>
 	</div>
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
