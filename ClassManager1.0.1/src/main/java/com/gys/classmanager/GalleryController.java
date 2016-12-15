@@ -69,7 +69,7 @@ public class GalleryController {
 	public String galleryInput(HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile, @RequestParam("title") String title, Model model,
 	HttpSession session) {
 		
-		String savePath = "C:\\Users\\김민구\\workspace-sts-3.8.2.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
+		String savePath = "/Users/hanyoungsoo/Documents/workspace-sts-3.8.2.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ClassManager1.0.1/resources/assets/img";
 		// String savePath = request.getRealPath("folderName");
 
 		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
@@ -77,7 +77,7 @@ public class GalleryController {
 		String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
 
 		String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
-		String fullPath = savePath + "\\" + rename;
+		String fullPath = savePath + "/" + rename;
 		System.out.println(rename);
 
 		if (!imgFile.isEmpty()) {
