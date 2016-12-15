@@ -37,7 +37,7 @@
 
 					<li class="dropdown"><a href="student_list">학급관리</a>
 					<li class="dropdown"><a href="board_list">게시판</a>
-					<li class="dropdown"><a href="gallery">사진첩!</a>
+					<li class="dropdown"><a href="gallery">사진첩</a>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right" style="font-size: 17px;">
