@@ -10,9 +10,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- google fonts-->
-<link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
-
 <link
 	href="<%=cp%>/resources/assets/bootstrap/css/bootstrap-imageupload.min.css"
 	rel="stylesheet">
@@ -20,304 +17,132 @@
 
 <style>
 
-/*	Basic
-================*/
-html,body{
-  margin:0;
-  padding:0;
-  position:relative;
-  height:100%;
+*{margin: 0; padding: 0;}
+body{background-color: black;}
+.container
+{
+	width: 100%;
+	height: 100%;
+}
+.trans
+{
+	transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-webkit-transition: all 1s ease;
+}
+.top
+{
+	display: flex;
+	width: 80vw;
+	height: 110vh;
+	margin-top: 10vh;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10vh;
+}
+.top ul
+{
+	list-style: none;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	box-sizing: border-box;
+}
+.top ul li
+{
+	position: relative;
+	float: left;
+	width: 24%;
+	height: 24%;
+	overflow: hidden;
+	margin-top: 1px;
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-bottom: 1px;
 }
 
-*,*:after,*:before{
-  box-sizing:border-box;
+.top ul li::before
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	content: '';
+	color: white;
+	opacity: 0.4;
+	text-align: center;
+	box-sizing: border-box;
+	pointer-events: none;
+	transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+}
+.top ul li:hover::before
+{
+	opacity: 0;
+	background-color: rgba(0,0,0,0.90);
+}
+.top ul li img
+{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+.lightbox
+{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.75);
+	z-index: 999;
+	opacity: 0;
+	pointer-events: none;
+}
+.lightbox img
+{
+	max-width: 90%;
+	max-height: 80%;
+	position: relative;
+	top: -100%;
+	/* Transition */
+	transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-webkit-transition: all 1s ease;
+}
+.lightbox:target
+{
+	outline: none;
+	top: 0;
+	opacity: 1;
+	pointer-events: auto;
+	transition: all 1.2s ease;
+	-moz-transition: all 1.2s ease;
+	-ms-transition: all 1.2s ease;
+	-o-transition: all 1.2s ease;
+	-webkit-transition: all 1.2s ease;
+}
+.lightbox:target img
+{
+	top: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
 }
 
-/*  PLACEHOLDER
-----------------------*/
-::-webkit-input-placeholder {color: #FFF;}
-:-moz-placeholder {color:  #FFF;}
-::-moz-placeholder {color:  #FFF;}
-:-ms-input-placeholder {color:  #FFF;}
-
-/*  SCROLLBAR
--------------------*/
-::-webkit-scrollbar{
-  width:0.2em;
-  background:#e74c3c;
-}
-::-webkit-scrollbar-track{}
-::-webkit-scrollbar-thumb{
-  background:#fff;
-}
-::-webkit-scrollbar-thumb:window-inactive{
-  background:#fff;
-}
-
-
-/*  SELECTION
--------------------*/
-::selection{
-  background:#999;
-  color:#fff;
-}
-::-moz-selection{
-  background:#999;
-  color:#fff;
-}
-
-/* === Links Styles === */
-a{
-  text-decoration:underline;
-  transition:0.25s;
-  backface-visibility:hidden;
-}
-a:hover{
-  text-decoration:none;
-}
-a:focus{
-  outline:0;
-  outline:0 auto -webkit-focus-ring-color;
-  outline-offset:0;
-}
-
-
-/*	Layout
-=======================*/
-body{
-  background:#ECECEC;
-  overflow-X:hidden;
-  font-size:13px;
-  font-family: 'Metrophobic', sans-serif;
-  font-weight:400;
-}
-
-.wrapper {
-  margin: 5% auto;
-  display: block;
-  width: 96%;
-  height: 100%;
-  padding: 0;
-}
-
-.wrapper_inner{
-  padding:0.2em;
-  margin:0;
-}
-.gallery{}
-
-.gallery_item {
-  float: center;
-  width: 24.59%;
-  display: inline-block;
-  margin: 0 auto;
-  margin-right: 0.2em;
-  margin-bottom:0.2em;
-  padding: 0;
-}
-
-.gallery_item_preview {
-  transition: all 0.5s ease;
-}
-
-.gallery_item_preview a {
-  position: relative;
-  display: inline-block;
-  padding: 0.2em;
-  background:#ECECEC;
-  color: #333;
-  text-decoration: none;
-  overflow: hidden;
-  transition: all 0.5s ease;
-}
-.gallery_item_preview a:hover {
-  color: #777;
-  transition: all 0.5s ease;
-}
-.gallery_item_preview a:before {
-  content:"Click to view";
-  position:absolute;
-  top:0.5em;
-  left:-30em;
-  background-color:#fff;
-  background-color:rgba(255,255,255,0.3);
-  color:#000;
-  padding:0.5em 1em;
-  border-radius: 5px 0 0 0;
-  transition:all 1s ease;
-}
-.gallery_item_preview a:hover:before {
-  left:0.5em;
-  transition:all 1s ease;
-}
-.gallery_item_preview a h3{
-  font-family: 'Leckerli One', cursive;
-}
-.gallery_item_preview a img{
-  display:block;
-  width:100%;
-  height:150px;
-  border-radius:5px;
-  transition: all 0.5s ease;
-}
-.gallery_item_full{
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  background-color:#fff;
-  background-color:rgba(255,255,255,0.8);
-  z-index: 100;
-  overflow:hidden;
-}
-.gallery_item_full img {
-  display: block;
-  width: 100%;
-}
-.box{
-  margin:auto;
-  background:#ecf0f1;
-  padding: 2em;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow:auto;
-  width:50%;
-  text-align:left;
-}
-.box h3{
-  font-family: 'Leckerli One', cursive;
-  color:#F88484;
-}
-
-.cl {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  color: #777;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 2em;
-}
-.cl:hover{
-  color:#F88484;
-}
-
-
-
-.video {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px; height: 0; overflow: hidden;
-}
-
-.video iframe,
-.video object,
-.video embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/*  list style
-=============================*/
-.icon_list {
-  width: 30px;
-  height: 30px;
-  display: block;
-  padding: 0.5em;
-  text-decoration: none;
-  line-height: 0.4em;
-  background: #FFF;
-  color: #838383;
-  border: 1px solid #C2C2C2;
-  box-shadow: 0 1px 1px #4B4B4B;
-  border-radius: 4px;
-  position: absolute;
-  right: 0.3em;
-  top: 0.3em;
-  transition: all 0.5s ease;
-}
-.icon_list:hover {
-  background: #4E4E4E;
-  color: #FFF;
-  border-color: #000;
-  transition: all 0.5s ease;
-}
-.gallery_item_list {
-  float: none !important;
-  display: block !important;
-  width: 50% !important;
-  margin: auto;
-  background: #ECECEC;
-  margin-top: 0.5em;
-  box-shadow: 0 1px 4px #838383;
-  transition: all 0.5s ease;
-}
-.gallery_line {
-  width: 130px !important;
-  height: 100px !important;
-  display: inline-block !important;
-  float: left !important;
-  margin-right: 1em !important;
-  transition: all 0.5s ease;
-}
-
-/*	Simple animation
-=======================*/
-.efIn{animation:fx_in 0.65s 1 ease-in-out;}
-.efOut{animation:fx_out 0.7s 1 ease-in-out;}
-
-/*	Keyframes
-==============*/
-@keyframes fx_in{
-  from{width:0;height:0;border-radius:100%;opacity:0;}
-  50%{box-shadow:inset 0 0 0 0  #fff;}
-  to{width:100%;height:100%;border-radius:0;opacity:1;}
-}
-@keyframes fx_out{
-  from{width:100%;height:100%;border-radius:0;
-    box-shadow:inset 0 0 0 0 #fff;opacity:1;}
-  50%{box-shadow:inset 0 0 0 80em  #fff;}
-  to{width:0;height:0;border-radius:100%;opacity:0;}
-}
-
-
-/* Large desktop */
-@media (min-width: 980px){
-  .gallery_item {width: 24.45%;}
-  .gallery_item_preview a img{height:180px;}
-  .box{width:60%;}
-}
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) { 
-  .gallery_item {width: 32.83%;}
-  .gallery_item_preview a img{height:180px;}
-  .box{width:70%;}
-}
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) { 
-  .gallery_item {width: 49.45%;}
-  .gallery_item_preview a img{height:180px;}
-  .box{margin: auto;background: #F8F8F8;padding: 4em 1em 1em 1em;width:80%;}
-  .cl{top: 0;right: 0.5em;}
-}
-/* Landscape phones and down */
-@media (max-width: 480px) { 
-  .gallery_item {width: 100%;}
-  .gallery_item_preview a img{height:200px;}
-  .box{background: #F8F8F8;padding: 4em 1em 1em 1em;width:100%;}
-  .cl{top: 0;right: 0.5em;}
-  .gallery_item_list{width:100% !important;}
-}
 </style>
 
 </head>
@@ -338,42 +163,17 @@ body{
 		</div>
 		
 		
-		<!-- Gallery List -->
-		<div class="wrapper">
-		  <div class="wrapper_inner">
-		    <!-- Gallery -->
-		    <section class="gallery">
-		    
-		    <c:forEach items="${gallery}" var="dto">
-		    
-		      <!-- Gallery  item -->
-		      <div class="gallery_item">
-		        <!-- Gallery  item preview -->
-		        <span class="gallery_item_preview">
-		          <a href="#" data-js="${dto.idx}">
-		            <img src="<%=cp%>/resources/assets/img/${dto.photoName}" alt="no image" /><span>
-		            <h3 align="center">${dto.title}</h3>
-		
-		            </span></a>
-		
-		        </span>
-		        <!-- Gallery  item full -->
-		        <div data-lk="${dto.idx}" class="gallery_item_full">
-		          <div class="box">
-		            <img src="<%=cp%>/resources/assets/img/${dto.photoName}" alt="no image" />
-		            <h3 align="center">${dto.title}</h3>
-		          </div>
-		        </div>
-		      </div>
-		      
-		      </c:forEach>
-		
-		    </section>
-		  </div>
+		<div class="container">
+			<div class="top">
+		    	<ul>
+		    	<c:forEach items="${gallery}" var="dto">
+		        	<li><a href="#img_${dto.idx}"><h5 align="center">${dto.title}</h5><img src="<%=cp%>/resources/assets/img/${dto.photoName}" alt="no image"></a></li>
+		      	 	<a href="#_${dto.idx}" class="lightbox trans" id="img_${dto.idx}"><img src="<%=cp%>/resources/assets/img/${dto.photoName}" alt="no image"></a>
+		    	</c:forEach>
+		    	</ul>
+		    </div>
 		</div>
-		<!-- Gallery List -->
-
-
+	
 		<!-- 사진등록 모달 -->
 
 		<!-- line modal -->
@@ -449,7 +249,6 @@ body{
 
 		<script type="text/javascript"
 			src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.js"></script>
-		<script src="<%=cp%>/resources/script/preview-image.min.js"></script>
 		<script src="<%=cp%>/resources/script/bootstrap-imageupload.js"></script>
 	</div>
 </body>
