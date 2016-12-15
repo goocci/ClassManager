@@ -167,7 +167,7 @@ body{background-color: black;}
 			<div class="top">
 		    	<ul>
 		    	<c:forEach items="${gallery}" var="dto">
-		        	<li><a href="#img_${dto.idx}"><h5 align="center">${dto.title}</h5><img src="<%=cp%>/resources/assets/img/${dto.photoName}" alt="no image"></a></li>
+		        	<li><a href="#img_${dto.idx}" style="text-decoration:none"><h5 align="center">${dto.title}</h5><img src="<%=cp%>/resources/assets/img/${dto.photoName}" alt="no image"></a></li>
 		      	 	<a href="#_${dto.idx}" class="lightbox trans" id="img_${dto.idx}"><img src="<%=cp%>/resources/assets/img/${dto.photoName}" alt="no image"></a>
 		    	</c:forEach>
 		    	</ul>
