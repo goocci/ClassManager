@@ -65,6 +65,7 @@
 									style="margin-bottom: 5px">x</a>
 							</p>
 						</c:forEach>
+						<!-- 안녕하세요 -->
 
 					</div>
 				</div>
