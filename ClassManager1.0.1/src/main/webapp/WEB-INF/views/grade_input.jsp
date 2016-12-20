@@ -160,7 +160,7 @@
                src="<%=cp%>/resources/assets/bootstrap/js/bootstrap-select.min.js"></script>
             <script type="text/javascript"
                src="<%=cp%>/resources/script/join.js"></script>
-            <script type="text/javascript" src="<%=cp%>/resources/script/check_mok_input.js"></script>
+            <script type="text/javascript" src="<%=cp%>/resources/script/alert_event.js"></script>
          </div>
       </div>
    </div>

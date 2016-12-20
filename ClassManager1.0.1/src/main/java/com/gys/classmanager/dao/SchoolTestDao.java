@@ -9,6 +9,8 @@ public interface SchoolTestDao {
 	
 	public ArrayList<SchoolTestDto> schooltest_list_Dao(String studentNum, String stdtGrade, String stdtClassNum);
 	
+	public void deleteSchool(int sIdx);
+	
 	public List<String> schooltest_chart(String studentNum, String stdtGrade, String stdtClassNum);
 	
 	public void schooltest_input_Dao(String grade, String semester, String subject, int schoolrate, String studentNum, String stdtGrade, String stdtClassNum);

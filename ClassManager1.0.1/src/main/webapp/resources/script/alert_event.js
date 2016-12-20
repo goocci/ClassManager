@@ -8,3 +8,11 @@ function checkmokinput() {
 		return false;
 	}
 }
+
+function delete_event(){
+	if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+	    return true;
+	}else{   //취소
+	    return false;
+	}
+}

@@ -48,6 +48,7 @@
 				                              <th>학기</th>
 				                              <th>과목명</th>
 				                              <th>등급</th>
+				                              <th>삭제</th>
 				                           </tr>
 				                        </thead>
 				                        <tbody>
@@ -57,7 +58,8 @@
 						                     <tr>
 						                        <td>${dto.semester}</td>
 						                        <td>${dto.subject}</td>
-						                        <td>${dto.schoolrate}</td>                                    
+						                        <td>${dto.schoolrate}</td>
+						                        <td><a class="btn btn-default btn-xs" href="deleteSchool?sIdx=${dto.idx}" style="margin-bottom: 5px" onclick="return delete_event();">x</a></td>                                    
 											 <tr>
 											 </c:if>
 						                     </c:forEach>
@@ -78,6 +80,7 @@
 				                              <th>학기</th>
 				                              <th>과목명</th>
 				                              <th>등급</th>
+				                              <th>삭제</th>
 				                           </tr>
 				                        </thead>
 				                        <tbody>
@@ -88,6 +91,7 @@
 					                        <td>${dto.semester}</td>
 					                        <td>${dto.subject}</td>
 					                        <td>${dto.schoolrate}</td>
+					                        <td><a class="btn btn-default btn-xs" href="deleteSchool?sIdx=${dto.idx}" style="margin-bottom: 5px" onclick="return delete_event();">x</a></td>
 										 	<tr>
 										 	</c:if>
 					                     	</c:forEach>
@@ -108,6 +112,7 @@
 				                              <th>학기</th>
 				                              <th>과목명</th>
 				                              <th>등급</th>
+				                              <th>삭제</th>
 				                           </tr>
 				                        </thead>
 				                        <tbody>
@@ -118,6 +123,7 @@
 					                        <td>${dto.semester}</td>
 					                        <td>${dto.subject}</td>
 					                        <td>${dto.schoolrate}</td>
+					                        <td><a class="btn btn-default btn-xs" href="deleteSchool?sIdx=${dto.idx}" style="margin-bottom: 5px" onclick="return delete_event();">x</a></td>
 										 	<tr>
 										 	</c:if>
 					                     	</c:forEach>
@@ -155,6 +161,7 @@
 						                              <th>표준점수</th>
 						                              <th>백분위</th>
 						                              <th>등급</th>
+						                              <th>삭제</th>
 						                           </tr>
 						                        </thead>
 						                        <tbody>
@@ -166,6 +173,7 @@
 								                        <td>${dto.standard}</td>
 								                        <td>${dto.percent}</td>
 								                        <td>${dto.rate}</td>
+								                        <td><a class="btn btn-default btn-xs" href="deleteMok?mIdx=${dto.idx}&sIdx=" style="margin-bottom: 5px" onclick="return delete_event();">x</a></td>
 													 <tr>
 													 </c:if>
 								                     </c:forEach>
@@ -216,6 +224,7 @@
 						                              <th>표준점수</th>
 						                              <th>백분위</th>
 						                              <th>등급</th>
+						                              <th>삭제</th>
 						                           </tr>
 						                        </thead>
 						                        <tbody>
@@ -227,6 +236,7 @@
 								                        <td>${dto.standard}</td>
 								                        <td>${dto.percent}</td>
 								                        <td>${dto.rate}</td>
+								                        <td><a class="btn btn-default btn-xs" href="deleteMok?mIdx=${dto.idx}&sIdx=" style="margin-bottom: 5px" onclick="return delete_event();">x</a></td>
 													 <tr>
 													 </c:if>
 								                     </c:forEach>
@@ -279,6 +289,7 @@
 						                              <th>표준점수</th>
 						                              <th>백분위</th>
 						                              <th>등급</th>
+						                              <th>삭제</th>
 						                           </tr>
 						                        </thead>
 						                        <tbody>
@@ -290,6 +301,7 @@
 								                        <td>${dto.standard}</td>
 								                        <td>${dto.percent}</td>
 								                        <td>${dto.rate}</td>
+								                        <td><a class="btn btn-default btn-xs" href="deleteMok?mIdx=${dto.idx}&sIdx=" style="margin-bottom: 5px" onclick="return delete_event();">x</a></td>
 													 <tr>
 													 </c:if>
 								                     </c:forEach>
@@ -339,6 +351,7 @@
 						                              <th>표준점수</th>
 						                              <th>백분위</th>
 						                              <th>등급</th>
+						                              <th>삭제</th>
 						                           </tr>
 						                        </thead>
 						                        <tbody>
@@ -357,6 +370,7 @@
 								                        <td>${dto.standard}</td>
 								                        <td>${dto.percent}</td>
 								                        <td>${dto.rate}</td>
+								                        <td><a class="btn btn-default btn-xs" href="deleteMok?mIdx=${dto.idx}&sIdx=" style="margin-bottom: 5px" onclick="return delete_event();">x</a></td>
 													 <tr>
 								  					 </c:if>   
 								                     </c:forEach>
@@ -406,6 +420,7 @@
 						                              <th>표준점수</th>
 						                              <th>백분위</th>
 						                              <th>등급</th>
+						                              <th>삭제</th>
 						                           </tr>
 						                        </thead>
 						                        <tbody>
@@ -426,6 +441,7 @@
 								                        <td>${dto.standard}</td>
 								                        <td>${dto.percent}</td>
 								                        <td>${dto.rate}</td>
+								                        <td><a class="btn btn-default btn-xs" href="deleteMok?mIdx=${dto.idx}&sIdx=" style="margin-bottom: 5px" onclick="return delete_event();">x</a></td>
 													 <tr>
 								  					 </c:if>   
 								                     </c:forEach>
@@ -466,6 +482,7 @@
 	</div>
 	<br/>
 	<script type="text/javascript" src="<%=cp%>/resources/script/grade_chart.js"></script>
+	<script type="text/javascript" src="<%=cp%>/resources/script/alert_event.js"></script>
 	
 </body>
 <div id="foot">

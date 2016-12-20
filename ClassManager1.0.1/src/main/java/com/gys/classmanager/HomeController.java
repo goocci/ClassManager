@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
+import com.gys.classmanager.dao.CommentDao;
 import com.gys.classmanager.dao.MokTestDao;
 import com.gys.classmanager.dao.SchoolTestDao;
 import com.gys.classmanager.dto.MokTestDto;
@@ -110,6 +111,28 @@ public class HomeController {
 
 		return "redirect:grade_input";
 	}
+	
+	@RequestMapping("/deleteSchool")
+	public String deleteSchool(HttpServletRequest request, Model model) {
+		System.out.println("deleteSchool");
+		
+		SchoolTestDao dao = sqlSession.getMapper(SchoolTestDao.class);
+		dao.deleteSchool(Integer.parseInt(request.getParameter("sIdx")));
+		
+		return "redirect:view_grade";
+	}
+	
+	@RequestMapping("/deleteMok")
+	public String deleteMok(HttpServletRequest request, Model model) {
+		System.out.println("deleteMok");
+		
+		MokTestDao dao = sqlSession.getMapper(MokTestDao.class);
+		dao.deleteMok(Integer.parseInt(request.getParameter("mIdx")));
+		
+		return "redirect:view_grade";
+	}
+	
+	
 
 	@RequestMapping(value = "/view_grade")
 	public String view_grade(HttpSession session, Model model) {

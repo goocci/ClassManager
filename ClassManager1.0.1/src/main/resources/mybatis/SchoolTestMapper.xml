@@ -12,6 +12,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO SCHOOL_TEST (GRADE, SEMESTER, SUBJECT, SCHOOLRATE, STUDENTNUM, STDTGRADE, STDTCLASSNUM) VALUES (#{0}, #{1}, #{2}, #{3}, #{4}, #{5}, #{6})
 	</insert>
 	
+	<delete id ="deleteSchool">
+		DELETE
+		FROM
+		school_test
+		WHERE idx = #{0}
+	</delete>
+	
 	<select id="schooltest_chart" resultType="hashmap">
 		SELECT IFNULL( AVG(SCHOOLRATE),0) AS AVG FROM SCHOOL_TEST WHERE GRADE = '1학년' AND SEMESTER = '1학기' AND STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2}
 		UNION ALL

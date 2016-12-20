@@ -32,21 +32,27 @@ $.getJSON("http://localhost:8080/classmanager/list_schooltest", function(data) {
 	});
 	var ctx = document.getElementById("school_grade");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : ["1학년 1학기", "1학년 2학기", "2학년 1학기", "2학년 2학기", "3학년 1학기", "3학년 2학기",],
 			datasets : [ {
 				label : '# of 등급',
 				data : chartData_schooltest,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: false,
+	            backgroundColor: "rgba(75, 192, 192, 0.2)",
+	            borderColor: "rgba(75, 192, 192, 0.5)",
+	            pointBorderColor: "rgba(75, 192, 192, 1)",
+	            pointBackgroundColor: "rgba(75, 192, 192, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
 			scales : {
 				yAxes : [ {
 					ticks : {
+						reverse : true,
 						beginAtZero : true
 					}
 				} ]
@@ -72,8 +78,8 @@ $.getJSON("http://localhost:8080/classmanager/list_language", function(data) {
 			datasets : [ {
 				label : '# of 표준점수',
 				data : chartData1_language,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
+				backgroundColor : "rgba(54, 162, 235, 0.2)",
+				borderColor : "rgba(54, 162, 235, 1)",
 				borderWidth : 1
 			} ]
 		},
@@ -90,15 +96,20 @@ $.getJSON("http://localhost:8080/classmanager/list_language", function(data) {
 	/* 언어 백분위 */
 	var ctx = document.getElementById("language_pct");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : chartLabels_language,
 			datasets : [ {
 				label : '# of 백분위',
 				data : chartData2_language,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: true,
+	            backgroundColor: "rgba(153, 102, 255, 0.2)",
+	            borderColor: "rgba(153, 102, 255, 0.5)",
+	            pointBorderColor: "rgba(153, 102, 255, 1)",
+	            pointBackgroundColor: "rgba(153, 102, 255, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
@@ -114,21 +125,27 @@ $.getJSON("http://localhost:8080/classmanager/list_language", function(data) {
 	/* 언어 등급 */
 	var ctx = document.getElementById("language_rate");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : chartLabels_language,
 			datasets : [ {
 				label : '# of 등급',
 				data : chartData3_language,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: false,
+	            backgroundColor: "rgba(255, 159, 64, 0.2)",
+	            borderColor: "rgba(255, 159, 64, 0.5)",
+	            pointBorderColor: "rgba(255, 159, 64, 1)",
+	            pointBackgroundColor: "rgba(255, 159, 64, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
 			scales : {
 				yAxes : [ {
 					ticks : {
+						reverse : true,
 						beginAtZero : true
 					}
 				} ]
@@ -155,8 +172,8 @@ $.getJSON("http://localhost:8080/classmanager/list_math", function(data) {
 			datasets : [ {
 				label : '# of 표준점수',
 				data : chartData1_math,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
+				backgroundColor : "rgba(54, 162, 235, 0.2)",
+				borderColor : "rgba(54, 162, 235, 1)",
 				borderWidth : 1
 			} ]
 		},
@@ -173,15 +190,20 @@ $.getJSON("http://localhost:8080/classmanager/list_math", function(data) {
 	/* 수리 백분위 */
 	var ctx = document.getElementById("math_pct");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : chartLabels_math,
 			datasets : [ {
 				label : '# of 백분위',
 				data : chartData2_math,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: true,
+	            backgroundColor: "rgba(153, 102, 255, 0.2)",
+	            borderColor: "rgba(153, 102, 255, 0.5)",
+	            pointBorderColor: "rgba(153, 102, 255, 1)",
+	            pointBackgroundColor: "rgba(153, 102, 255, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
@@ -197,21 +219,27 @@ $.getJSON("http://localhost:8080/classmanager/list_math", function(data) {
 	/* 수리 등급 */
 	var ctx = document.getElementById("math_rate");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : chartLabels_math,
 			datasets : [ {
 				label : '# of 등급',
 				data : chartData3_math,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: false,
+	            backgroundColor: "rgba(255, 159, 64, 0.2)",
+	            borderColor: "rgba(255, 159, 64, 0.5)",
+	            pointBorderColor: "rgba(255, 159, 64, 1)",
+	            pointBackgroundColor: "rgba(255, 159, 64, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
 			scales : {
 				yAxes : [ {
 					ticks : {
+						reverse : true,
 						beginAtZero : true
 					}
 				} ]
@@ -239,8 +267,8 @@ $.getJSON("http://localhost:8080/classmanager/list_english", function(data) {
 			datasets : [ {
 				label : '# of 표준점수',
 				data : chartData1_english,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
+				backgroundColor : "rgba(54, 162, 235, 0.2)",
+				borderColor : "rgba(54, 162, 235, 1)",
 				borderWidth : 1
 			} ]
 		},
@@ -257,15 +285,20 @@ $.getJSON("http://localhost:8080/classmanager/list_english", function(data) {
 	/* 외국어 백분위 */
 	var ctx = document.getElementById("english_pct");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : chartLabels_english,
 			datasets : [ {
 				label : '# of 백분위',
 				data : chartData2_english,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: true,
+	            backgroundColor: "rgba(153, 102, 255, 0.2)",
+	            borderColor: "rgba(153, 102, 255, 0.5)",
+	            pointBorderColor: "rgba(153, 102, 255, 1)",
+	            pointBackgroundColor: "rgba(153, 102, 255, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
@@ -281,21 +314,27 @@ $.getJSON("http://localhost:8080/classmanager/list_english", function(data) {
 	/* 외국어 등급 */
 	var ctx = document.getElementById("english_rate");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : chartLabels_english,
 			datasets : [ {
 				label : '# of 등급',
 				data : chartData3_english,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: false,
+	            backgroundColor: "rgba(255, 159, 64, 0.2)",
+	            borderColor: "rgba(255, 159, 64, 0.5)",
+	            pointBorderColor: "rgba(255, 159, 64, 1)",
+	            pointBackgroundColor: "rgba(255, 159, 64, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
 			scales : {
 				yAxes : [ {
 					ticks : {
+						reverse : true,
 						beginAtZero : true
 					}
 				} ]
@@ -322,8 +361,8 @@ $.getJSON("http://localhost:8080/classmanager/list_science", function(data) {
 			datasets : [ {
 				label : '# of 표준점수',
 				data : chartData1_science,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
+				backgroundColor : "rgba(54, 162, 235, 0.2)",
+				borderColor : "rgba(54, 162, 235, 1)",
 				borderWidth : 1
 			} ]
 		},
@@ -340,15 +379,20 @@ $.getJSON("http://localhost:8080/classmanager/list_science", function(data) {
 	/* 과학탐구 백분위 */
 	var ctx = document.getElementById("science_pct");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : chartLabels_science,
 			datasets : [ {
 				label : '# of 백분위',
 				data : chartData2_science,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: true,
+	            backgroundColor: "rgba(153, 102, 255, 0.2)",
+	            borderColor: "rgba(153, 102, 255, 0.5)",
+	            pointBorderColor: "rgba(153, 102, 255, 1)",
+	            pointBackgroundColor: "rgba(153, 102, 255, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
@@ -364,21 +408,27 @@ $.getJSON("http://localhost:8080/classmanager/list_science", function(data) {
 	/* 과학탐구 등급 */
 	var ctx = document.getElementById("science_rate");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : chartLabels_science,
 			datasets : [ {
 				label : '# of 등급',
 				data : chartData3_science,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: false,
+	            backgroundColor: "rgba(255, 159, 64, 0.2)",
+	            borderColor: "rgba(255, 159, 64, 0.5)",
+	            pointBorderColor: "rgba(255, 159, 64, 1)",
+	            pointBackgroundColor: "rgba(255, 159, 64, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
 			scales : {
 				yAxes : [ {
 					ticks : {
+						reverse : true,
 						beginAtZero : true
 					}
 				} ]
@@ -407,8 +457,8 @@ $.getJSON("http://localhost:8080/classmanager/list_society", function(data) {
 			datasets : [ {
 				label : '# of 표준점수',
 				data : chartData1_society,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
+				backgroundColor : "rgba(54, 162, 235, 0.2)",
+				borderColor : "rgba(54, 162, 235, 1)",
 				borderWidth : 1
 			} ]
 		},
@@ -425,15 +475,20 @@ $.getJSON("http://localhost:8080/classmanager/list_society", function(data) {
 	/* 사회탐구 백분위 */
 	var ctx = document.getElementById("society_pct");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : chartLabels_society,
 			datasets : [ {
 				label : '# of 백분위',
 				data : chartData2_society,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: true,
+	            backgroundColor: "rgba(153, 102, 255, 0.2)",
+	            borderColor: "rgba(153, 102, 255, 0.5)",
+	            pointBorderColor: "rgba(153, 102, 255, 1)",
+	            pointBackgroundColor: "rgba(153, 102, 255, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
@@ -449,21 +504,27 @@ $.getJSON("http://localhost:8080/classmanager/list_society", function(data) {
 	/* 사회탐구 등급 */
 	var ctx = document.getElementById("society_rate");
 	var myChart = new Chart(ctx, {
-		type : 'bar',
+		type : 'line',
 		data : {
 			labels : chartLabels_society,
 			datasets : [ {
 				label : '# of 등급',
 				data : chartData3_society,
-				backgroundColor : ['rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)','rgba(75, 192, 192, 0.2)'],
-				borderColor : ['rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)','rgba(75, 192, 192, 1)'],
-				borderWidth : 1
+				fill: false,
+	            backgroundColor: "rgba(255, 159, 64, 0.2)",
+	            borderColor: "rgba(255, 159, 64, 0.5)",
+	            pointBorderColor: "rgba(255, 159, 64, 1)",
+	            pointBackgroundColor: "rgba(255, 159, 64, 1)",
+	            pointBorderWidth: 1,
+	            pointRadius: 5,
+	            pointHitRadius: 25,
 			} ]
 		},
 		options : {
 			scales : {
 				yAxes : [ {
 					ticks : {
+						reverse : true,
 						beginAtZero : true
 					}
 				} ]
