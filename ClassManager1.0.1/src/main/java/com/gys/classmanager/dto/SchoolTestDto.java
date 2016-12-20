@@ -3,11 +3,11 @@ package com.gys.classmanager.dto;
 public class SchoolTestDto {
 	
 	private int idx;
-	public String grade;
-	public String semester;
+	private String grade;
+	private String semester;
 	private String subject;
-	public int schoolrate;
-	public int studentNum;
+	private int schoolrate;
+	private int studentNum;
 	private String stdtGrade;
 	private String stdtClassNum;
 	

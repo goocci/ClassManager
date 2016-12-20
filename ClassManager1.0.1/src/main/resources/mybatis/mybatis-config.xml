@@ -12,5 +12,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="/mybatis/CommentMapper.xml" />
 		<mapper resource="/mybatis/ConsultMapper.xml" />
 		<mapper resource="/mybatis/GalleryMapper.xml" />
+		<mapper resource="/mybatis/UnivScoreMapper.xml" />
 	</mappers>
 </configuration>
