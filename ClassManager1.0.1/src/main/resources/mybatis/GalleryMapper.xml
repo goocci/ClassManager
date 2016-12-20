@@ -21,5 +21,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 
+	<select id="selectPhoto" resultType="com.gys.classmanager.dto.GalleryDto">
+
+		SELECT * FROM GALLERY
+		WHERE idx= #{0}
+
+	</select>
+	
+	<delete id="galleryDel">
+		DELETE FROM GALLERY WHERE IDX = #{0}
+	</delete>
+
+	
 
 </mapper>

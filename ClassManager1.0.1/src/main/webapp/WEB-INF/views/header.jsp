@@ -13,11 +13,24 @@
 
 
 <title>header</title>
+<style type="text/css">
 
+.navbar .collapse .dropdown a:visited{
+	color: #fff;
+
+}
+.navbar .collapse .dropdown a:hover, .navbar .collapse .dropdown a:active .navbar .collapse .dropdown a:focus {
+	text-shadow: 0px 2px 2px #000; /* 그림자 지정 */
+	}
+	
+#navRight a:hover, #navRight a:active #navRight a:focus {
+	text-shadow: 0px 2px 2px #000; /* 그림자 지정 */
+	}
+</style>
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse" style="margin-bottom:0px;" id="header">
+	<nav class="navbar navbar-inverse" style="margin-bottom:0px; " id="header">
 		<div class="container-fluid"> 
 			<div class="navbar-header" style="padding-bottom: 33px;">
 				<button class="navbar-toggle collapsed" type="button"
@@ -34,13 +47,13 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-2" style="margin-top:20px; margin-bottom: 15px;">
 				<ul class="nav navbar-nav" style="font-size: 23px">
-
 					<li class="dropdown"><a href="student_list">학급관리</a>
 					<li class="dropdown"><a href="board_list">게시판</a>
 					<li class="dropdown"><a href="gallery">사진첩</a>
+					<li class="dropdown"><a href="calendar">학급일정</a>
 				</ul>
 
-				<ul class="nav navbar-nav navbar-right" style="font-size: 17px;">
+				<ul id="navRight" class="nav navbar-nav navbar-right" style="font-size: 17px;">
 					<li><a href="join_modify">수정</a></li>
 					<li><a href="logout">로그아웃</a></li>
 				</ul>

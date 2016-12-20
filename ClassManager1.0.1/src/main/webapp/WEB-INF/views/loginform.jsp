@@ -17,7 +17,7 @@
 <link
 	href="<%=cp%>/resources/assets/bootstrap/css/bootstrap_join.min.css"
 	rel="stylesheet">
-<title>Insert title here</title>
+<title>Welcome! ClassManager</title>
 </head>
 <body>
 	<div class="container">

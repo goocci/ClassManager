@@ -7,6 +7,14 @@ function checkmokinput() {
 		
 		return false;
 	}
+	if(document.mok_input.standard.value==""){
+		alert('표준점수를 입력하세요 ')
+		return false;
+	}
+	if(document.mok_input.percent.value==""){
+		alert('백분위를 입력하세요 ')
+		return false;
+	}
 }
 
 function delete_event(){
@@ -14,5 +22,12 @@ function delete_event(){
 	    return true;
 	}else{   //취소
 	    return false;
+	}
+}
+
+function checkschoolinput() {
+	if(document.school_input.subject.value==""){
+		alert('과목을 입력하세요!')
+		return false;
 	}
 }
