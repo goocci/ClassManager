@@ -16,10 +16,7 @@
 <link
 	href="<%=cp%>/resources/assets/bootstrap/css/dncalendar-skin.min.css"
 	rel="stylesheet">
-<title>ClassManager</title>
-
-<style>
-</style>
+<title>ClassManager-cal</title>
 </head>
 <body>
 	<c:if test="${isStudent eq true }">
@@ -30,47 +27,61 @@
 	</c:if>
 	<div id="body">
 
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">일정입력</h4>
+					</div>
+					<div class="modal-body">
+						<label for="time1">시간 : </label> <input type="text" id="time1"
+							style="width: 60px; text-align: center">~<input
+							type="text" id="time2" style="width: 60px; text-align: center">
+						<select name="AmPm" style="width: 60px;">
+							<option>AM</option>
+							<option>PM</option>
+						</select><br><label for="content_">내 용 : </label> <input type="text" id="content_"
+							style="width: 200px;">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
 
-
-		<div id="dncalendar-container">
-
+			</div>
 		</div>
-
-
-
-
-
-
-	
-		<script src="//code.jquery.com/jquery-1.12.2.min.js"></script>
-		<script src="<%=cp%>/resources/script/dncalendar.min.js"></script>
+		<div id="dncalendar-container"></div>
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript"
 			src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.js"></script>
-		<script src="<%=cp%>/resources/script/bootstrap-imageupload.js"></script>
-		
+		<script src="<%=cp%>/resources/script/dncalendar.min.js"></script>
 		<script type="text/javascript">
-		var my_calendar = $("#dncalendar-container").dnCalendar({
-		    dataTitles: { defaultDate: 'default', today : 'Today' },
-		    notes: [
-		      { "<a href=http:www.jqueryscript.net/time-clock/">date</a>": "2015-12-25", "note": ["Merry Christmas 2015"] },
-		      { "date": "2015-12-31", "note": ["Happy New Year 2016"] }
-		      ],
-		    showNotes: true,
-		});
-		
-		
-		
-		
-		my_calendar.build();
+			var my_calendar = $("#dncalendar-container").dnCalendar({
+				dataTitles : {
+					defaultDate : 'default',
+					today : 'Today'
+				},
+				notes : [ {
+					"date" : "2016-12-25",
+					"note" : [ "Merry Christmas 2016" , ", 선생님 생일" ],
+				}, {
+					"date" : "2016-12-31",
+					"note" : [ "Happy New Year 2017" ]
+				} ],
+				showNotes : true,
+				dayClick : function(date, view) {
+					$('#myModal').modal({
+						closeExisting : false
+					});
+				
+				}
+			});
 
-		
+			my_calendar.build();
 		</script>
-		
-		
-		
-		
-		
 	</div>
 </body>
-<jsp:include page="footer.jsp"></jsp:include>
 </html>
