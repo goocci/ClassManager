@@ -1,9 +1,11 @@
 package com.gys.classmanager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -49,6 +51,11 @@ public class HomeController {
 
 		return "joinform";
 	}
+	@RequestMapping(value = "/calendar")
+	public String calendar(Model model) {
+		
+		return "calendar";
+	}
 
 	@RequestMapping(value = "/")
 	public String index(Model model) {
@@ -81,13 +88,19 @@ public class HomeController {
 		return "grade_input";
 	}
 
-	@RequestMapping("/schooltest_input")
-	public String schooltest_input(HttpSession session, HttpServletRequest request, Model model) {
-
+	@RequestMapping(value="/schooltest_input")
+	public String schooltest_input(HttpSession session, HttpServletRequest request, Model model, HttpServletResponse res) {
 		String stdtNum = (String) session.getAttribute("stdtNum");
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
 		SchoolTestDao schooltestdao = sqlSession.getMapper(SchoolTestDao.class);
+		
+		//강제적으로 에러 발생 !
+		if(request.getParameter("subject").equals("")){
+			Integer.parseInt(request.getParameter("subject"));
+		}
+			
+		
 		schooltestdao.schooltest_input_Dao(request.getParameter("grade"), request.getParameter("semester"),
 				request.getParameter("subject"), (Integer.parseInt(request.getParameter("schoolrate"))), stdtNum, stdtGrade, stdtClassNum);
 		
@@ -101,8 +114,8 @@ public class HomeController {
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
 		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
-		moktestdao.moktest_input_Dao(request.getParameter("grade"), request.getParameter("month"),
-				request.getParameter("subject"), (Integer.parseInt(request.getParameter("rate"))),
+		moktestdao.moktest_input_Dao(request.getParameter("grade2"), request.getParameter("month"),
+				request.getParameter("subject2"), (Integer.parseInt(request.getParameter("rate"))),
 				(Integer.parseInt(request.getParameter("standard"))),
 				(Integer.parseInt(request.getParameter("percent"))), stdtNum, stdtGrade, stdtClassNum);
 		moktestdao.moktest_update1_Dao();

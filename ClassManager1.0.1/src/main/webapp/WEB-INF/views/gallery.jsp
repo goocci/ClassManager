@@ -16,24 +16,29 @@
 <title>ClassManager</title>
 
 <style>
+* {
+	margin: 0;
+	padding: 0;
+}
 
-*{margin: 0; padding: 0;}
-body{background-color: black;}
-.container
-{
+body {
+	background-color: black;
+}
+
+.container {
 	width: 100%;
 	height: 100%;
 }
-.trans
-{
+
+.trans {
 	transition: all 1s ease;
 	-moz-transition: all 1s ease;
 	-ms-transition: all 1s ease;
 	-o-transition: all 1s ease;
 	-webkit-transition: all 1s ease;
 }
-.top
-{
+
+.top {
 	display: flex;
 	width: 80vw;
 	height: 110vh;
@@ -42,16 +47,16 @@ body{background-color: black;}
 	margin-right: auto;
 	margin-bottom: 10vh;
 }
-.top ul
-{
+
+.top ul {
 	list-style: none;
 	width: 100%;
 	height: 100%;
 	z-index: 1;
 	box-sizing: border-box;
 }
-.top ul li
-{
+
+.top ul li {
 	position: relative;
 	float: left;
 	width: 24%;
@@ -63,8 +68,7 @@ body{background-color: black;}
 	margin-bottom: 1px;
 }
 
-.top ul li::before
-{
+.top ul li::before {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -83,32 +87,32 @@ body{background-color: black;}
 	-o-transition: all 0.5s ease;
 	-webkit-transition: all 0.5s ease;
 }
-.top ul li:hover::before
-{
+
+.top ul li:hover::before {
 	opacity: 0;
-	background-color: rgba(0,0,0,0.90);
+	background-color: rgba(0, 0, 0, 0.90);
 }
-.top ul li img
-{
+
+.top ul li img {
 	width: 100%;
 	height: auto;
 	overflow: hidden;
 }
-.lightbox
-{
+
+.lightbox {
 	position: fixed;
 	width: 100%;
 	height: 100%;
 	text-align: center;
 	top: 0;
 	left: 0;
-	background-color: rgba(0,0,0,0.75);
+	background-color: rgba(0, 0, 0, 0.75);
 	z-index: 999;
 	opacity: 0;
 	pointer-events: none;
 }
-.lightbox img
-{
+
+.lightbox img {
 	max-width: 90%;
 	max-height: 80%;
 	position: relative;
@@ -120,8 +124,8 @@ body{background-color: black;}
 	-o-transition: all 1s ease;
 	-webkit-transition: all 1s ease;
 }
-.lightbox:target
-{
+
+.lightbox:target {
 	outline: none;
 	top: 0;
 	opacity: 1;
@@ -132,8 +136,8 @@ body{background-color: black;}
 	-o-transition: all 1.2s ease;
 	-webkit-transition: all 1.2s ease;
 }
-.lightbox:target img
-{
+
+.lightbox:target img {
 	top: 0;
 	top: 50%;
 	transform: translateY(-50%);
@@ -142,8 +146,8 @@ body{background-color: black;}
 	-o-transform: translateY(-50%);
 	-webkit-transform: translateY(-50%);
 }
-
 </style>
+
 
 </head>
 <body>
@@ -154,26 +158,47 @@ body{background-color: black;}
 		<jsp:include page="header.jsp"></jsp:include>
 	</c:if>
 	<div id="body">
-	
+
 		<div id="pciture" align="right" style="margin: 20px;">
 			<button type="button" class="btn btn-success" data-toggle="modal"
 				data-target="#upload">사진등록</button>
 			<button type="button" class="btn btn-success" data-toggle="modal"
-				data-target="#delete">사진삭제</button>
+				onclick="delgallery();">사진삭제</button>
 		</div>
-		
-		
+
+		<script type="text/javascript">
+			function delgallery() {
+				var idx;
+				idx = prompt("삭제할 사진 번호를 입력하세요!");
+				if (idx == null) {
+					return false;
+				} else {
+					location.href = "gallerydel?idx=" + idx;
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			if ("${msg}" != "empty") {
+				alert('${msg}');
+			}
+		</script>
 		<div class="container">
 			<div class="top">
-		    	<ul>
-		    	<c:forEach items="${gallery}" var="dto">
-		        	<li><a href="#img_${dto.idx}" style="text-decoration:none"><h5 align="center">${dto.title}</h5><img src="<%=cp%>/resources/assets/img/${dto.photoName}" alt="no image"></a></li>
-		      	 	<a href="#_${dto.idx}" class="lightbox trans" id="img_${dto.idx}"><img src="<%=cp%>/resources/assets/img/${dto.photoName}" alt="no image"></a>
-		    	</c:forEach>
-		    	</ul>
-		    </div>
+				<ul>
+					<c:forEach items="${gallery}" var="dto">
+						<li><a href="#img_${dto.idx}" style="text-decoration: none"><span
+								style="float: left">${dto.idx}</span>
+							<h4 align="center">${dto.title}</h4> <img
+								src="<%=cp%>/resources/assets/img/${dto.photoName}"
+								alt="no image"></a></li>
+						<a href="#_${dto.idx}" class="lightbox trans" id="img_${dto.idx}"><img
+							src="<%=cp%>/resources/assets/img/${dto.photoName}"
+							alt="no image"></a>
+					</c:forEach>
+				</ul>
+			</div>
 		</div>
-	
+
 		<!-- 사진등록 모달 -->
 
 		<!-- line modal -->
@@ -252,8 +277,6 @@ body{background-color: black;}
 		<script src="<%=cp%>/resources/script/bootstrap-imageupload.js"></script>
 		<script type="text/javascript">
 			$('.imageupload').imageupload();
-		
-		
 		</script>
 	</div>
 </body>

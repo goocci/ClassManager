@@ -7,4 +7,6 @@ public interface GalleyDao {
 
 		public void upload(String id, String grade, String classNum, String stdtGrade , String stdtClassNum, String photoName, String title);
 		public ArrayList<GalleryDto> listPhoto(String grade, String classNum);
+		public GalleryDto selectPhoto(int idx);
+		public void galleryDel(int idx);
 	}

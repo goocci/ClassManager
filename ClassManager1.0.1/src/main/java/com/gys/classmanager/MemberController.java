@@ -4,12 +4,10 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
-import java.lang.ref.ReferenceQueue;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
