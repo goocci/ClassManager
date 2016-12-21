@@ -128,11 +128,11 @@
 									<option value="성적문제">성적문제</option>
 									<option value="가족문제">가족문제</option>
 									<option value="개인문제">개인문제</option>
-								</select> <br> <label for="dateRangePicker">상담일:</label>
+								</select> <br><br> <label for="dateRangePicker" style="float: left;">상담일 : &nbsp;&nbsp; </label>
 								<div class="input-group input-append date" id="dateRangePicker">
 									<div>
-										<span class="glyphicon glyphicon-calendar"></span> <input
-											type='text' name="consultdate" class="form-control" /> <span
+										<span class="glyphicon glyphicon-calendar" style="float: left;"></span><input
+											type='text' name="consultdate" class="form-control"/> <span
 											class="input-group-addon"> </span>
 									</div>
 								</div>
