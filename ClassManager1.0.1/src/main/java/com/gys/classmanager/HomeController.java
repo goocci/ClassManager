@@ -87,9 +87,6 @@ public class HomeController {
 	@RequestMapping(value = "/analysis_grade")
 	public String analysis_grade(Model model, HttpServletRequest request) {
 		
-		System.out.println(request.getAttribute("univNamelist")+"넘어옴??");
-		model.addAttribute("univNamelist", request.getAttribute("univNamelist"));
-		
 		return "analysis_grade";
 	}
 	
@@ -101,9 +98,8 @@ public class HomeController {
 		
 		UnivScoreDao dao = sqlSession.getMapper(UnivScoreDao.class);
 		model.addAttribute("univNamelist", dao.univName_list_Dao(request.getParameter("univName")));
-		System.out.println(model.toString());
 		
-		return "redirect:analysis_grade";
+		return "analysis_grade";
 	}
 
 	@RequestMapping(value="/schooltest_input")
