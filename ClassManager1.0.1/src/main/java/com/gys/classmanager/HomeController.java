@@ -95,13 +95,15 @@ public class HomeController {
 		
 		System.out.println("search_univ_name");
 		System.out.println(request.getParameter("univName"));
+		System.out.println(request.getParameter("univMajor"));
 		
 		UnivScoreDao dao = sqlSession.getMapper(UnivScoreDao.class);
 		model.addAttribute("univNamelist", dao.univName_list_Dao(request.getParameter("univName")));
+		model.addAttribute("majorScorelist", dao.univMajor_score_Dao(request.getParameter("univName"), request.getParameter("univMajor")));
 		
 		return "analysis_grade";
 	}
-
+	
 	@RequestMapping(value="/schooltest_input")
 	public String schooltest_input(HttpSession session, HttpServletRequest request, Model model, HttpServletResponse res) {
 		String stdtNum = (String) session.getAttribute("stdtNum");
