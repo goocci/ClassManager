@@ -1,6 +1,5 @@
 package com.gys.classmanager;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
-import com.gys.classmanager.dao.CommentDao;
 import com.gys.classmanager.dao.MokTestDao;
 import com.gys.classmanager.dao.SchoolTestDao;
 import com.gys.classmanager.dto.MokTestDto;
@@ -51,11 +49,6 @@ public class HomeController {
 	public String joinform(Model model) {
 
 		return "joinform";
-	}
-	@RequestMapping(value = "/calendar")
-	public String calendar(Model model) {
-		
-		return "calendar";
 	}
 
 	@RequestMapping(value = "/")
