@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.google.gson.Gson;
 import com.gys.classmanager.dao.MokTestDao;
 import com.gys.classmanager.dao.SchoolTestDao;
+import com.gys.classmanager.dao.UnivScoreDao;
 import com.gys.classmanager.dto.MokTestDto;
+import com.gys.classmanager.dto.UnivScoreDto;
 
 /**
  * Handles requests for the application home page.
@@ -80,6 +82,28 @@ public class HomeController {
 	public String grade_input(Model model) {
 
 		return "grade_input";
+	}
+	
+	@RequestMapping(value = "/analysis_grade")
+	public String analysis_grade(Model model, HttpServletRequest request) {
+		
+		System.out.println(request.getAttribute("univNamelist")+"넘어옴??");
+		model.addAttribute("univNamelist", request.getAttribute("univNamelist"));
+		
+		return "analysis_grade";
+	}
+	
+	@RequestMapping(value = "/search_univ_name")
+	public String search_univ_name(Model model, HttpServletRequest request) {
+		
+		System.out.println("search_univ_name");
+		System.out.println(request.getParameter("univName"));
+		
+		UnivScoreDao dao = sqlSession.getMapper(UnivScoreDao.class);
+		model.addAttribute("univNamelist", dao.univName_list_Dao(request.getParameter("univName")));
+		System.out.println(model.toString());
+		
+		return "redirect:analysis_grade";
 	}
 
 	@RequestMapping(value="/schooltest_input")
