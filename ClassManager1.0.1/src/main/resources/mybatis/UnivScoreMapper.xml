@@ -8,4 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM univ_score where name = #{0}
 	</select>
 	
+	<select id="univMajor_score_Dao" resultType="com.gys.classmanager.dto.UnivScoreDto">
+		SELECT * FROM univ_score where name = #{0} and major = #{1}
+	</select>
+	
 </mapper>
