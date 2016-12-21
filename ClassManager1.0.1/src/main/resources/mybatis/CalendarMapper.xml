@@ -7,16 +7,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="inputCalendar">
 		INSERT
 		INTO
-		calendar (selectDate, time, content,
-		grade, classNum)
+		CALENDAR (SELECTDATE, TIME, CONTENT,
+		GRADE, CLASSNUM, DAY)
 		VALUES
 		(#{0}, #{1}, #{2},
-		#{3}, #{4})
+		#{3}, #{4}, #{5})
 	</insert>
 	<select id="listCalendar" resultType="com.gys.classmanager.dto.CalendarDto">
 		SELECT *
 		FROM
-		CALENDAR WHERE grade=#{0} AND classNum = #{1} 
+		CALENDAR WHERE grade=#{0} AND classNum = #{1} ORDER BY DAY ASC;
 	</select>
 
 </mapper>

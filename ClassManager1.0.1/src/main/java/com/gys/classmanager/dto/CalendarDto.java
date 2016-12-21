@@ -8,12 +8,13 @@ public class CalendarDto {
 	String content;
 	String grade;
 	String classNum;
+	int day;
 	
 	public CalendarDto(){
 		
 	}
 
-	public CalendarDto(int idx, String selectDate, String time, String content, String grade, String classNum) {
+	public CalendarDto(int idx, String selectDate, String time, String content, String grade, String classNum, int day) {
 		super();
 		this.idx = idx;
 		this.selectDate = selectDate;
@@ -21,8 +22,13 @@ public class CalendarDto {
 		this.content = content;
 		this.grade = grade;
 		this.classNum = classNum;
+		this.day = day;
 	}
 
+	public int getDay(){
+		return day;
+	}
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -47,6 +53,11 @@ public class CalendarDto {
 		return classNum;
 	}
 
+	public void setDay(int day){
+		this.day = day;
+		
+	}
+	
 	public void setIdx(int idx) {
 		this.idx = idx;
 	}

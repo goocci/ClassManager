@@ -1,6 +1,7 @@
 package com.gys.classmanager;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -43,19 +44,26 @@ public class CalendarController {
 	}
 
 	@RequestMapping(value = "/calendarInput")
-	public String gallery( Model model, HttpServletRequest request,@RequestParam("selectDate") String selectDate,
+	public String gallery( Model model, HttpServletRequest request,
 			@RequestParam("content_") String content_) {
 		
 		String time1 = request.getParameter("time1");
 		String time2 = request.getParameter("time2");
-		String AmPm = request.getParameter("AmPm");
+		String selectDate = request.getParameter("selectDate");
+		StringTokenizer token = new StringTokenizer(selectDate,"-");
+		String day="";
+		while(token.hasMoreTokens()){
+			day=token.nextToken();
+		}
+		int intDay = Integer.parseInt(day);
 		
-		String time = " " + time1 + time2 + AmPm;	
+		
+		String time =time1 +" - " + time2;	
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("userid");
 		MemberDto memberdto = sqlSession.getMapper(memberDao.class).memberByID(id);
 		
-		sqlSession.getMapper(CalendarDao.class).inputCalendar(selectDate, time, content_, memberdto.getGrade(), memberdto.getClassNum());
+		sqlSession.getMapper(CalendarDao.class).inputCalendar(selectDate, time, content_, memberdto.getGrade(), memberdto.getClassNum(),intDay);
 		
 		return "redirect:calendar";
 	}

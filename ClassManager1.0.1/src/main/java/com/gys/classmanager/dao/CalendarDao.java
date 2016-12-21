@@ -16,7 +16,7 @@ import com.gys.classmanager.dto.CommentDto;
 		
 		public BoardDto viewBoard(int bIdx);
 
-		public void inputCalendar(String selectDate, String time, String content, String grade, String classNum);
+		public void inputCalendar(String selectDate, String time, String content, String grade, String classNum, int day);
 
 		public void deleteBoard(String idx);
 		

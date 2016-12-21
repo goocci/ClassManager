@@ -17,6 +17,32 @@
 	href="<%=cp%>/resources/assets/bootstrap/css/dncalendar-skin.min.css"
 	rel="stylesheet">
 <title>ClassManager</title>
+<style type="text/css">
+
+.dncalendar-note-list{
+font-size: 15px;
+font-style: italic;
+
+}
+.dncalendar-note-list .date{
+color: #0d0c0f;
+ 
+}
+
+.dncalendar-note-list .date{
+color: #0d0c0f;
+ 
+}
+
+.modal-body{
+color: #0d0c0f;
+font-size: 15px;
+ 
+}
+
+</style>
+
+
 </head>
 <body>
 	<c:if test="${isStudent eq true }">
@@ -27,13 +53,12 @@
 	</c:if>
 	<div id="body">
 
-
 		<form action="calendarInput">
 			<!-- Modal -->
 			<div id="myModal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<!-- Modal content-->
-					<div class="modal-content">
+					<div class="modal-content"  style="width: 400px; margin-left: 100px;">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title">일정입력</h4>
@@ -43,11 +68,7 @@
 								id="selectDate" name="selectDate" style="width: 180px;" readonly="readonly">
 							<br> <label for="time1">시&nbsp;&nbsp;간 : </label> <input
 								type="text" id="time1" name="time1" style="width: 60px; text-align: center">~<input
-								type="text" id="time2" name="time2" style="width: 60px; text-align: center">
-							<select name="AmPm" style="width: 60px;">
-								<option value="AM">AM</option>
-								<option value="PM">PM</option>
-							</select><br>
+								type="text" id="time2" name="time2" style="width: 60px; text-align: center">&nbsp;&nbsp;&nbsp;&nbsp;(24H)<br>
 							<label for="content_">내&nbsp;&nbsp;용 : </label> <input
 								type="text" id="content_" name="content_" style="width: 200px;" required="required">
 						</div>
@@ -60,7 +81,8 @@
 				</div>
 			</div>
 		</form>
-		<div id="dncalendar-container"></div>
+		<br>
+		<div id="dncalendar-container" style="width: 1200px;margin-left: 32px"></div>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript"
 			src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.js"></script>
@@ -76,13 +98,10 @@
 				<c:forEach items="${list}" var="dto">
 				{
 					"date" : "${dto.selectDate}",
-					"note" : [ "${dto.content}"],
+					"note" : [ "${dto.content}"," / ","${dto.time}" ],
 				},
 				</c:forEach>
 				],
-				
-				
-				
 				showNotes : true,
 				dayClick : function(date, view) {
 					$('#myModal').modal({
