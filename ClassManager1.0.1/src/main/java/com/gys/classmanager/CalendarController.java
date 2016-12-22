@@ -36,7 +36,13 @@ public class CalendarController {
 		String id = (String) session.getAttribute("userid");
 		MemberDto memberdto = sqlSession.getMapper(memberDao.class).memberByID(id);
 		
-		ArrayList<CalendarDto> calendarList= sqlSession.getMapper(CalendarDao.class).listCalendar(memberdto.getGrade(), memberdto.getClassNum());
+		ArrayList<CalendarDto> calendarList; 
+		if (memberdto.getTeacherNum() != 0) {
+			calendarList=sqlSession.getMapper(CalendarDao.class).listCalendar(memberdto.getGrade(), memberdto.getClassNum());
+		} 
+		else{
+			calendarList=sqlSession.getMapper(CalendarDao.class).listCalendar(memberdto.getStdtGrade(), memberdto.getStdtClassNum());
+		}
 	
 		model.addAttribute("list", calendarList);
 		
@@ -66,16 +72,23 @@ public class CalendarController {
 		String id = (String) session.getAttribute("userid");
 		MemberDto memberdto = sqlSession.getMapper(memberDao.class).memberByID(id);
 		
-		sqlSession.getMapper(CalendarDao.class).inputCalendar(selectDate, time, content_, memberdto.getGrade(), memberdto.getClassNum(),intDay);
 		
+		if (memberdto.getTeacherNum() != 0) {
+			sqlSession.getMapper(CalendarDao.class).inputCalendar(selectDate, time, content_, memberdto.getGrade(),
+					memberdto.getClassNum(), intDay);
+		}
+		else{
+			sqlSession.getMapper(CalendarDao.class).inputCalendar(selectDate, time, content_, memberdto.getStdtGrade(),
+					memberdto.getStdtClassNum(), intDay);
+		}
 		return "redirect:calendar";
 	}
 	
 	@RequestMapping(value = "/calendarDel")
 	public String calendarDel( Model model, HttpServletRequest request,
-			@RequestParam("date") String date) {
+			@RequestParam("idx") int idx) {
 
-		sqlSession.getMapper(CalendarDao.class).deletePlan(date);
+		sqlSession.getMapper(CalendarDao.class).deletePlan(idx);
 		
 		return "redirect:calendar";
 	}

@@ -13,7 +13,7 @@ import com.gys.classmanager.dto.CommentDto;
 
 		public void inputCalendar(String selectDate, String time, String content, String grade, String classNum, int day);
 
-		public void deletePlan(String date);
+		public void deletePlan(int idx);
 		
 
 	}

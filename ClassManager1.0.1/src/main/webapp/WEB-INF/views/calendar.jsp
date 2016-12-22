@@ -96,7 +96,7 @@
 				<c:forEach items="${list}" var="dto">
 				{
 					"date" : "${dto.selectDate}",
-					"note" : [ "${dto.content}"," / ","${dto.time}" ,"<a href='calendarDel?date=${dto.selectDate}' style='text-decoration:none'> 삭제</a>"],
+					"note" : [ "${dto.content}"," / ","${dto.time}" ,"<a href='calendarDel?idx=${dto.idx}' style='text-decoration:none'> 삭제</a>"],
 				},
 				</c:forEach>
 				],
