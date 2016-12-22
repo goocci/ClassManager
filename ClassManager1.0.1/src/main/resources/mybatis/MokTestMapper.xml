@@ -73,8 +73,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY GRADE, MONTH ASC
 	</select>
 	
-	<select id="moktest_chart" resultType="com.gys.classmanager.dto.MokTestDto">
-		SELECT standard FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and standard > '132'
+	<select id="moktest_chart1" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and grademonth = '1학년 3월'
+	</select>
+	<select id="moktest_chart2" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and grademonth = '1학년 6월'
+	</select>
+	<select id="moktest_chart3" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and grademonth = '1학년 9월'
+	</select>
+	<select id="moktest_chart4" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and grademonth = '2학년 3월'
+	</select>
+	<select id="moktest_chart5" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and grademonth = '2학년 6월'
+	</select>
+	<select id="moktest_chart6" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and grademonth = '2학년 9월'
+	</select>
+	<select id="moktest_chart7" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and grademonth = '3학년 3월'
+	</select>
+	<select id="moktest_chart8" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and grademonth = '3학년 6월'
+	</select>
+	<select id="moktest_chart9" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT * FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and grademonth = '3학년 9월'
 	</select>
 	
 </mapper>

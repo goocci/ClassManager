@@ -288,11 +288,6 @@ public class HomeController {
 		Gson gson = new Gson();
 		ArrayList<UnivScoreDto> UnivScore = univscoredao.univScore_chart(univName, univMajor);
 		
-		/*System.out.println("Gson 실행");
-		System.out.println(univName);
-		System.out.println(univMajor);
-		System.out.println(UnivScore);*/
-		
 		return gson.toJson(UnivScore);
 	}
 	
@@ -306,9 +301,180 @@ public class HomeController {
 		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
 
 		Gson gson = new Gson();
-		ArrayList<MokTestDto> MyScore = moktestdao.moktest_chart(stdtNum, stdtGrade, stdtClassNum);
+		ArrayList<MokTestDto> MyScore1 = moktestdao.moktest_chart1(stdtNum, stdtGrade, stdtClassNum);
+		ArrayList<MokTestDto> MyScore2 = moktestdao.moktest_chart2(stdtNum, stdtGrade, stdtClassNum);
+		ArrayList<MokTestDto> MyScore3 = moktestdao.moktest_chart3(stdtNum, stdtGrade, stdtClassNum);
+		ArrayList<MokTestDto> MyScore4 = moktestdao.moktest_chart4(stdtNum, stdtGrade, stdtClassNum);
+		ArrayList<MokTestDto> MyScore5 = moktestdao.moktest_chart5(stdtNum, stdtGrade, stdtClassNum);
+		ArrayList<MokTestDto> MyScore6 = moktestdao.moktest_chart6(stdtNum, stdtGrade, stdtClassNum);
+		ArrayList<MokTestDto> MyScore7 = moktestdao.moktest_chart7(stdtNum, stdtGrade, stdtClassNum);
+		ArrayList<MokTestDto> MyScore8 = moktestdao.moktest_chart8(stdtNum, stdtGrade, stdtClassNum);
+		ArrayList<MokTestDto> MyScore9 = moktestdao.moktest_chart9(stdtNum, stdtGrade, stdtClassNum);
 		
-		return gson.toJson(MyScore);
+		ArrayList<MokTestDto> dto = moktestdao.moktest_list_Dao(stdtNum, stdtGrade, stdtClassNum);
+		
+		int a = 0;
+		for(int i = 0 ; i < dto.size() ; i++){
+			dto.get(i).setStandard(a);
+		}
+			//////////////////////
+		
+			int language1 = 0;
+			int math1 = 0;
+			int english1 = 0;
+			int science11 = 0;
+			int science21 = 0;
+			
+			for(int i = 0 ; i < MyScore1.size() ; i++){
+				if(MyScore1.get(i).getSubject().equals("언어")){
+					language1 = MyScore1.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore1.size() ; i++){
+				if(MyScore1.get(i).getSubject().equals("수리")){
+					math1 = MyScore1.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore1.size() ; i++){
+				if(MyScore1.get(i).getSubject().equals("외국어")){
+					english1 = MyScore1.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore1.size() ; i++){
+				if(!MyScore1.get(i).getSubject().equals("언어") && !MyScore1.get(i).getSubject().equals("수리") && !MyScore1.get(i).getSubject().equals("외국어")){
+					if(science11 == 0){
+						science11 = MyScore1.get(i).getStandard();
+					} else {
+						science21 = MyScore1.get(i).getStandard();
+					}
+				}
+			}
+			
+			int totalStandard1 = language1 + math1*6/5 + english1 + (science11+science21)*4/5;
+			dto.get(0).setStandard(totalStandard1);
+			
+			///////////////////////
+			
+			int language2 = 0;
+			int math2 = 0;
+			int english2 = 0;
+			int science12 = 0;
+			int science22 = 0;
+			
+			for(int i = 0 ; i < MyScore2.size() ; i++){
+				if(MyScore2.get(i).getSubject().equals("언어")){
+					language2 = MyScore2.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore2.size() ; i++){
+				if(MyScore2.get(i).getSubject().equals("수리")){
+					math2 = MyScore2.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore2.size() ; i++){
+				if(MyScore2.get(i).getSubject().equals("외국어")){
+					english2 = MyScore2.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore2.size() ; i++){
+				if(!MyScore2.get(i).getSubject().equals("언어") && !MyScore2.get(i).getSubject().equals("수리") && !MyScore2.get(i).getSubject().equals("외국어")){
+					if(science12 == 0){
+						science12 = MyScore2.get(i).getStandard();
+					} else {
+						science22 = MyScore2.get(i).getStandard();
+					}
+				}
+			}
+			
+			int totalStandard2 = language2 + math2*6/5 + english2 + (science12+science22)*4/5;
+			dto.get(1).setStandard(totalStandard2);
+			
+			/////////////////////////
+			
+			int language3 = 0;
+			int math3 = 0;
+			int english3 = 0;
+			int science13 = 0;
+			int science23 = 0;
+			
+			for(int i = 0 ; i < MyScore3.size() ; i++){
+				if(MyScore3.get(i).getSubject().equals("언어")){
+					language3 = MyScore3.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore3.size() ; i++){
+				if(MyScore3.get(i).getSubject().equals("수리")){
+					math3 = MyScore3.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore3.size() ; i++){
+				if(MyScore3.get(i).getSubject().equals("외국어")){
+					english3 = MyScore3.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore3.size() ; i++){
+				if(!MyScore3.get(i).getSubject().equals("언어") && !MyScore3.get(i).getSubject().equals("수리") && !MyScore3.get(i).getSubject().equals("외국어")){
+					if(science13 == 0){
+						science13 = MyScore3.get(i).getStandard();
+					} else {
+						science23 = MyScore3.get(i).getStandard();
+					}
+				}
+			}
+			
+			int totalStandard3 = language3 + math3*6/5 + english3 + (science13+science23)*4/5;
+			dto.get(2).setStandard(totalStandard3);
+			
+			/////////////////////////
+			
+			int language4 = 0;
+			int math4 = 0;
+			int english4 = 0;
+			int science14 = 0;
+			int science24 = 0;
+			
+			for(int i = 0 ; i < MyScore4.size() ; i++){
+				if(MyScore4.get(i).getSubject().equals("언어")){
+					language4 = MyScore4.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore4.size() ; i++){
+				if(MyScore4.get(i).getSubject().equals("수리")){
+					math4 = MyScore4.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore4.size() ; i++){
+				if(MyScore4.get(i).getSubject().equals("외국어")){
+					english4 = MyScore4.get(i).getStandard();
+					break;
+				}
+			}
+			for(int i = 0 ; i < MyScore4.size() ; i++){
+				if(!MyScore4.get(i).getSubject().equals("언어") && !MyScore4.get(i).getSubject().equals("수리") && !MyScore4.get(i).getSubject().equals("외국어")){
+					if(science14 == 0){
+						science14 = MyScore4.get(i).getStandard();
+					} else {
+						science24 = MyScore4.get(i).getStandard();
+					}
+				}
+			}
+			
+			int totalStandard4 = language4 + math4*6/5 + english4 + (science14+science24)*4/5;
+			dto.get(3).setStandard(totalStandard4);
+			
+		
+		return gson.toJson(dto);
 	}
 
 }
