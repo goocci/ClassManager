@@ -52,13 +52,16 @@ public class CalendarController {
 		String selectDate = request.getParameter("selectDate");
 		StringTokenizer token = new StringTokenizer(selectDate,"-");
 		String day="";
+		String time="";
 		while(token.hasMoreTokens()){
 			day=token.nextToken();
 		}
 		int intDay = Integer.parseInt(day);
 		
 		
-		String time =time1 +"시 ~ " + time2+"시";	
+		time= (time1!="") ? time1 +"시 ~ " + time2+"시" : "";
+		
+
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("userid");
 		MemberDto memberdto = sqlSession.getMapper(memberDao.class).memberByID(id);
@@ -72,8 +75,7 @@ public class CalendarController {
 	public String calendarDel( Model model, HttpServletRequest request,
 			@RequestParam("date") String date) {
 
-		
-		System.out.println(date);
+		sqlSession.getMapper(CalendarDao.class).deletePlan(date);
 		
 		return "redirect:calendar";
 	}
