@@ -9,6 +9,15 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/resources/script/Chart.js"></script>
+
+
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.20.2/handsontable.full.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.20.2/handsontable.full.min.js"></script>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link href="<%=cp%>/resources/assets/bootstrap/css/bootstrap_join.min.css" rel="stylesheet">
@@ -18,12 +27,19 @@
 .container {
     margin: 0 auto 25px;
     max-width: 550px;
+    max-height: 150px;
     position: relative;
 }
 
 .container2 {
     margin: 0 auto 25px;
     max-width: 1000px;
+    position: relative;
+}
+
+.container3 {
+    margin: 0 auto 25px;
+    max-width: 1500px;
     position: relative;
 }
 
@@ -113,6 +129,13 @@
         position: absolute;
         width: 1px;
     }
+    
+
+#chartdiv {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ccc;
+}
 
 </style>
 
@@ -180,7 +203,7 @@
 				          <th>표준점수</th>
 				          <th>백분위</th>
 				          <th>등급</th>
-				          <th>반영 영역</th>
+				          <th width="150px">반영 영역</th>
 				        </tr>
 				    </thead>
 				    <tbody>
@@ -202,12 +225,17 @@
                     </tbody>
              </table>
 		     </div>
+		     <br/>
+		     <br/>
+			<div class="container3" style="width: 90%;">
+				<div id="chartdiv"></div>
+				<div id="data"></div>
+			</div>
   
 		</div>
 	</div>
 	
-	<script type="text/javascript" src="<%=cp%>/resources/script/grade_chart.js"></script>
-	<script type="text/javascript" src="<%=cp%>/resources/script/alert_event.js"></script>
+	<script type="text/javascript" src="<%=cp%>/resources/script/analysis_chart.js"></script>
 	
 </body>
 <div id="foot">

@@ -72,4 +72,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SUBJECT = '한국지리')
 		ORDER BY GRADE, MONTH ASC
 	</select>
+	
+	<select id="moktest_chart" resultType="com.gys.classmanager.dto.MokTestDto">
+		SELECT standard FROM MOK_TEST WHERE STUDENTNUM = #{0} AND STDTGRADE = #{1} AND STDTCLASSNUM = #{2} and standard > '132'
+	</select>
+	
 </mapper>

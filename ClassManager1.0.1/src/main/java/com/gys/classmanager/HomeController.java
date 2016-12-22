@@ -85,7 +85,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/analysis_grade")
-	public String analysis_grade(Model model, HttpServletRequest request) {
+	public String analysis_grade(Model model, HttpServletRequest request, HttpSession session) {
+		
+		session.removeAttribute("univName");
+		session.removeAttribute("univMajor");
 		
 		return "analysis_grade";
 	}
@@ -93,9 +96,13 @@ public class HomeController {
 	@RequestMapping(value = "/search_univ_name")
 	public String search_univ_name(Model model, HttpServletRequest request) {
 		
-		System.out.println("search_univ_name");
+		/*System.out.println("search_univ_name");
 		System.out.println(request.getParameter("univName"));
-		System.out.println(request.getParameter("univMajor"));
+		System.out.println(request.getParameter("univMajor"));*/
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("univName", request.getParameter("univName"));
+		session.setAttribute("univMajor", request.getParameter("univMajor"));
 		
 		UnivScoreDao dao = sqlSession.getMapper(UnivScoreDao.class);
 		model.addAttribute("univNamelist", dao.univName_list_Dao(request.getParameter("univName")));
@@ -264,7 +271,40 @@ public class HomeController {
 		
 		return gson.toJson(list_society);
 	}
+	
+	@RequestMapping(value = "/UnivScore",  method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	public @ResponseBody String UnivScore(HttpServletRequest request, Model model, HttpSession session) {
+		
+		String univName = (String) session.getAttribute("univName");
+		String univMajor = (String) session.getAttribute("univMajor");
+		
+		UnivScoreDao univscoredao = sqlSession.getMapper(UnivScoreDao.class);
 
+		Gson gson = new Gson();
+		ArrayList<UnivScoreDto> UnivScore = univscoredao.univScore_chart(univName, univMajor);
+		
+		/*System.out.println("Gson 실행");
+		System.out.println(univName);
+		System.out.println(univMajor);
+		System.out.println(UnivScore);*/
+		
+		return gson.toJson(UnivScore);
+	}
+	
+	@RequestMapping(value = "/MyScore",  method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	public @ResponseBody String MyScore(HttpServletRequest request, Model model, HttpSession session) {
+		
+		String stdtNum = (String) session.getAttribute("stdtNum");
+		String stdtGrade = (String) session.getAttribute("grade");
+		String stdtClassNum = (String) session.getAttribute("classNum");
+		
+		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
+
+		Gson gson = new Gson();
+		ArrayList<MokTestDto> MyScore = moktestdao.moktest_chart(stdtNum, stdtGrade, stdtClassNum);
+		
+		return gson.toJson(MyScore);
+	}
 
 }
 

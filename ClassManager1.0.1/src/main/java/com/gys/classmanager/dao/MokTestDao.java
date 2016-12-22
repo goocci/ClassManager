@@ -19,4 +19,6 @@ import com.gys.classmanager.dto.MokTestDto;
 		public ArrayList<MokTestDto> moktest_chart_english(String studentNum, String stdtGrade, String stdtClassNum);
 		public ArrayList<MokTestDto> moktest_chart_science(String studentNum, String stdtGrade, String stdtClassNum);
 		public ArrayList<MokTestDto> moktest_chart_society(String studentNum, String stdtGrade, String stdtClassNum);
+		
+		public ArrayList<MokTestDto> moktest_chart(String studentNum, String stdtGrade, String stdtClassNum);
 	}
