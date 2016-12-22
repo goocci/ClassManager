@@ -53,6 +53,7 @@
 						href="view_grade?grade=${grade}&classnum=${classNum}&stdtNum=${stdtNum}">성적관리</a>
 					<li class="dropdown"><a href="board_list">게시판</a>
 					<li class="dropdown"><a href="gallery">사진첩</a>
+					<li class="dropdown"><a href="calendar">학급일정</a>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right" style="font-size: 15px;">

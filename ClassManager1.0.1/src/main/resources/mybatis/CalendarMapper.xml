@@ -20,6 +20,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<delete id="deletePlan">
-		DELETE FROM CALENDAR WHERE SELECTDATE = #{0}
+		DELETE FROM CALENDAR WHERE IDX = #{0}
 	</delete>
 </mapper>
