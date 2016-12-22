@@ -44,7 +44,7 @@ public class CalendarController {
 	}
 
 	@RequestMapping(value = "/calendarInput")
-	public String gallery( Model model, HttpServletRequest request,
+	public String calendarInput( Model model, HttpServletRequest request,
 			@RequestParam("content_") String content_) {
 		
 		String time1 = request.getParameter("time1");
@@ -52,13 +52,16 @@ public class CalendarController {
 		String selectDate = request.getParameter("selectDate");
 		StringTokenizer token = new StringTokenizer(selectDate,"-");
 		String day="";
+		String time="";
 		while(token.hasMoreTokens()){
 			day=token.nextToken();
 		}
 		int intDay = Integer.parseInt(day);
 		
 		
-		String time =time1 +" - " + time2;	
+		time= (time1!="") ? time1 +"시 ~ " + time2+"시" : "";
+		
+
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("userid");
 		MemberDto memberdto = sqlSession.getMapper(memberDao.class).memberByID(id);
@@ -67,6 +70,14 @@ public class CalendarController {
 		
 		return "redirect:calendar";
 	}
+	
+	@RequestMapping(value = "/calendarDel")
+	public String calendarDel( Model model, HttpServletRequest request,
+			@RequestParam("date") String date) {
 
+		sqlSession.getMapper(CalendarDao.class).deletePlan(date);
+		
+		return "redirect:calendar";
+	}
 
 }

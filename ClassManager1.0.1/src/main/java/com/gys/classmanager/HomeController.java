@@ -83,6 +83,11 @@ public class HomeController {
 
 		return "grade_input";
 	}
+	@RequestMapping(value = "/error404")
+	public String error404(Model model) {
+		
+		return "error404";
+	}
 	
 	@RequestMapping(value = "/analysis_grade")
 	public String analysis_grade(Model model, HttpServletRequest request, HttpSession session) {

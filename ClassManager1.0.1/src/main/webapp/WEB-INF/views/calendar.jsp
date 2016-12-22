@@ -5,7 +5,6 @@
 <%
 	String cp = request.getContextPath();
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,31 +16,25 @@
 	href="<%=cp%>/resources/assets/bootstrap/css/dncalendar-skin.min.css"
 	rel="stylesheet">
 <title>ClassManager</title>
+
 <style type="text/css">
-
-.dncalendar-note-list{
-font-size: 15px;
-font-style: italic;
-
-}
-.dncalendar-note-list .date{
-color: #0d0c0f;
- 
+.dncalendar-note-list {
+	font-size: 15px;
+	font-style: italic;
 }
 
-.dncalendar-note-list .date{
-color: #0d0c0f;
- 
+.dncalendar-note-list .date {
+	color: #3a67af;
+	font-weight: bold;
 }
 
-.modal-body{
-color: #0d0c0f;
-font-size: 15px;
- 
+.modal-body {
+	color: #0d0c0f;
+	font-size: 15px;
 }
+
 
 </style>
-
 
 </head>
 <body>
@@ -58,19 +51,23 @@ font-size: 15px;
 			<div id="myModal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<!-- Modal content-->
-					<div class="modal-content"  style="width: 400px; margin-left: 100px;">
+					<div class="modal-content"
+						style="width: 400px; margin-left: 100px;">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title">일정입력</h4>
 						</div>
 						<div class="modal-body">
 							<label for="selectDate">선택일 : </label> <input type="text"
-								id="selectDate" name="selectDate" style="width: 180px;" readonly="readonly">
-							<br> <label for="time1">시&nbsp;&nbsp;간 : </label> <input
-								type="text" id="time1" name="time1" style="width: 60px; text-align: center">~<input
-								type="text" id="time2" name="time2" style="width: 60px; text-align: center">&nbsp;&nbsp;&nbsp;&nbsp;(24H)<br>
+								id="selectDate" name="selectDate" style="width: 180px;"
+								readonly="readonly"> <br> <label for="time1">시&nbsp;&nbsp;간
+								: </label> <input type="text" id="time1" name="time1"
+								style="width: 60px; text-align: center">~<input
+								type="text" id="time2" name="time2"
+								style="width: 60px; text-align: center">&nbsp;&nbsp;&nbsp;&nbsp;(24H)<br>
 							<label for="content_">내&nbsp;&nbsp;용 : </label> <input
-								type="text" id="content_" name="content_" style="width: 200px;" required="required">
+								type="text" id="content_" name="content_" style="width: 200px;"
+								required="required">
 						</div>
 						<div class="modal-footer">
 							<input type="submit" class="btn btn-default" value="저 장 ">
@@ -82,7 +79,8 @@ font-size: 15px;
 			</div>
 		</form>
 		<br>
-		<div id="dncalendar-container" style="width: 1200px;margin-left: 32px"></div>
+		<div id="dncalendar-container"
+			style="width: 1200px; margin-left: 32px;"></div>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript"
 			src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.js"></script>
@@ -98,7 +96,7 @@ font-size: 15px;
 				<c:forEach items="${list}" var="dto">
 				{
 					"date" : "${dto.selectDate}",
-					"note" : [ "${dto.content}"," / ","${dto.time}" ],
+					"note" : [ "${dto.content}"," / ","${dto.time}" ,"<a href='calendarDel?date=${dto.selectDate}' style='text-decoration:none'> 삭제</a>"],
 				},
 				</c:forEach>
 				],
@@ -112,7 +110,7 @@ font-size: 15px;
 				}
 			});
 			my_calendar.build();
-		</script>
+		</script>		
 	</div>
 </body>
 </html>

@@ -19,4 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		CALENDAR WHERE grade=#{0} AND classNum = #{1} ORDER BY DAY ASC;
 	</select>
 
+	<delete id="deletePlan">
+		DELETE FROM CALENDAR WHERE SELECTDATE = #{0}
+	</delete>
 </mapper>
