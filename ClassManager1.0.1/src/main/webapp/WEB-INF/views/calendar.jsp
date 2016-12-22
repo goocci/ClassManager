@@ -33,6 +33,11 @@
 	font-size: 15px;
 }
 
+span {
+	color: #022359;
+	font-size: 15px;
+}
+
 
 </style>
 
