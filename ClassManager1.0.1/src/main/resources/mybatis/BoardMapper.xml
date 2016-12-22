@@ -35,9 +35,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="writeBoard">
 		INSERT
 		INTO
-		board (category, title, content, writer, hit, stdtGrade, stdtClassNum, teacherNum)
+		board (category, title, content, writer, id, hit, stdtGrade, stdtClassNum, teacherNum)
 		VALUES
-		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8})
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9})
 	</insert>
 
 	<delete id="deleteBoard">

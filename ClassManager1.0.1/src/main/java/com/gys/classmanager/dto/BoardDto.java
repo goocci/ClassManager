@@ -9,6 +9,7 @@ public class BoardDto {
 	private String created_at;
 	private String writer;
 	private int hit;
+	private String id;
 	private String stdtGrade;
 	private String stdtClassNum;
 	private int teacherNum;
@@ -17,13 +18,14 @@ public class BoardDto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public BoardDto(int idx, String category, String title, String content, String created_at, String writer, int hit, String stdtGrade, String stdtClassNum, int teacherNum) {
+	public BoardDto(int idx, String category, String title, String content, String created_at, String writer, String id, int hit, String stdtGrade, String stdtClassNum, int teacherNum) {
 		this.idx = idx;
 		this.category = category;
 		this.title = title;
 		this.content = content;
 		this.created_at = created_at;
 		this.writer = writer;
+		this.id = id;
 		this.hit = hit;
 		this.stdtGrade = stdtGrade;
 		this.stdtClassNum = stdtClassNum;
@@ -76,6 +78,14 @@ public class BoardDto {
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getHit() {

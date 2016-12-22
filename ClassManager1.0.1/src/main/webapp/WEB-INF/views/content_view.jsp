@@ -30,8 +30,10 @@
 
 			<!-- 1114_ form으로 묶어주고 action으로 페이지 넘겨줌 -->
 						<div class="col-md-10 col-sm-offset-0 col-md-offset-1 " align="center" style="margin-bottom: 10px; margin-left:28%; ">
+							<c:if test="${dto.id eq useridd}">
 							<a class="btn btn-primary" href="modify_view?bIdx=${dto.idx}" style="margin-left: 10px"> 글 수정 </a> 
 							<a class="btn btn-primary" href="deleteBoard?bIdx=${dto.idx}"> 글 삭제 </a>
+							</c:if>
 							<a class="btn btn-primary" href="board_list"> 글 목록으로 가기 </a>
 						</div>
 			<div class="container">

@@ -14,7 +14,6 @@ import com.gys.classmanager.dao.BoardDao;
 import com.gys.classmanager.dto.BoardDto;
 
 @Controller
-@SessionAttributes("userid")
 public class BoardController {
 	@Autowired
 	private SqlSession sqlSession;
@@ -29,7 +28,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/content_view")
-	public String content_view(HttpServletRequest request, Model model) {
+	public String content_view(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("content_view()");
 		
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -38,6 +37,9 @@ public class BoardController {
 		dao.upHit(Integer.parseInt(request.getParameter("bIdx")));
 		BoardDto dto = dao.viewBoard(Integer.parseInt(request.getParameter("bIdx")));
 		
+		String id = (String)session.getAttribute("userid");
+		
+		model.addAttribute("useridd", id);
 		model.addAttribute("dto",dto);	
 		return "content_view";
 	}
@@ -50,6 +52,7 @@ public class BoardController {
 		
 		model.addAttribute("comment_list", dao.listComment(Integer.parseInt(request.getParameter("bIdx"))));
 		BoardDto dto = dao.viewBoard(Integer.parseInt(request.getParameter("bIdx")));
+		
 		
 		model.addAttribute("dto",dto);	
 		return "content_view";
@@ -79,11 +82,12 @@ public class BoardController {
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
 		int teacherNum = (Integer) session.getAttribute("teacherNum");
+		String id = (String)session.getAttribute("userid");
 		
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		
 		dao.writeBoard(request.getParameter("bCategory"), request.getParameter("bTitle"),
-							request.getParameter("bContent"), request.getParameter("bWriter"), 1, stdtGrade, stdtClassNum, teacherNum);
+							request.getParameter("bContent"), request.getParameter("bWriter"), id, 1, stdtGrade, stdtClassNum, teacherNum);
 		return "redirect:board_list";
 	}
 	
