@@ -85,7 +85,7 @@ span {
 		</form>
 		<br>
 		<div id="dncalendar-container"
-			style="width: 1200px; margin-left: 32px;"></div>
+			style="width: 1200px; margin-left:2%;"></div>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript"
 			src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.js"></script>

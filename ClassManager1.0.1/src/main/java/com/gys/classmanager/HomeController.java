@@ -295,9 +295,8 @@ public class HomeController {
 		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
 
 		ArrayList<MokTestDto> dto = moktestdao.moktest_list_Dao(stdtNum, stdtGrade, stdtClassNum);
-		int a = 0;
 		for (int i = 0; i < dto.size(); i++) {
-			dto.get(i).setStandard(a);
+			dto.get(i).setStandard(0);
 		}
 
 		Gson gson = new Gson();
@@ -309,8 +308,8 @@ public class HomeController {
 
 			ArrayList<MokTestDto> MyScore = moktestdao.moktest_chart(stdtNum, stdtGrade, stdtClassNum, categoryArr[j]);
 
-			int language = 0;
-			int math = 0;
+			int language=0;
+			int math=0;
 			int english = 0;
 			int science1 = 0;
 			int science2 = 0;
@@ -343,10 +342,13 @@ public class HomeController {
 					}
 				}
 			}
-
 			int totalStandard = language + math * 6 / 5 + english + (science1 + science2) * 4 / 5;
 			
+			if(language == 0 || math == 0 || english == 0 || science1 == 0 || science2 == 0){
+	            break;
+	         }			
 			dto.get(j).setStandard(totalStandard);
+			System.out.println(totalStandard);
 		}
 		return gson.toJson(dto);
 	}
