@@ -73,12 +73,12 @@ $.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
 	for(var i = 0 ; i< sourceData.length ; i++){
 
 		if(sourceData[i][2]==0 || isNaN(sourceData[i][2]) === true){
-			sourceData[i][2]="모든 성적을 입력하지 않았습니다";
-			sourceData[i][3]="모든 성적을 입력하지 않았습니다";
+			sourceData[i][2]="모든 과목의 성적을 입력하지 않았습니다.";
+			sourceData[i][3]="모든 과목의 성적을 입력하지 않았습니다.";
 			}
 		sourceData2.push(sourceData[i]);
 
-		}
+	}
 	/**
 	* Create the Handsontable editable grid
 	*/
