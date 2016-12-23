@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import com.gys.classmanager.dto.CommentDto;
 
 public interface CommentDao {
-	//´ñ±Û °¡Á®¿À±â µî·Ï, »èÁ¦ 
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ 
 
 	public ArrayList<CommentDto> listComment();
 	
-	public void writeComment(int cBoardIdx, String cWriter, String cContent);
+	public void writeComment(int cBoardIdx, String cWriter, String cId, String cContent);
 
 	public void deleteComment(int cBoardIdx);
 	

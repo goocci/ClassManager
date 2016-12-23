@@ -30,8 +30,10 @@
 
 			<!-- 1114_ form으로 묶어주고 action으로 페이지 넘겨줌 -->
 						<div class="col-md-10 col-sm-offset-0 col-md-offset-1 " align="center" style="margin-bottom: 10px; margin-left:28%; ">
+							<c:if test="${dto.id eq useridd}">
 							<a class="btn btn-primary" href="modify_view?bIdx=${dto.idx}" style="margin-left: 10px"> 글 수정 </a> 
 							<a class="btn btn-primary" href="deleteBoard?bIdx=${dto.idx}"> 글 삭제 </a>
+							</c:if>
 							<a class="btn btn-primary" href="board_list"> 글 목록으로 가기 </a>
 						</div>
 			<div class="container">
@@ -41,6 +43,14 @@
 						<h4 align="left" style="margin-top:20px; margin-bottom: -12px; margin-left:20px; margin-right:20px " >[${dto.category}] ${dto.title} </h4>						
 						<h6 align="right" style="margin-top:20px; margin-bottom: -12px; margin-left:20px; margin-right:20px " >${dto.writer} ${dto.created_at} </h6>	
 							<hr style= "border:1px dashed gray;">
+							
+						<!-- 첨부 파일 보이는 곳 -->
+						<c:if test="${dto.boardPhoto != null}">	
+						<div align="left" style="margin-left:20px">
+						<img src="<%=cp%>/resources/assets/boardimg/${dto.boardPhoto}" /></br></br>
+						</div>
+						</c:if>
+						
 						<% pageContext.setAttribute("newLineChar", "\n"); %>
 						<p align="left" style="margin-top: -5px; margin-left: 20px; margin-right:20px;font-size: 20px">${fn:replace(dto.content, newLineChar, '<br/>')}</p>
 							<hr style="border: 1px solid gray;">
@@ -60,12 +70,13 @@
 						<c:forEach items="${comment_list}" var="comment">
 							<p class="text-left">
 								<label class="col-sm-2 control-label">${comment.writer}</label>${comment.content}
+								<c:if test="${comment.id eq useridd}">
 								<a class="btn btn-default btn-xs"
 									href="deleteComment?bIdx=${dto.idx}&cBoardIdx=${comment.idx}"
 									style="margin-bottom: 5px">x</a>
+								</c:if>
 							</p>
 						</c:forEach>
-
 					</div>
 				</div>
 			</div>

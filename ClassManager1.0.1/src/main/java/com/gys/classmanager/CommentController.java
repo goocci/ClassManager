@@ -32,8 +32,10 @@ public class CommentController {
 			writer = (String)session.getAttribute("sname");
 		}
 		
+		String id = (String)session.getAttribute("userid");
+		
 		CommentDao dao = sqlSession.getMapper(CommentDao.class);
-		dao.writeComment(Integer.parseInt(request.getParameter("cBoardIdx")), writer,
+		dao.writeComment(Integer.parseInt(request.getParameter("cBoardIdx")), writer, id,
 							request.getParameter("cContent"));	
 		model.addAttribute("bIdx", request.getParameter("cBoardIdx"));
 		return "redirect:content_view_cm";

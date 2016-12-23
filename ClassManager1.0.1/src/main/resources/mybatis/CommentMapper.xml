@@ -8,9 +8,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="writeComment">
 	    INSERT
         INTO
-        comment (boardIdx, writer, content)
+        comment (boardIdx, writer, id, content)
         VALUES
-        (#{param1}, #{param2}, #{param3})
+        (#{param1}, #{param2}, #{param3}, #{param4})
 	</insert>
 	
 	<delete id ="deleteComment">
