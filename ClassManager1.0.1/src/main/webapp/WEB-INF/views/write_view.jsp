@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
@@ -28,7 +28,7 @@
 			</div>
 			
 			<!-- 1114_ form으로 묶어주고 action으로 페이지 넘겨줌 -->
-			<form id="writeForm" action="write" method="POST">
+			<form id="writeForm" action="write" method="POST", enctype="multipart/form-data">
 				<div class="container">
 					<div class=" col-md-10 col-sm-offset-0 col-md-offset-1" align="center">
 						<table class="table table-striped table-hover" border="2">
@@ -52,8 +52,14 @@
 									<td><input type="text" name="bTitle" size="90"></td>
 								</tr>
 								<tr>
-									<th>글 내용</th>
-									<td><textarea name="bContent" rows="10" cols="90"></textarea></td>
+									<th>글 내용 <br>
+									</th>
+									<td>
+									
+									<textarea name="bContent" rows="10" cols="90"></textarea></br>
+										<label for="exampleInputFile">파일 업로드</label> 
+										<input type="file" name="imgFile"> 
+									</td>
 								</tr>
 							</tbody>
 						</table>
