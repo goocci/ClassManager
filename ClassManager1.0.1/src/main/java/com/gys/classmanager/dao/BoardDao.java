@@ -15,8 +15,10 @@ import com.gys.classmanager.dto.CommentDto;
 		
 		public BoardDto viewBoard(int bIdx);
 
-		public void writeBoard(String bCategory, String bTitle, String bContent, String bWriter, String Id, int hit, String stdtGrade, String stdtClassNum, int teacherNum);
+		public void writeBoardP(String bCategory, String bTitle, String bContent, String bWriter, String Id, int hit, String stdtGrade, String stdtClassNum, int teacherNum, String boardPhoto);
 
+		public void writeBoard(String bCategory, String bTitle, String bContent, String bWriter, String Id, int hit, String stdtGrade, String stdtClassNum, int teacherNum);
+	
 		public void deleteBoard(String idx);
 		
 		public BoardDto modifyViewBoard(String idx);

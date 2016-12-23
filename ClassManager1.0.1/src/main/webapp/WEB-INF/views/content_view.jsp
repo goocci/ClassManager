@@ -43,6 +43,14 @@
 						<h4 align="left" style="margin-top:20px; margin-bottom: -12px; margin-left:20px; margin-right:20px " >[${dto.category}] ${dto.title} </h4>						
 						<h6 align="right" style="margin-top:20px; margin-bottom: -12px; margin-left:20px; margin-right:20px " >${dto.writer} ${dto.created_at} </h6>	
 							<hr style= "border:1px dashed gray;">
+							
+						<!-- 첨부 파일 보이는 곳 -->
+						<c:if test="${dto.boardPhoto != null}">	
+						<div align="left" style="margin-left:20px">
+						<img src="<%=cp%>/resources/assets/boardimg/${dto.boardPhoto}" /></br></br>
+						</div>
+						</c:if>
+						
 						<% pageContext.setAttribute("newLineChar", "\n"); %>
 						<p align="left" style="margin-top: -5px; margin-left: 20px; margin-right:20px;font-size: 20px">${fn:replace(dto.content, newLineChar, '<br/>')}</p>
 							<hr style="border: 1px solid gray;">
@@ -62,13 +70,13 @@
 						<c:forEach items="${comment_list}" var="comment">
 							<p class="text-left">
 								<label class="col-sm-2 control-label">${comment.writer}</label>${comment.content}
+								<c:if test="${comment.id eq useridd}">
 								<a class="btn btn-default btn-xs"
 									href="deleteComment?bIdx=${dto.idx}&cBoardIdx=${comment.idx}"
 									style="margin-bottom: 5px">x</a>
+								</c:if>
 							</p>
 						</c:forEach>
-						<!-- 안녕하세요 -->
-
 					</div>
 				</div>
 			</div>

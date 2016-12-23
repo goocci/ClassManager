@@ -1,5 +1,12 @@
 package com.gys.classmanager;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gys.classmanager.dao.BoardDao;
 import com.gys.classmanager.dto.BoardDto;
@@ -45,7 +54,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/content_view_cm")
-	public String content_view_cm(HttpServletRequest request, Model model) {
+	public String content_view_cm(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("content_view()");
 		
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -53,11 +62,19 @@ public class BoardController {
 		model.addAttribute("comment_list", dao.listComment(Integer.parseInt(request.getParameter("bIdx"))));
 		BoardDto dto = dao.viewBoard(Integer.parseInt(request.getParameter("bIdx")));
 		
+		String id = (String)session.getAttribute("userid");
 		
+		model.addAttribute("useridd", id);
 		model.addAttribute("dto",dto);	
 		return "content_view";
 	}
-		
+			
+	private String getCurrentDayTime() {
+		long time = System.currentTimeMillis();
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.KOREA);
+		return dayTime.format(new Date(time));
+	}
+
 	@RequestMapping(value = "/write_view")
 	public String write_view(Model model, HttpSession session) {
 		
@@ -76,8 +93,35 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/write")
-	public String write(HttpServletRequest request, Model model, HttpSession session) {
+	public String write(HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile, Model model, HttpSession session) {
 		System.out.println("write()");
+		
+		System.out.println("uploadPhoto");
+		String savePath = "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\boardimg";
+
+		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
+		String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
+		String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
+
+		String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
+		String fullPath = savePath + "\\" + rename;
+		System.out.println(rename);
+
+		if (!imgFile.isEmpty()) {
+			try {
+				byte[] bytes = imgFile.getBytes();
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fullPath)));
+				stream.write(bytes);
+				stream.close();
+				model.addAttribute("resultMsg", "파일 업로드 성공");
+				model.addAttribute("photoname", rename);
+			} catch (Exception e) {
+				model.addAttribute("resultMsg", "파일을 업로드하는 데에 실패했습니다.");
+			}
+		} else {
+			model.addAttribute("resultMsg", "업로드할 파일을 선택해주시기 바랍니다.");
+		}
+
 		
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
@@ -86,8 +130,14 @@ public class BoardController {
 		
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		
-		dao.writeBoard(request.getParameter("bCategory"), request.getParameter("bTitle"),
-							request.getParameter("bContent"), request.getParameter("bWriter"), id, 1, stdtGrade, stdtClassNum, teacherNum);
+		if (rename != null) {
+			dao.writeBoardP(request.getParameter("bCategory"), request.getParameter("bTitle"),
+					request.getParameter("bContent"), request.getParameter("bWriter"), id, 1, stdtGrade, stdtClassNum, teacherNum, rename);
+		} else {
+			dao.writeBoard(request.getParameter("bCategory"), request.getParameter("bTitle"),
+					request.getParameter("bContent"), request.getParameter("bWriter"), id, 1, stdtGrade, stdtClassNum, teacherNum);
+		}
+		
 		return "redirect:board_list";
 	}
 	

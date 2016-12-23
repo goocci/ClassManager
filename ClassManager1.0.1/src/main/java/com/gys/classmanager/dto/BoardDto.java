@@ -13,12 +13,13 @@ public class BoardDto {
 	private String stdtGrade;
 	private String stdtClassNum;
 	private int teacherNum;
+	private String boardPhoto;
 	
 	public BoardDto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public BoardDto(int idx, String category, String title, String content, String created_at, String writer, String id, int hit, String stdtGrade, String stdtClassNum, int teacherNum) {
+	public BoardDto(int idx, String category, String title, String content, String created_at, String writer, String id, int hit, String stdtGrade, String stdtClassNum, int teacherNum, String boardPhoto) {
 		this.idx = idx;
 		this.category = category;
 		this.title = title;
@@ -30,6 +31,7 @@ public class BoardDto {
 		this.stdtGrade = stdtGrade;
 		this.stdtClassNum = stdtClassNum;
 		this.teacherNum = teacherNum;
+		this.boardPhoto = boardPhoto;
 	}
 
 	public int getIdx() {
@@ -118,6 +120,14 @@ public class BoardDto {
 
 	public void setTeacherNum(int teacherNum) {
 		this.teacherNum = teacherNum;
+	}
+	
+	public String getBoardPhoto() {
+		return boardPhoto;
+	}
+
+	public void setBoardPhoto(String boardPhoto) {
+		this.boardPhoto = boardPhoto;
 	}
 	
 	
