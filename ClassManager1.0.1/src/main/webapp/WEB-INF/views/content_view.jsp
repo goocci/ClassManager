@@ -111,7 +111,8 @@
 							data : objParams,
 							type : 'POST',
 							success : function(result) {
-								alert("다운로드 성공")
+								alert("다운로드 성공");
+								
 								
 							}
 						});

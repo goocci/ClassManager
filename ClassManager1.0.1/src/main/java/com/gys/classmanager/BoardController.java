@@ -5,13 +5,17 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +23,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.io.ByteStreams;
 import com.gys.classmanager.dao.BoardDao;
 import com.gys.classmanager.dto.BoardDto;
 
@@ -165,7 +172,7 @@ public class BoardController {
 	    //System.out.println(oriFileName);
 		
 		String filePath = "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img\\cheoyoung_20161224-17-15-09.PNG";
-		String fileName = "cheoyoung.PNG";
+		String oriFileName = "cheoyoung.PNG";
 	     /*
 	    //String docName = URLEncoder.encode(oriFileName,"UTF-8").replaceAll("\\+", "%20"); //한글파일명 깨지지 않도록
 		String docName = new String(oriFileName.getBytes("UTF-8"), "ISO-8859-1");
@@ -179,22 +186,23 @@ public class BoardController {
 	    response.flushBuffer();
 	    */
 		
-		/*
+		
 	    byte fileByte[] = FileUtils.readFileToByteArray(new File(filePath));
 	    
-	    System.out.println(fileByte);
 	     
 	    response.setContentType("application/octet-stream");
 	    response.setContentLength(fileByte.length);
+	    System.out.println(fileByte.length);
 	    response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(oriFileName,"UTF-8")+"\";");
 	    response.setHeader("Content-Transfer-Encoding", "binary");
 	    response.getOutputStream().write(fileByte);
 	     
 	    response.getOutputStream().flush();
 	    response.getOutputStream().close();
-	    */
-		
 
+	  
+		
+		/*
 		 //응답 헤더의 Content-Type을 세팅한다. 
 		 response.setContentType("application/x-msdownload"); 
 		 //위 세팅으로 안될 경우에 사용.
@@ -246,7 +254,8 @@ public class BoardController {
 		   if(fin!=null) fin.close();
 		  }
 		 }
-	 
+		 */
+	    
 	}
 	
 	@RequestMapping("/deleteBoard")
@@ -280,3 +289,4 @@ public class BoardController {
 	}
 	
 }
+
