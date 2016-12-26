@@ -1,9 +1,7 @@
 package com.gys.classmanager;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -23,11 +21,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.google.common.io.ByteStreams;
 import com.gys.classmanager.dao.BoardDao;
 import com.gys.classmanager.dto.BoardDto;
 
@@ -120,20 +115,20 @@ public class BoardController {
 		return "redirect:board_list";
 	}
 	
-	@RequestMapping("/uploadfile")
+	@RequestMapping(value = "/uploadfile" ,produces="application/json")
 	@ResponseBody
 	public String uploadfile(HttpServletRequest request, @RequestParam("boardFile") MultipartFile boardFile, Model model, HttpSession session) {
 		System.out.println("uploadfile()");
 		
 		System.out.println("uploadPhoto");
-		String savePath = "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
+		String savePath = "/Users/hanyoungsoo/Documents/workspace-sts-3.8.2.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ClassManager1.0.1/resources/assets/img";
 
 		String originalFilename = boardFile.getOriginalFilename(); // fileName.jpg
 		String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
 		String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
 
-		String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
-		String fullPath = savePath + "\\" + rename;
+		String rename = onlyFileName + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
+		String fullPath = savePath + "/" + rename;
 		System.out.println(rename);
 
 		if (!boardFile.isEmpty()) {
@@ -142,26 +137,29 @@ public class BoardController {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fullPath)));
 				stream.write(bytes);
 				stream.close();
-				model.addAttribute("resultMsg", "파일 업로드 성공");
-				model.addAttribute("photoname", rename);
+//				model.addAttribute("resultMsg", "파일 업로드 성공");
+//				model.addAttribute("photoname", rename);
 			} catch (Exception e) {
 				model.addAttribute("resultMsg", "파일을 업로드하는 데에 실패했습니다.");
 			}
 		} else {
 			model.addAttribute("resultMsg", "업로드할 파일을 선택해주시기 바랍니다.");
 		}
-		return rename;
+	
+		String json =  "{\"filename\": \""+rename+"\","+" \"msg\":\"file upload success.\"}";
+		return json;
+		
+		 
 	}
 	
 	private String getCurrentDayTime() {
 		long time = System.currentTimeMillis();
-		SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMdd-HH-mm-ss", Locale.KOREA);
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.KOREA);
 		return dayTime.format(new Date(time));
 	}
 	
 	@RequestMapping("/filedown")//URL호출
-	@ResponseBody
-	public void getFile(@RequestParam Map<String,Object> map, HttpServletResponse response) throws Exception {
+	public String getFile(@RequestParam Map<String,Object> map, HttpServletResponse response, Model model) throws Exception {
 		
 		System.out.println("filedown 들어왔음");
 	     
@@ -171,8 +169,8 @@ public class BoardController {
 	    //System.out.println(filePath);
 	    //System.out.println(oriFileName);
 		
-		String filePath = "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img\\cheoyoung_20161224-17-15-09.PNG";
-		String oriFileName = "cheoyoung.PNG";
+		String filePath = "/Users/hanyoungsoo/Documents/workspace-sts-3.8.2.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ClassManager1.0.1/resources/assets/img/404error_20161226-16-42-41.jpg";
+		String oriFileName = "404error_20161226-16-42-41.jpg";
 	     /*
 	    //String docName = URLEncoder.encode(oriFileName,"UTF-8").replaceAll("\\+", "%20"); //한글파일명 깨지지 않도록
 		String docName = new String(oriFileName.getBytes("UTF-8"), "ISO-8859-1");
@@ -199,9 +197,12 @@ public class BoardController {
 	     
 	    response.getOutputStream().flush();
 	    response.getOutputStream().close();
+	    model.addAttribute("hys", "hys");
+	    System.out.println("hys");
+	    
+	    return "redirect:content_view";
 
 	  
-		
 		/*
 		 //응답 헤더의 Content-Type을 세팅한다. 
 		 response.setContentType("application/x-msdownload"); 
