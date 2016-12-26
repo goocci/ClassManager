@@ -93,22 +93,28 @@ public class HomeController {
 
 		session.removeAttribute("univName");
 		session.removeAttribute("univMajor");
+		session.removeAttribute("univId");
 
 		return "analysis_grade";
 	}
 
 	@RequestMapping(value = "/search_univ_name")
 	public String search_univ_name(Model model, HttpServletRequest request) {
-
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("univName", request.getParameter("univName"));
 		session.setAttribute("univMajor", request.getParameter("univMajor"));
+		session.setAttribute("univId", request.getParameter("univId"));
 
+		
 		UnivScoreDao dao = sqlSession.getMapper(UnivScoreDao.class);
+		ArrayList<UnivScoreDto> majorScorelist = dao.univMajor_score_Dao(request.getParameter("univName"), request.getParameter("univMajor"));
+		int size = majorScorelist.size();
+		
 		model.addAttribute("univNamelist", dao.univName_list_Dao(request.getParameter("univName")));
-		model.addAttribute("majorScorelist",
-				dao.univMajor_score_Dao(request.getParameter("univName"), request.getParameter("univMajor")));
-
+		model.addAttribute("majorScorelist", majorScorelist);
+		model.addAttribute("size", size);
+		
 		return "analysis_grade";
 	}
 
@@ -276,12 +282,26 @@ public class HomeController {
 
 		String univName = (String) session.getAttribute("univName");
 		String univMajor = (String) session.getAttribute("univMajor");
+		String univId = (String) session.getAttribute("univId");
 
-		UnivScoreDao univscoredao = sqlSession.getMapper(UnivScoreDao.class);
-
+		UnivScoreDao dao = sqlSession.getMapper(UnivScoreDao.class);
+		
+		ArrayList<UnivScoreDto> majorScorelist = dao.univMajor_score_Dao(univName, univMajor);
+		
+		int size = majorScorelist.size();
+		
 		Gson gson = new Gson();
-		ArrayList<UnivScoreDto> UnivScore = univscoredao.univScore_chart(univName, univMajor);
-
+		ArrayList<UnivScoreDto> UnivScore1 = dao.univScore_chart1(univName, univMajor);
+		ArrayList<UnivScoreDto> UnivScore2 = dao.univScore_chart2(univName, univMajor, univId);
+		
+		ArrayList<UnivScoreDto> UnivScore;
+		
+		if(size == 1){
+			UnivScore = UnivScore1;
+		} else{
+			UnivScore = UnivScore2;
+		}
+		
 		return gson.toJson(UnivScore);
 	}
 
@@ -348,7 +368,6 @@ public class HomeController {
 	            break;
 	         }			
 			dto.get(j).setStandard(totalStandard);
-			System.out.println(totalStandard);
 		}
 		return gson.toJson(dto);
 	}
