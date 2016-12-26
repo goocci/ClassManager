@@ -23,23 +23,23 @@
 		<fieldset>
 			<legend>회원가입</legend>
 			<div align="center">
-				<form name="uploadForm" method="post" action="uploadFile"
+				<form name="uploadForm" method="post" action=""
 					enctype="multipart/form-data">
 					<div class="form-group">
 						<div class="row">
 							<div class="profile-header-container">
 								<div class="profile-header-img">
-									<img class="img-circle"
-										src="<%=cp %>/resources/assets/img/${filename }" />
+									<img class="img-circle" id=photo
+										src="" />
 									<!-- badge -->
 									<div class="rank-label-container">
 										<span class="label label-default rank-label">profile</span>
 									</div>
-									<div align="right">
+									<div align="right" >
 										<input type="file" name="imgFile">
 									</div>
-									<input
-											type="submit" value="사진등록">${resultMsg } 
+									<input 
+										id="picreg"	type="button" class="btn btn-default btn-xs" value="사진등록" style="margin-left: 0px;" >
 								</div>
 							</div>
 						</div>
@@ -223,12 +223,8 @@
 
 					</div>
 					
-					<c:if test="${filename != null}">
-					<input type="hidden" name="fileNmae" id="fileName" value="${filename}">
-					</c:if>
-					<c:if test="${filename == null}">
 					<input type="hidden" name="fileNmae" id="fileName" value="default.PNG">
-					</c:if>
+		
 					
 					<div class="form-group">
 						<div class="col-lg-10 col-lg-offset-2">
@@ -246,6 +242,28 @@
 				src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 			<script type="text/javascript" src="<%=cp%>/resources/script/join.js"></script>
 			<script src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.min.js"></script>
+			
+				<script>
+					$('#picreg').bind('click',function(){
+					 	  var formData = new FormData();
+			        	  formData.append("imgFile", $("input[name=imgFile]")[0].files[0]);
+						
+						$.ajax({
+							url : 'uploadFile',
+			        	    data: formData,
+			        	    processData: false,
+			        	    contentType: false,
+			        	    type: 'POST',
+							success : function(data, dataType) {
+								$('#photo').attr('src', "/classmanager/resources/assets/img/"+data);
+								$('#fileName').attr('value', data);
+							}
+							,error:function(request,status,error){
+								alert("사진을 업로드 하지 않으셨거나 오류가 발생했습니다 ");  }  
+						})
+					})
+					
+				</script>
 		</fieldset>
 	</div>
 </body>
