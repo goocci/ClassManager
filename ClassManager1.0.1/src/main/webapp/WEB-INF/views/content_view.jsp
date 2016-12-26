@@ -44,10 +44,15 @@
 						<h6 align="right" style="margin-top:20px; margin-bottom: -12px; margin-left:20px; margin-right:20px " >${dto.writer} ${dto.created_at} </h6>	
 							<hr style= "border:1px dashed gray;">
 							
+							
 						<!-- 첨부 파일 보이는 곳 -->
 						<c:if test="${dto.boardPhoto != null}">	
+						<div align="right" style="margin-right:20px">
+						<h5 style="font-weight:bold">[첨부파일]</h5>
+						<a id ="downloadbutton">${dto.boardPhoto}</a>
+						</div>
 						<div align="left" style="margin-left:20px">
-						<img src="<%=cp%>/resources/assets/boardimg/${dto.boardPhoto}" /></br></br>
+						<img src="<%=cp%>/resources/assets/img/${dto.boardPhoto}" /></br>
 						</div>
 						</c:if>
 						
@@ -86,6 +91,34 @@
 			<script src="<%=cp%>/resources/assets/js/bootstrap.min.js"></script>
 		</div>
 	</div>
+	
+				<script type="text/javascript">
+	
+					$("#downloadbutton").click(function() {
+
+						
+						var path = "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
+						var boardPhoto="${dto.boardPhoto}";
+						
+						var objParams ={
+								filePath : path + "\\" + boardPhoto ,
+								oriFileName : path
+						};
+						$.ajax({
+							url : 'filedown',
+							processData : false,
+							contentType : false,
+							data : objParams,
+							type : 'POST',
+							success : function(result) {
+								alert("다운로드 성공");
+								
+								
+							}
+						});
+					});
+					
+			</script>
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>

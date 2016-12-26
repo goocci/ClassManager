@@ -28,7 +28,7 @@
 			</div>
 			
 			<!-- 1114_ form으로 묶어주고 action으로 페이지 넘겨줌 -->
-			<form id="writeForm" action="write" method="POST", enctype="multipart/form-data">
+			<form id="writeForm" name="writeForm" action="write" method="POST", enctype="multipart/form-data">
 				<div class="container">
 					<div class=" col-md-10 col-sm-offset-0 col-md-offset-1" align="center">
 						<table class="table table-striped table-hover" border="2">
@@ -52,30 +52,60 @@
 									<td><input type="text" name="bTitle" size="90"></td>
 								</tr>
 								<tr>
-									<th>글 내용 <br>
+									<th>글 내용 </br>
+									
 									</th>
 									<td>
+									<a class="btn btn-default btn-sm"  style="background-color: gray; margin-bottom: 10px" href="board_list"> 투표 </a> 
 									
+									<a class="btn btn-default btn-sm" style="background-color: gray; margin-bottom: 10px"
+										data-toggle="modal" data-target="#myModal22">파일 첨부</a></br>
 									<textarea name="bContent" rows="10" cols="90"></textarea></br>
-										<label for="exampleInputFile">파일 업로드</label> 
-										<input type="file" name="imgFile"> 
+											<input type="file" name="boardFile" > 
+											<input type="button" id="uploadbutton" value="클릭" >
+											<input type="text" name="boardFileName" size="20" readonly>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 
+						<c:if test="${boardFilename != null}">
+							<input type="hidden" name="fileNmae" id="fileName" value="${boardFilename}">
+						</c:if>
 						<!-- 1114 글 등록,취소 버튼 추가 -->
 						<div class="col-sm-12 controls" align="right">
 							<input id="btn-write" type="submit" class="btn btn-primary" value="글등록" onclick="return writeCheck"> </input> 
 							<a class="btn btn-primary" href="board_list"> 취소 </a>
 						</div>
-
 					</div>
 				</div>
 			</form>
-				<script
-					src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+			
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 				<script src="<%=cp%>/resources/assets/js/bootstrap.min.js"></script>
+				<!-- 모달 -->
+			<script src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.min.js"></script>
+
+			<script type="text/javascript">
+	
+					$("#uploadbutton").click(function() {
+						var form = $('form')[0];
+						var formData = new FormData(form);
+						$.ajax({
+							url : 'uploadfile',
+							processData : false,
+							contentType : false,
+							data : formData,
+							type : 'POST',
+							success : function(result) {
+								document.writeForm.boardFileName.value=result;
+								
+							}
+						});
+					});
+					
+			</script>
+			
 		</body>
 	</div>
 </div>
