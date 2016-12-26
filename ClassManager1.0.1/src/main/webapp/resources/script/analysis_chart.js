@@ -58,17 +58,27 @@ $.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
 	/**
 	* Define initial data
 	*/
+	var sourceData2= new Array();
 	var sourceData = [
-		['1학년 3월', chartData_univScore, chartData_MyScore[0], chartData_MyScore[0]-chartData_univScore],
-		['1학년 6월', chartData_univScore, chartData_MyScore[1], chartData_MyScore[1]-chartData_univScore],
-		['1학년 9월', chartData_univScore, chartData_MyScore[2], chartData_MyScore[2]-chartData_univScore],
-		['2학년 3월', chartData_univScore, chartData_MyScore[3], chartData_MyScore[3]-chartData_univScore],
-		['2학년 6월', chartData_univScore, chartData_MyScore[4], chartData_MyScore[4]-chartData_univScore],
-		['2학년 9월', chartData_univScore, chartData_MyScore[5], chartData_MyScore[5]-chartData_univScore],
-		['3학년 3월', chartData_univScore, chartData_MyScore[6], chartData_MyScore[6]-chartData_univScore],
-		['3학년 6월', chartData_univScore, chartData_MyScore[7], chartData_MyScore[7]-chartData_univScore],
-		['3학년 9월', chartData_univScore, chartData_MyScore[8], chartData_MyScore[8]-chartData_univScore]
+	  ['1학년 3월', chartData_univScore, chartData_MyScore[0], chartData_MyScore[0]-chartData_univScore],
+	  ['1학년 6월', chartData_univScore, chartData_MyScore[1], chartData_MyScore[1]-chartData_univScore],
+	  ['1학년 9월', chartData_univScore, chartData_MyScore[2], chartData_MyScore[2]-chartData_univScore],
+	  ['2학년 3월', chartData_univScore, chartData_MyScore[3], chartData_MyScore[3]-chartData_univScore],
+	  ['2학년 6월', chartData_univScore, chartData_MyScore[4], chartData_MyScore[4]-chartData_univScore],
+	  ['2학년 9월', chartData_univScore, chartData_MyScore[5], chartData_MyScore[5]-chartData_univScore],
+	  ['3학년 3월', chartData_univScore, chartData_MyScore[6], chartData_MyScore[6]-chartData_univScore],
+	  ['3학년 6월', chartData_univScore, chartData_MyScore[7], chartData_MyScore[7]-chartData_univScore],
+	  ['3학년 9월', chartData_univScore, chartData_MyScore[8], chartData_MyScore[8]-chartData_univScore]
 	];
+	for(var i = 0 ; i< sourceData.length ; i++){
+
+		if(sourceData[i][2]==0 || isNaN(sourceData[i][2]) === true){
+			sourceData[i][2]="모든 과목의 성적을 입력하지 않았습니다.";
+			sourceData[i][3]="모든 과목의 성적을 입력하지 않았습니다.";
+			}
+		sourceData2.push(sourceData[i]);
+
+	}
 	/**
 	* Create the Handsontable editable grid
 	*/
@@ -78,7 +88,7 @@ $.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
 	var chart;
 
 	var hot = new Handsontable(container, {
-	  "data": sourceData,
+	  "data": sourceData2,
 	  "height": 250,
 	  "colHeaders": ['구분','기준 점수','내 점수','점수 차이'],
 	  "rowHeaders": true,

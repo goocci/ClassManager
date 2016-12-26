@@ -21,6 +21,7 @@
 .dncalendar-note-list {
 	font-size: 15px;
 	font-style: italic;
+	text-align: left;
 }
 
 .dncalendar-note-list .date {
@@ -30,6 +31,12 @@
 
 .modal-body {
 	color: #0d0c0f;
+	font-size: 15px;
+	text-align: left;
+}
+
+span {
+	color: #022359;
 	font-size: 15px;
 }
 
@@ -44,7 +51,7 @@
 	<c:if test="${isStudent eq false }">
 		<jsp:include page="header.jsp"></jsp:include>
 	</c:if>
-	<div id="body">
+	<div id="body" align="center">
 
 		<form action="calendarInput">
 			<!-- Modal -->
@@ -80,7 +87,7 @@
 		</form>
 		<br>
 		<div id="dncalendar-container"
-			style="width: 1200px; margin-left: 32px;"></div>
+			style="width: 1200px;"></div>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript"
 			src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.js"></script>

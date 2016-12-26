@@ -17,6 +17,8 @@ public class CommentController {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
+	
 	@RequestMapping("/writeComment")
 	public String write(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("write()");

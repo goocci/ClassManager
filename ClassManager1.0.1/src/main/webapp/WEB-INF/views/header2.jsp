@@ -56,7 +56,7 @@
 					<li class="dropdown"><a href="calendar">학급일정</a>
 				</ul>
 
-				<ul class="nav navbar-nav navbar-right" style="font-size: 15px;">
+				<ul id="navRight" class="nav navbar-nav navbar-right" style="font-size: 15px;">
 					<li><a href="join_modify2">수정</a></li>
 					<li><a href="logout">로그아웃</a></li>
 				</ul>

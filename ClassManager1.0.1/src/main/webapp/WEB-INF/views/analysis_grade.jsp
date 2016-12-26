@@ -174,7 +174,7 @@
 			  <form action="search_univ_name">
 			  
 				  <c:forEach items="${univNamelist}" var="dto" begin="0" end="0">
-				  <input type="radio" name="univName" value="${dto.name}" checked="checked" hidden="true"><h5 id="univName">${dto.name}</h5>
+				  <input type="radio" name="univName" value="${dto.name}" checked="checked" hidden="true"><h5>${dto.name}</h5>
 				  </c:forEach>
 				  
 				  <select name="univMajor" id="univMajor" style="width: 89%; height: 40px;">
@@ -191,6 +191,7 @@
 			  
 			</div>
 			
+			
 			<div class="container2" align="center">
 			<table class="table" id="grade1_table" style="width: 100%">
                     <thead>
@@ -204,11 +205,14 @@
 				          <th>백분위</th>
 				          <th>등급</th>
 				          <th width="150px">반영 영역</th>
+				          <th>선택</th>
 				        </tr>
 				    </thead>
 				    <tbody>
-                           
+				    
+				    	<c:if test="${size == '1'}">
 						<c:forEach items="${majorScorelist}" var="dto">
+						<form name="univForm" id="univForm" action="search_univ_name">
 						<tr>
 						  <td>${dto.name}</td>
 						  <td>${dto.major}</td>
@@ -218,19 +222,44 @@
 						  <td>${dto.standard}</td>
 						  <td>${dto.percent}</td>
 						  <td>${dto.rate}</td>
-						  <td>${dto.banyoungSubject}</td>       
-						<tr>
+						  <td>${dto.banyoungSubject}</td>
+						  <td>-</td>
+						</tr>
+						</form>
 						</c:forEach>
+						</c:if>
+                        
+                        <c:if test="${size != '1'}">
+						<c:forEach items="${majorScorelist}" var="dto">
+						<form name="univForm" id="univForm" action="search_univ_name">
+						<tr>
+						  <td><input type="radio" name="univName" value="${dto.name}" checked="checked" hidden="true">${dto.name}</td>
+						  <td><input type="radio" name="univMajor" value="${dto.major}" checked="checked" hidden="true">${dto.major}</td>
+						  <td>${dto.kyeyoel}</td>
+						  <td>${dto.mojibgun}</td>
+						  <td>${dto.index}</td>
+						  <td>${dto.standard}</td>
+						  <td>${dto.percent}</td>
+						  <td>${dto.rate}</td>
+						  <td>${dto.banyoungSubject}</td>
+						  <td><input type="radio" name="univId" id="univId" value="${dto.id}" checked="checked" hidden="true">
+						  	  <input type="submit" value="조회" class="btn btn-primary btn"/>
+						  </td>
+						</tr>
+						</form>
+						</c:forEach>
+						</c:if>
                     
                     </tbody>
              </table>
 		     </div>
+		     
 		     <br/>
 		     <br/>
-			<div class="container3" style="width: 90%;">
+			 <div class="container3" style="width: 90%;">
 				<div id="chartdiv"></div>
 				<div id="data"></div>
-			</div>
+			 </div>
   
 		</div>
 	</div>

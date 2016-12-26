@@ -30,10 +30,9 @@ import com.gys.classmanager.dto.UnivScoreDto;
 @Controller
 @SessionAttributes("userid")
 public class HomeController {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
 
 	@RequestMapping(value = "/header")
 	public String header(Model model) {
@@ -71,7 +70,6 @@ public class HomeController {
 		return "main";
 	}
 
-
 	@RequestMapping(value = "/left")
 	public String left(Model model) {
 
@@ -83,55 +81,60 @@ public class HomeController {
 
 		return "grade_input";
 	}
+
 	@RequestMapping(value = "/error404")
 	public String error404(Model model) {
-		
+
 		return "error404";
 	}
-	
+
 	@RequestMapping(value = "/analysis_grade")
 	public String analysis_grade(Model model, HttpServletRequest request, HttpSession session) {
-		
+
 		session.removeAttribute("univName");
 		session.removeAttribute("univMajor");
-		
+		session.removeAttribute("univId");
+
 		return "analysis_grade";
 	}
-	
+
 	@RequestMapping(value = "/search_univ_name")
 	public String search_univ_name(Model model, HttpServletRequest request) {
-		
-		/*System.out.println("search_univ_name");
-		System.out.println(request.getParameter("univName"));
-		System.out.println(request.getParameter("univMajor"));*/
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("univName", request.getParameter("univName"));
 		session.setAttribute("univMajor", request.getParameter("univMajor"));
+		session.setAttribute("univId", request.getParameter("univId"));
+
 		
 		UnivScoreDao dao = sqlSession.getMapper(UnivScoreDao.class);
+		ArrayList<UnivScoreDto> majorScorelist = dao.univMajor_score_Dao(request.getParameter("univName"), request.getParameter("univMajor"));
+		int size = majorScorelist.size();
+		
 		model.addAttribute("univNamelist", dao.univName_list_Dao(request.getParameter("univName")));
-		model.addAttribute("majorScorelist", dao.univMajor_score_Dao(request.getParameter("univName"), request.getParameter("univMajor")));
+		model.addAttribute("majorScorelist", majorScorelist);
+		model.addAttribute("size", size);
 		
 		return "analysis_grade";
 	}
-	
-	@RequestMapping(value="/schooltest_input")
-	public String schooltest_input(HttpSession session, HttpServletRequest request, Model model, HttpServletResponse res) {
+
+	@RequestMapping(value = "/schooltest_input")
+	public String schooltest_input(HttpSession session, HttpServletRequest request, Model model,
+			HttpServletResponse res) {
 		String stdtNum = (String) session.getAttribute("stdtNum");
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
 		SchoolTestDao schooltestdao = sqlSession.getMapper(SchoolTestDao.class);
-		
-		//강제적으로 에러 발생 !
-		if(request.getParameter("subject").equals("")){
+
+		// 강제적으로 에러 발생 !
+		if (request.getParameter("subject").equals("")) {
 			Integer.parseInt(request.getParameter("subject"));
 		}
-			
-		
+
 		schooltestdao.schooltest_input_Dao(request.getParameter("grade"), request.getParameter("semester"),
-				request.getParameter("subject"), (Integer.parseInt(request.getParameter("schoolrate"))), stdtNum, stdtGrade, stdtClassNum);
-		
+				request.getParameter("subject"), (Integer.parseInt(request.getParameter("schoolrate"))), stdtNum,
+				stdtGrade, stdtClassNum);
+
 		return "redirect:grade_input";
 	}
 
@@ -151,28 +154,26 @@ public class HomeController {
 
 		return "redirect:grade_input";
 	}
-	
+
 	@RequestMapping("/deleteSchool")
 	public String deleteSchool(HttpServletRequest request, Model model) {
 		System.out.println("deleteSchool");
-		
+
 		SchoolTestDao dao = sqlSession.getMapper(SchoolTestDao.class);
 		dao.deleteSchool(Integer.parseInt(request.getParameter("sIdx")));
-		
+
 		return "redirect:view_grade";
 	}
-	
+
 	@RequestMapping("/deleteMok")
 	public String deleteMok(HttpServletRequest request, Model model) {
 		System.out.println("deleteMok");
-		
+
 		MokTestDao dao = sqlSession.getMapper(MokTestDao.class);
 		dao.deleteMok(Integer.parseInt(request.getParameter("mIdx")));
-		
+
 		return "redirect:view_grade";
 	}
-	
-	
 
 	@RequestMapping(value = "/view_grade")
 	public String view_grade(HttpSession session, Model model) {
@@ -184,11 +185,11 @@ public class HomeController {
 		model.addAttribute("schooltestlist", schooltestdao.schooltest_list_Dao(stdtNum, stdtGrade, stdtClassNum));
 		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
 		model.addAttribute("moktestlist", moktestdao.moktest_list_Dao(stdtNum, stdtGrade, stdtClassNum));
-		
+
 		return "view_grade";
 	}
-	
-	@RequestMapping(value = "/list_schooltest",  method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+
+	@RequestMapping(value = "/list_schooltest", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String list_schooltest(HttpSession session, Model model) {
 
 		String stdtNum = (String) session.getAttribute("stdtNum");
@@ -197,285 +198,180 @@ public class HomeController {
 		Gson gson = new Gson();
 		SchoolTestDao schooltestdao = sqlSession.getMapper(SchoolTestDao.class);
 		List<String> list_schooltest = schooltestdao.schooltest_chart(stdtNum, stdtGrade, stdtClassNum);
-		
-		
+
 		return gson.toJson(list_schooltest);
 	}
-	
-	@RequestMapping(value = "/list_language",  method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+
+	@RequestMapping(value = "/list_language", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String list_language(HttpSession session, Model model) {
-		
+
 		String stdtNum = (String) session.getAttribute("stdtNum");
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
-		
+
 		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
-		
+
 		Gson gson = new Gson();
 		ArrayList<MokTestDto> list_language = moktestdao.moktest_chart_language(stdtNum, stdtGrade, stdtClassNum);
-		
+
 		return gson.toJson(list_language);
 	}
-	
-	@RequestMapping(value = "/list_math",  method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+
+	@RequestMapping(value = "/list_math", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String list_math(HttpSession session, Model model) {
-		
+
 		String stdtNum = (String) session.getAttribute("stdtNum");
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
-		
+
 		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
-		
+
 		Gson gson = new Gson();
 		ArrayList<MokTestDto> list_math = moktestdao.moktest_chart_math(stdtNum, stdtGrade, stdtClassNum);
-		
+
 		return gson.toJson(list_math);
 	}
-	
-	@RequestMapping(value = "/list_english",  method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+
+	@RequestMapping(value = "/list_english", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String list_english(HttpSession session, Model model) {
 
 		String stdtNum = (String) session.getAttribute("stdtNum");
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
-		
+
 		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
 
 		Gson gson = new Gson();
 		ArrayList<MokTestDto> list_english = moktestdao.moktest_chart_english(stdtNum, stdtGrade, stdtClassNum);
-		
+
 		return gson.toJson(list_english);
 	}
-	
-	@RequestMapping(value = "/list_science",  method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+
+	@RequestMapping(value = "/list_science", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String list_science(HttpSession session, Model model) {
 
 		String stdtNum = (String) session.getAttribute("stdtNum");
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
-		
+
 		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
 
 		Gson gson = new Gson();
 		ArrayList<MokTestDto> list_science = moktestdao.moktest_chart_science(stdtNum, stdtGrade, stdtClassNum);
-		
+
 		return gson.toJson(list_science);
 	}
-	
-	@RequestMapping(value = "/list_society",  method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+
+	@RequestMapping(value = "/list_society", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String list_society(HttpSession session, Model model) {
 
 		String stdtNum = (String) session.getAttribute("stdtNum");
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
-		
+
 		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
 
 		Gson gson = new Gson();
 		ArrayList<MokTestDto> list_society = moktestdao.moktest_chart_society(stdtNum, stdtGrade, stdtClassNum);
-		
+
 		return gson.toJson(list_society);
 	}
-	
-	@RequestMapping(value = "/UnivScore",  method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+
+	@RequestMapping(value = "/UnivScore", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String UnivScore(HttpServletRequest request, Model model, HttpSession session) {
-		
+
 		String univName = (String) session.getAttribute("univName");
 		String univMajor = (String) session.getAttribute("univMajor");
-		
-		UnivScoreDao univscoredao = sqlSession.getMapper(UnivScoreDao.class);
+		String univId = (String) session.getAttribute("univId");
 
+		UnivScoreDao dao = sqlSession.getMapper(UnivScoreDao.class);
+		
+		ArrayList<UnivScoreDto> majorScorelist = dao.univMajor_score_Dao(univName, univMajor);
+		
+		int size = majorScorelist.size();
+		
 		Gson gson = new Gson();
-		ArrayList<UnivScoreDto> UnivScore = univscoredao.univScore_chart(univName, univMajor);
+		ArrayList<UnivScoreDto> UnivScore1 = dao.univScore_chart1(univName, univMajor);
+		ArrayList<UnivScoreDto> UnivScore2 = dao.univScore_chart2(univName, univMajor, univId);
+		
+		ArrayList<UnivScoreDto> UnivScore;
+		
+		if(size == 1){
+			UnivScore = UnivScore1;
+		} else{
+			UnivScore = UnivScore2;
+		}
 		
 		return gson.toJson(UnivScore);
 	}
-	
-	@RequestMapping(value = "/MyScore",  method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+
+	@RequestMapping(value = "/MyScore", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String MyScore(HttpServletRequest request, Model model, HttpSession session) {
-		
+
 		String stdtNum = (String) session.getAttribute("stdtNum");
 		String stdtGrade = (String) session.getAttribute("grade");
 		String stdtClassNum = (String) session.getAttribute("classNum");
-		
+
 		MokTestDao moktestdao = sqlSession.getMapper(MokTestDao.class);
 
-		Gson gson = new Gson();
-		ArrayList<MokTestDto> MyScore1 = moktestdao.moktest_chart1(stdtNum, stdtGrade, stdtClassNum);
-		ArrayList<MokTestDto> MyScore2 = moktestdao.moktest_chart2(stdtNum, stdtGrade, stdtClassNum);
-		ArrayList<MokTestDto> MyScore3 = moktestdao.moktest_chart3(stdtNum, stdtGrade, stdtClassNum);
-		ArrayList<MokTestDto> MyScore4 = moktestdao.moktest_chart4(stdtNum, stdtGrade, stdtClassNum);
-		ArrayList<MokTestDto> MyScore5 = moktestdao.moktest_chart5(stdtNum, stdtGrade, stdtClassNum);
-		ArrayList<MokTestDto> MyScore6 = moktestdao.moktest_chart6(stdtNum, stdtGrade, stdtClassNum);
-		ArrayList<MokTestDto> MyScore7 = moktestdao.moktest_chart7(stdtNum, stdtGrade, stdtClassNum);
-		ArrayList<MokTestDto> MyScore8 = moktestdao.moktest_chart8(stdtNum, stdtGrade, stdtClassNum);
-		ArrayList<MokTestDto> MyScore9 = moktestdao.moktest_chart9(stdtNum, stdtGrade, stdtClassNum);
-		
 		ArrayList<MokTestDto> dto = moktestdao.moktest_list_Dao(stdtNum, stdtGrade, stdtClassNum);
-		
-		int a = 0;
-		for(int i = 0 ; i < dto.size() ; i++){
-			dto.get(i).setStandard(a);
+		for (int i = 0; i < dto.size(); i++) {
+			dto.get(i).setStandard(0);
 		}
-			//////////////////////
-		
-			int language1 = 0;
-			int math1 = 0;
-			int english1 = 0;
-			int science11 = 0;
-			int science21 = 0;
-			
-			for(int i = 0 ; i < MyScore1.size() ; i++){
-				if(MyScore1.get(i).getSubject().equals("언어")){
-					language1 = MyScore1.get(i).getStandard();
+
+		Gson gson = new Gson();
+
+		String[] categoryArr = { "1학년 3월", "1학년 6월", "1학년 9월", "2학년 3월", "2학년 6월", "2학년 9월", "3학년 3월", "3학년 6월",
+				"3학년 9월" };
+
+		for (int j = 0; j < categoryArr.length; j++) {
+
+			ArrayList<MokTestDto> MyScore = moktestdao.moktest_chart(stdtNum, stdtGrade, stdtClassNum, categoryArr[j]);
+
+			int language=0;
+			int math=0;
+			int english = 0;
+			int science1 = 0;
+			int science2 = 0;
+
+			for (int i = 0; i < MyScore.size(); i++) {
+				if (MyScore.get(i).getSubject().equals("언어")) {
+					language = MyScore.get(i).getStandard();
 					break;
 				}
 			}
-			for(int i = 0 ; i < MyScore1.size() ; i++){
-				if(MyScore1.get(i).getSubject().equals("수리")){
-					math1 = MyScore1.get(i).getStandard();
+			for (int i = 0; i < MyScore.size(); i++) {
+				if (MyScore.get(i).getSubject().equals("수리")) {
+					math = MyScore.get(i).getStandard();
 					break;
 				}
 			}
-			for(int i = 0 ; i < MyScore1.size() ; i++){
-				if(MyScore1.get(i).getSubject().equals("외국어")){
-					english1 = MyScore1.get(i).getStandard();
+			for (int i = 0; i < MyScore.size(); i++) {
+				if (MyScore.get(i).getSubject().equals("외국어")) {
+					english = MyScore.get(i).getStandard();
 					break;
 				}
 			}
-			for(int i = 0 ; i < MyScore1.size() ; i++){
-				if(!MyScore1.get(i).getSubject().equals("언어") && !MyScore1.get(i).getSubject().equals("수리") && !MyScore1.get(i).getSubject().equals("외국어")){
-					if(science11 == 0){
-						science11 = MyScore1.get(i).getStandard();
+			for (int i = 0; i < MyScore.size(); i++) {
+				if (!MyScore.get(i).getSubject().equals("언어") && !MyScore.get(i).getSubject().equals("수리")
+						&& !MyScore.get(i).getSubject().equals("외국어")) {
+					if (science1 == 0) {
+						science1 = MyScore.get(i).getStandard();
 					} else {
-						science21 = MyScore1.get(i).getStandard();
+						science2 = MyScore.get(i).getStandard();
 					}
 				}
 			}
+			int totalStandard = language + math * 6 / 5 + english + (science1 + science2) * 4 / 5;
 			
-			int totalStandard1 = language1 + math1*6/5 + english1 + (science11+science21)*4/5;
-			dto.get(0).setStandard(totalStandard1);
-			
-			///////////////////////
-			
-			int language2 = 0;
-			int math2 = 0;
-			int english2 = 0;
-			int science12 = 0;
-			int science22 = 0;
-			
-			for(int i = 0 ; i < MyScore2.size() ; i++){
-				if(MyScore2.get(i).getSubject().equals("언어")){
-					language2 = MyScore2.get(i).getStandard();
-					break;
-				}
-			}
-			for(int i = 0 ; i < MyScore2.size() ; i++){
-				if(MyScore2.get(i).getSubject().equals("수리")){
-					math2 = MyScore2.get(i).getStandard();
-					break;
-				}
-			}
-			for(int i = 0 ; i < MyScore2.size() ; i++){
-				if(MyScore2.get(i).getSubject().equals("외국어")){
-					english2 = MyScore2.get(i).getStandard();
-					break;
-				}
-			}
-			for(int i = 0 ; i < MyScore2.size() ; i++){
-				if(!MyScore2.get(i).getSubject().equals("언어") && !MyScore2.get(i).getSubject().equals("수리") && !MyScore2.get(i).getSubject().equals("외국어")){
-					if(science12 == 0){
-						science12 = MyScore2.get(i).getStandard();
-					} else {
-						science22 = MyScore2.get(i).getStandard();
-					}
-				}
-			}
-			
-			int totalStandard2 = language2 + math2*6/5 + english2 + (science12+science22)*4/5;
-			dto.get(1).setStandard(totalStandard2);
-			
-			/////////////////////////
-			
-			int language3 = 0;
-			int math3 = 0;
-			int english3 = 0;
-			int science13 = 0;
-			int science23 = 0;
-			
-			for(int i = 0 ; i < MyScore3.size() ; i++){
-				if(MyScore3.get(i).getSubject().equals("언어")){
-					language3 = MyScore3.get(i).getStandard();
-					break;
-				}
-			}
-			for(int i = 0 ; i < MyScore3.size() ; i++){
-				if(MyScore3.get(i).getSubject().equals("수리")){
-					math3 = MyScore3.get(i).getStandard();
-					break;
-				}
-			}
-			for(int i = 0 ; i < MyScore3.size() ; i++){
-				if(MyScore3.get(i).getSubject().equals("외국어")){
-					english3 = MyScore3.get(i).getStandard();
-					break;
-				}
-			}
-			for(int i = 0 ; i < MyScore3.size() ; i++){
-				if(!MyScore3.get(i).getSubject().equals("언어") && !MyScore3.get(i).getSubject().equals("수리") && !MyScore3.get(i).getSubject().equals("외국어")){
-					if(science13 == 0){
-						science13 = MyScore3.get(i).getStandard();
-					} else {
-						science23 = MyScore3.get(i).getStandard();
-					}
-				}
-			}
-			
-			int totalStandard3 = language3 + math3*6/5 + english3 + (science13+science23)*4/5;
-			dto.get(2).setStandard(totalStandard3);
-			
-			/////////////////////////
-			
-			int language4 = 0;
-			int math4 = 0;
-			int english4 = 0;
-			int science14 = 0;
-			int science24 = 0;
-			
-			for(int i = 0 ; i < MyScore4.size() ; i++){
-				if(MyScore4.get(i).getSubject().equals("언어")){
-					language4 = MyScore4.get(i).getStandard();
-					break;
-				}
-			}
-			for(int i = 0 ; i < MyScore4.size() ; i++){
-				if(MyScore4.get(i).getSubject().equals("수리")){
-					math4 = MyScore4.get(i).getStandard();
-					break;
-				}
-			}
-			for(int i = 0 ; i < MyScore4.size() ; i++){
-				if(MyScore4.get(i).getSubject().equals("외국어")){
-					english4 = MyScore4.get(i).getStandard();
-					break;
-				}
-			}
-			for(int i = 0 ; i < MyScore4.size() ; i++){
-				if(!MyScore4.get(i).getSubject().equals("언어") && !MyScore4.get(i).getSubject().equals("수리") && !MyScore4.get(i).getSubject().equals("외국어")){
-					if(science14 == 0){
-						science14 = MyScore4.get(i).getStandard();
-					} else {
-						science24 = MyScore4.get(i).getStandard();
-					}
-				}
-			}
-			
-			int totalStandard4 = language4 + math4*6/5 + english4 + (science14+science24)*4/5;
-			dto.get(3).setStandard(totalStandard4);
-			
-		
+			if(language == 0 || math == 0 || english == 0 || science1 == 0 || science2 == 0){
+	            break;
+	         }			
+			dto.get(j).setStandard(totalStandard);
+		}
 		return gson.toJson(dto);
 	}
-
 }
+
+
 
