@@ -33,7 +33,7 @@
 					<c:forEach items="${stlist}" var="dto">
 						<a class="col-sm-2"
 							href="student_info?grade=${dto.stdtGrade}&classnum=${dto.stdtClassNum}&stdtNum=${dto.studentNum}&studentId=${dto.id}">
-							<div class="card">
+							<div class="card" style="margin-bottom: 20%; margin-left: 1%; height: 210px;" >
 								<canvas class="header-bg" width="250" height="70"
 									id="header-blur"></canvas>
 								<div class="avatar">

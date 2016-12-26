@@ -171,8 +171,12 @@ body {
 				var idx;
 				idx = prompt("삭제할 사진 번호를 입력하세요!");
 				if (idx == null) {
-					return false;
-				} else {
+					return ;
+				}
+			 	else if (isNaN(idx) === true) {
+					return ;
+				} 
+				else {
 					location.href = "gallerydel?idx=" + idx;
 				}
 			}
