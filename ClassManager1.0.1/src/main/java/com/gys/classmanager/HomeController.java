@@ -317,6 +317,8 @@ public class HomeController {
 		ArrayList<MokTestDto> dto = moktestdao.moktest_list_Dao(stdtNum, stdtGrade, stdtClassNum);
 		for (int i = 0; i < dto.size(); i++) {
 			dto.get(i).setStandard(0);
+			dto.get(i).setPercent(0);
+			dto.get(i).setRate(0);
 		}
 
 		Gson gson = new Gson();
@@ -328,46 +330,77 @@ public class HomeController {
 
 			ArrayList<MokTestDto> MyScore = moktestdao.moktest_chart(stdtNum, stdtGrade, stdtClassNum, categoryArr[j]);
 
-			int language=0;
-			int math=0;
-			int english = 0;
-			int science1 = 0;
-			int science2 = 0;
+			double language_standard = 0;
+			double math_standard = 0;
+			double english_standard = 0;
+			double science1_standard = 0;
+			double science2_standard = 0;
+			
+			double language_percent = 0;
+			double math_percent = 0;
+			double english_percent = 0;
+			double science1_percent = 0;
+			double science2_percent = 0;
+			
+			double language_rate = 0;
+			double math_rate = 0;
+			double english_rate = 0;
+			double science1_rate = 0;
+			double science2_rate = 0;
 
 			for (int i = 0; i < MyScore.size(); i++) {
 				if (MyScore.get(i).getSubject().equals("언어")) {
-					language = MyScore.get(i).getStandard();
+					language_standard = MyScore.get(i).getStandard();
+					language_percent = MyScore.get(i).getPercent();
+					language_rate = MyScore.get(i).getRate();
 					break;
 				}
 			}
 			for (int i = 0; i < MyScore.size(); i++) {
 				if (MyScore.get(i).getSubject().equals("수리")) {
-					math = MyScore.get(i).getStandard();
+					math_standard = MyScore.get(i).getStandard();
+					math_percent = MyScore.get(i).getPercent();
+					math_rate = MyScore.get(i).getRate();
 					break;
 				}
 			}
 			for (int i = 0; i < MyScore.size(); i++) {
 				if (MyScore.get(i).getSubject().equals("외국어")) {
-					english = MyScore.get(i).getStandard();
+					english_standard = MyScore.get(i).getStandard();
+					english_percent = MyScore.get(i).getPercent();
+					english_rate = MyScore.get(i).getRate();
 					break;
 				}
 			}
 			for (int i = 0; i < MyScore.size(); i++) {
 				if (!MyScore.get(i).getSubject().equals("언어") && !MyScore.get(i).getSubject().equals("수리")
 						&& !MyScore.get(i).getSubject().equals("외국어")) {
-					if (science1 == 0) {
-						science1 = MyScore.get(i).getStandard();
+					if (science1_standard == 0) {
+						science1_standard = MyScore.get(i).getStandard();
+						science1_percent = MyScore.get(i).getPercent();
+						science1_rate = MyScore.get(i).getRate();
 					} else {
-						science2 = MyScore.get(i).getStandard();
+						science2_standard = MyScore.get(i).getStandard();
+						science2_percent = MyScore.get(i).getPercent();
+						science2_rate = MyScore.get(i).getRate();
 					}
 				}
 			}
-			int totalStandard = language + math * 6 / 5 + english + (science1 + science2) * 4 / 5;
+			double totalStandard = language_standard + math_standard * 6 / 5 + english_standard + (science1_standard + science2_standard) * 4 / 5;
+			double totalPercent = language_percent + math_percent + english_percent + (science1_percent + science2_percent)/2;
+			double totalRate = (language_rate + math_rate + english_rate + science1_rate + science2_rate)/5;
 			
-			if(language == 0 || math == 0 || english == 0 || science1 == 0 || science2 == 0){
+			double s = Math.round(totalStandard * 100) / 100.0;
+			double p = Math.round(totalPercent * 100) / 100.0;
+			double r = Math.round(totalRate * 100) / 100.0;
+			
+			if(language_standard == 0 || math_standard == 0 || english_standard == 0 || science1_standard == 0 || science2_standard == 0){
 	            break;
-	         }			
-			dto.get(j).setStandard(totalStandard);
+	        }
+			
+			dto.get(j).setStandard(s);
+			dto.get(j).setPercent(p);
+			dto.get(j).setRate(r);
 		}
 		return gson.toJson(dto);
 	}

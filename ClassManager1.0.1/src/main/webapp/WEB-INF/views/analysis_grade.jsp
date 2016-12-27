@@ -27,7 +27,7 @@
 .container {
     margin: 0 auto 25px;
     max-width: 550px;
-    max-height: 150px;
+    max-height: 180px;
     position: relative;
 }
 
@@ -40,6 +40,7 @@
 .container3 {
     margin: 0 auto 25px;
     max-width: 1500px;
+    max-height: 1500px;
     position: relative;
 }
 
@@ -131,10 +132,32 @@
     }
     
 
-#chartdiv {
+#chartdiv1 {
   width: 100%;
   height: 300px;
   border: 1px solid #ccc;
+}
+#chartdiv2 {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+#chartdiv3 {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+
+#wrapper {
+
+width: 1500px;
+
+margin: 0 auto;
+
+display: table;
+
+border: 1px solid #000;
+
 }
 
 </style>
@@ -174,7 +197,7 @@
 			  <form action="search_univ_name">
 			  
 				  <c:forEach items="${univNamelist}" var="dto" begin="0" end="0">
-				  <input type="radio" name="univName" value="${dto.name}" checked="checked" hidden="true"><h5>${dto.name}</h5>
+				  <input type="radio" name="univName" value="${dto.name}" checked="checked" hidden="true"><h5 style="background-color: lightgrey">${dto.name}</h5>
 				  </c:forEach>
 				  
 				  <select name="univMajor" id="univMajor" style="width: 89%; height: 40px;">
@@ -193,7 +216,7 @@
 			
 			
 			<div class="container2" align="center">
-			<table class="table" id="grade1_table" style="width: 100%">
+			<table class="table" id="grade1_table" style="width: 100%; background-color: #efefef;">
                     <thead>
 				        <tr>
 				          <th>학교</th>
@@ -243,7 +266,7 @@
 						  <td>${dto.rate}</td>
 						  <td>${dto.banyoungSubject}</td>
 						  <td><input type="radio" name="univId" id="univId" value="${dto.id}" checked="checked" hidden="true">
-						  	  <input type="submit" value="조회" class="btn btn-primary btn"/>
+						  	  <input type="submit" value="조회" class="btn btn-default btn"/>
 						  </td>
 						</tr>
 						</form>
@@ -256,9 +279,28 @@
 		     
 		     <br/>
 		     <br/>
+		     <div id="wrapper">
+		     <h3 style="margin-left: 680px">표준점수</h3>
 			 <div class="container3" style="width: 90%;">
-				<div id="chartdiv"></div>
-				<div id="data"></div>
+				<div id="chartdiv1"></div>
+				<div id="data1"></div>
+			 </div>
+			 </div>
+			 
+			 <div id="wrapper">
+		     <h3 style="margin-left: 700px">백분위</h3>
+			 <div class="container3" style="width: 90%;">
+				<div id="chartdiv2"></div>
+				<div id="data2"></div>
+			 </div>
+			 </div>
+			 
+			 <div id="wrapper">
+		     <h3 style="margin-left: 720px">등급</h3>
+			 <div class="container3" style="width: 90%;">
+				<div id="chartdiv3"></div>
+				<div id="data3"></div>
+			 </div>
 			 </div>
   
 		</div>
