@@ -48,8 +48,8 @@
 						<!-- 첨부 파일 보이는 곳 -->
 						<c:if test="${dto.boardPhoto != null}">	
 						<div align="right" style="margin-right:20px">
-						<h5 style="font-weight:bold">[첨부파일]</h5>
-						<a id ="downloadbutton" href="filedown?">${dto.boardPhoto}</a>
+						<h5 style="font-weight:bold; margin-bottom: -2px">[첨부파일]</h5>
+						<a href="filedown?fileName=${dto.boardPhoto}">${dto.boardPhoto}</a>
 						</div>
 						<div align="left" style="margin-left:20px">
 						<img src="<%=cp%>/resources/assets/img/${dto.boardPhoto}" /></br>
@@ -91,7 +91,6 @@
 			<script src="<%=cp%>/resources/assets/js/bootstrap.min.js"></script>
 		</div>
 	</div>
-
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>
