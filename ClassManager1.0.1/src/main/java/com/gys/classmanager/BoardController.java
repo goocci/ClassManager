@@ -1,9 +1,7 @@
 package com.gys.classmanager;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -23,11 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.google.common.io.ByteStreams;
 import com.gys.classmanager.dao.BoardDao;
 import com.gys.classmanager.dto.BoardDto;
 
@@ -161,101 +155,28 @@ public class BoardController {
 	
 	@RequestMapping("/filedown")//URL호출
 	@ResponseBody
-	public void getFile(@RequestParam Map<String,Object> map, HttpServletResponse response) throws Exception {
+	public void getFile(@RequestParam Map<String,Object> map, HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
 		
-		System.out.println("filedown 들어왔음");
-	     
-	    //String filePath = (String) map.get("filePath"); //파일 전체경로(파일명도 포함)
-	    //String oriFileName = (String) map.get("oriFileName"); //파일 원본 경로
-	    
-	    //System.out.println(filePath);
-	    //System.out.println(oriFileName);
+		System.out.println("filedown");
 		
-		String filePath = "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img\\cheoyoung_20161224-17-15-09.PNG";
-		String oriFileName = "cheoyoung.PNG";
-	     /*
-	    //String docName = URLEncoder.encode(oriFileName,"UTF-8").replaceAll("\\+", "%20"); //한글파일명 깨지지 않도록
-		String docName = new String(oriFileName.getBytes("UTF-8"), "ISO-8859-1");
-	    //response.setHeader("Content-Disposition", "attachment;filename=" + docName + ";");
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + oriFileName + "\"");
-	    response.setContentType("application/octet-stream");
-	 
-	    File down_file = new File(filePath); //파일 생성
-	    FileInputStream fileIn = new FileInputStream(down_file); //파일 읽어오기
-	    ByteStreams.copy(fileIn, response.getOutputStream());
-	    response.flushBuffer();
-	    */
+		String filePath = "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
+		String stfileName = request.getParameter("fileName");
+		String fullPath = filePath+"\\"+ stfileName;
 		
-		
-	    byte fileByte[] = FileUtils.readFileToByteArray(new File(filePath));
+	    byte fileByte[] = FileUtils.readFileToByteArray(new File(fullPath));
 	    
 	     
 	    response.setContentType("application/octet-stream");
 	    response.setContentLength(fileByte.length);
 	    System.out.println(fileByte.length);
-	    response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(oriFileName,"UTF-8")+"\";");
+	    response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(stfileName,"UTF-8")+"\";");
 	    response.setHeader("Content-Transfer-Encoding", "binary");
 	    response.getOutputStream().write(fileByte);
 	     
 	    response.getOutputStream().flush();
 	    response.getOutputStream().close();
-
-	  
 		
-		/*
-		 //응답 헤더의 Content-Type을 세팅한다. 
-		 response.setContentType("application/x-msdownload"); 
-		 //위 세팅으로 안될 경우에 사용.
-		 //response.setContentType("application/octet-stream");
-		 
-		 
-		 //Content-Disposition 세팅하기위해 file 이름을 변환한다.
-		 String convName1 = 
-		  java.net.URLEncoder.encode(new String(fileName .getBytes("8859_1"), "euc-kr"),"UTF-8");
-
-
-		 //Content-Disposition 헤더에 파일 이름 세팅. 
-		// response.setHeader("Content-Disposition", "attachment;filename=" + convName1 + ";");
-		 //위 세팅으로 안될 경우에 사용.
-		 response.setHeader("Content-Disposition","attachment;fileName=\""+convName1+"\";");
-		 
-
-		 // 폴더에 있는 파일 가져오기 위해 다른 방법으로 변환
-		 String  convName2 = new String(fileName .getBytes("8859_1"), "euc-kr");
-		 File file = new File(filePath);
-
-		 
-
-		 // 사용자에게 보내주기 위해 스트림객체 생성
-		 byte b[] = new byte[(int)file.length()];    
-		 System.out.println(b);
-		 System.out.println(file.isFile());
-		 if (file.length() > 0 && file.isFile()) // 0byte이상이고, 해당 파일이 존재할 경우
-		 {
-		   BufferedInputStream fin = new BufferedInputStream(new FileInputStream(file));
-
-		   // 인풋객체생성
-		   BufferedOutputStream outs = new BufferedOutputStream(response.getOutputStream());
-
-		   // 응답객체생성
-		 
-		   
-		  int read = 0;
-		  try {
-		   while ((read = fin.read(b)) != -1){
-		       outs.write(b,0,read);
-		   }
-		   outs.close();
-		   fin.close();
-		  } catch (Exception e) {
-		   System.out.println("download error : " + e.getMessage()); 
-		  } finally {
-		   if(outs!=null) outs.close();
-		   if(fin!=null) fin.close();
-		  }
-		 }
-		 */
-	    
+	  
 	}
 	
 	@RequestMapping("/deleteBoard")
