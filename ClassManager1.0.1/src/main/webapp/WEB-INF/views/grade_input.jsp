@@ -18,7 +18,7 @@
 	rel="stylesheet">
 
 	
-<title>Insert title here</title>
+<title>ClassManager</title>
 
 <style type="text/css">
 
