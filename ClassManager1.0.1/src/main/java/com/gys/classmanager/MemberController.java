@@ -64,11 +64,10 @@ public class MemberController {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fullPath)));
 				stream.write(bytes);
 				stream.close();
-				result = rename;
 			} catch (Exception e) {
 			}
 		}
-		return result;
+		return "{\"filename\": \""+rename+"\","+" \"msg\":\"file upload success.\"}";
 	}
 
 	public String getCurrentDayTime() {

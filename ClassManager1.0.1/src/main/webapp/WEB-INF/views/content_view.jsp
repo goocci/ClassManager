@@ -91,7 +91,6 @@
 			<script src="<%=cp%>/resources/assets/js/bootstrap.min.js"></script>
 		</div>
 	</div>
-	
 </body>
 <jsp:include page="footer.jsp"></jsp:include>
 </html>
