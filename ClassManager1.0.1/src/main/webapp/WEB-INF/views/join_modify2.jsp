@@ -36,7 +36,6 @@
 									<div align="right">
 										<input type="file" name="imgFile">
 									</div>
-									<input id="picreg" type="button" class="btn btn-default btn-xs" value="사진등록">
 								</div>
 							</div>
 						</div>
@@ -167,27 +166,53 @@
 			<script type="text/javascript" src="<%=cp%>/resources/script/join.js"></script>
 			<script src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.min.js"></script>
 			
-					<script>
-					$('#picreg').bind('click',function(){
-					 	  var formData = new FormData();
-			        	  formData.append("imgFile", $("input[name=imgFile]")[0].files[0]);
-						
-						$.ajax({
-							url : 'uploadFile',
-			        	    data: formData,
-			        	    processData: false,
-			        	    contentType: false,
-			        	    type: 'POST',
-							success : function(data, dataType) {
-								$('#photo').attr('src', "/classmanager/resources/assets/img/"+data);
-								$('#fileName').attr('value', data);
+				<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+			<script src="<%=cp%>/resources/script/jquery.fileupload.js"></script>
+
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('#profilepic').fileupload({
+						url : 'uploadFile',
+						replaceFileInput: false,
+						dataType : 'json',
+						add : function(e, data) {
+							var uploadFile = data.files[0];
+							var isValid = true;
+							if (!(/png|jpe?g|gif/i).test(uploadFile.name)) {
+								alert('png, jpg, gif 만 가능합니다');
+								isValid = false;
+							} else if (uploadFile.size > 5000000) { // 5mb
+								alert('파일 용량은 5메가를 초과할 수 없습니다.');
+								isValid = false;
 							}
-							,error:function(request,status,error){
-								alert("사진을 업로드 하지 않으셨거나 오류가 발생했습니다 ");  }  
-						})
-					})
-					
+							if (isValid) {
+								data.submit();
+							}
+						},
+						progressall: function(e,data) {
+			                var progress = parseInt(data.loaded / data.total * 100, 10);
+			                $('#progress .bar').css(
+			                    'width',
+			                    progress + '%'
+			                );
+			            },
+						done : function(e, data) {
+							$('#photo').attr('src', "/classmanager/resources/assets/img/"+data.result.filename);
+							$('#fileName').attr('value', data.result.filename);
+
+						},
+						fail : function(e, data, result) {
+							// data.errorThrown
+							// data.textStatus;
+							// data.jqXHR;
+							alert(result);
+							alert('서버와 통신 중 문제가 발생했습니다');
+							foo = data;
+						}
+					});
+				});
 				</script>
+			
 		</fieldset>
 	</div>
 </body>

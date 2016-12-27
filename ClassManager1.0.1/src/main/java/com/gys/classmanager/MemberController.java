@@ -51,7 +51,7 @@ public class MemberController {
 	@ResponseBody public String uploadFile(HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile, Model model) {
 		System.out.println("uploadFile");
 		String savePath = "/Users/hanyoungsoo/Documents/workspace-sts-3.8.2.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ClassManager1.0.1/resources/assets/img";
-		String result="";
+//		String result="";
 		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
 		String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
 		String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
@@ -64,11 +64,10 @@ public class MemberController {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(fullPath)));
 				stream.write(bytes);
 				stream.close();
-				result = rename;
 			} catch (Exception e) {
 			}
 		}
-		return result;
+		return "{\"filename\": \""+rename+"\","+" \"msg\":\"file upload success.\"}";
 	}
 
 	public String getCurrentDayTime() {
