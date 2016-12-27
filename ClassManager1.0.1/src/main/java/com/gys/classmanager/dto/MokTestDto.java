@@ -6,9 +6,9 @@ public class MokTestDto {
 	private String grade;
 	private String month;
 	private String subject;
-	private int rate;
-	private int standard;
-	private int percent;
+	private double rate;
+	private double standard;
+	private double percent;
 	private int studentNum;
 	private String stdtGrade;
 	private String stdtClassNum;
@@ -19,7 +19,7 @@ public class MokTestDto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public MokTestDto(int idx, String grade, String month, String subject, int rate, int standard, int percent, int studentNum, String stdtGrade, String stdtClassNum, String grademonth, String grademonthsubject) {
+	public MokTestDto(int idx, String grade, String month, String subject, double rate, double standard, double percent, int studentNum, String stdtGrade, String stdtClassNum, String grademonth, String grademonthsubject) {
 		
 		this.idx = idx;
 		this.grade = grade;
@@ -67,27 +67,27 @@ public class MokTestDto {
 		this.subject = subject;
 	}
 
-	public int getRate() {
+	public double getRate() {
 		return rate;
 	}
 
-	public void setRate(int rate) {
+	public void setRate(double rate) {
 		this.rate = rate;
 	}
 
-	public int getStandard() {
+	public double getStandard() {
 		return standard;
 	}
 
-	public void setStandard(int standard) {
+	public void setStandard(double standard) {
 		this.standard = standard;
 	}
 
-	public int getPercent() {
+	public double getPercent() {
 		return percent;
 	}
 
-	public void setPercent(int percent) {
+	public void setPercent(double percent) {
 		this.percent = percent;
 	}
 
