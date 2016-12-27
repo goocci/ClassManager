@@ -14,5 +14,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="/mybatis/GalleryMapper.xml" />
 		<mapper resource="/mybatis/CalendarMapper.xml" />
 		<mapper resource="/mybatis/UnivScoreMapper.xml" />
+		<mapper resource="/mybatis/VoteMapper.xml" />
 	</mappers>
 </configuration>
