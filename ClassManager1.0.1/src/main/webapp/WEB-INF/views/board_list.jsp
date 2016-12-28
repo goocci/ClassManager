@@ -44,9 +44,10 @@ text-align: center;
 </c:if>
 <body>
 <div id="body">
+<br>
 	<div id="content">
 			<div style="text-align: center">
-				<h1>게시판</h1>
+				<img src="<%=cp %>/resources/assets/img/board.jpeg" style="height: 100px"/>
 				<br />
 			</div>
 
@@ -56,7 +57,7 @@ text-align: center;
 					<div class="col-lg-12">
 						<table id = "myTable" class="table" border="1">
 							<thead>
-								<tr bgcolor="lightgray">
+								<tr bgcolor="#98c7f9">
 									<th width="50">번호</th>
 									<th width="80">말머리</th>
 									<th width="400">제목</th>
