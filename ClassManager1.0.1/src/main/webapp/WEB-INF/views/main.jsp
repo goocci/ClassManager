@@ -44,8 +44,8 @@
 							style="width: 100%" alt="First slide">
 						<div class="container">
 							<div class="carousel-caption">
-								<h1>Slide 1</h1>
-								<p>여러분의 학급을 완변하게 만드세요</p>
+								<h1>Perfect</h1>
+								<p>여러분의 학급을 완벽하게 만드세요</p>
 							</div>
 						</div>
 					</div>
@@ -57,8 +57,8 @@
 							style="width: 100%" data-src="" alt="Second slide">
 						<div class="container">
 							<div class="carousel-caption">
-								<h1>Slide 2</h1>
-								<p>텍스트 2</p>
+								<h1>Easy</h1>
+								<p>간편하고 쉽게 학급을 관리하세요</p>
 							</div>
 						</div>
 					</div>
@@ -70,8 +70,8 @@
 							style="width: 100%" data-src="" alt="Third slide">
 						<div class="container">
 							<div class="carousel-caption">
-								<h1>Slide 3</h1>
-								<p>텍스트 3</p>
+								<h1>Share</h1>
+								<p>정보와 추억을 공유하세요</p>
 							</div>
 						</div>
 					</div>
