@@ -25,7 +25,7 @@
 			class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="panel-title">Login - ${message}</div>
+					<div class="panel-title" style="color: white; font-weight: bold;">Login - ${message}</div>
 				</div>
 
 				<div style="padding-top: 30px" class="panel-body">
@@ -54,7 +54,7 @@
 
 							<div class="col-sm-12 controls" align="right">
 								<input id="btn-login" type="submit" class="btn btn-primary"
-									value="로그인" onclick="return loginCheck();"> </input>
+									value="로그인" onclick="return loginCheck();" style="font-weight: bold;">
 
 
 

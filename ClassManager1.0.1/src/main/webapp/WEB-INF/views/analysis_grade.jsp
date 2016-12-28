@@ -195,8 +195,9 @@ th {
 			<br/>
 
 			<div class="container" align="center">
+			<h6 style="font: bold; color: red;">※아래 정보는 참고자료일 뿐 실제 합격 여부를 결정하지 않습니다※ </h6>
 			  <form action="search_univ_name" class="searchform">
-			  
+
 				  <div class="search-field">
 				    <input autocomplete="off" class="search-field__input" name="univName" placeholder="대학명을 입력하세요" type="search">
 				  </div>

@@ -46,7 +46,7 @@
 			</div>
 
 			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-2" style="margin-top:20px; margin-bottom: 15px;">
+				id="bs-example-navbar-collapse-2" style="margin-top:20px; margin-bottom: 15px; font-weight: bold;">
 				<ul class="nav navbar-nav" style="font-size: 23px">
 
 					<li class="dropdown"><a
@@ -56,13 +56,12 @@
 					<li class="dropdown"><a href="calendar">학급일정</a>
 				</ul>
 
-				<ul id="navRight" class="nav navbar-nav navbar-right" style="font-size: 15px;">
+				<ul id="navRight" class="nav navbar-nav navbar-right" style="font-size: 14px;">
 					<li><a href="join_modify2">수정</a></li>
 					<li><a href="logout">로그아웃</a></li>
 				</ul>
 
-				<p class="navbar-text navbar-right">${sname}학 생 |${grade} -
-					${classNum} ${stdtNum}번</p>
+				<p class="navbar-text navbar-right" style="font-size: 15px; color: white;">${sname} 학생  | ${grade} ${classNum} - ${stdtNum}번&nbsp;&nbsp;&nbsp;&nbsp;</p>
 
 			</div>
 		</div>

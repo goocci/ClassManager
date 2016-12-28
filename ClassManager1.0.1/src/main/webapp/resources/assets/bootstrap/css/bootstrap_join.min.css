@@ -3490,26 +3490,26 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .btn-primary {
 	color: #ffffff;
-	background-color: #2196f3;
+	background-color: #B5DB92;
 	border-color: transparent
 }
 
 .btn-primary:focus, .btn-primary.focus {
 	color: #ffffff;
-	background-color: #0c7cd5;
+	background-color: #B5DB92;
 	border-color: rgba(0, 0, 0, 0)
 }
 
 .btn-primary:hover {
 	color: #ffffff;
-	background-color: #0c7cd5;
+	background-color: #B5DB92;
 	border-color: rgba(0, 0, 0, 0)
 }
 
 .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary
 	{
 	color: #ffffff;
-	background-color: #0c7cd5;
+	background-color: #B5DB92;
 	border-color: rgba(0, 0, 0, 0)
 }
 
@@ -3518,7 +3518,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 	.btn-primary:active.focus, .btn-primary.active.focus, .open>.dropdown-toggle.btn-primary.focus
 	{
 	color: #ffffff;
-	background-color: #0a68b4;
+	background-color: #B5DB92;
 	border-color: rgba(0, 0, 0, 0)
 }
 
@@ -3531,12 +3531,12 @@ a.btn.disabled, fieldset[disabled] a.btn {
 	.btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus,
 	.btn-primary.disabled.focus, .btn-primary[disabled].focus, fieldset[disabled] .btn-primary.focus
 	{
-	background-color: #2196f3;
+	background-color: #B5DB92;
 	border-color: transparent
 }
 
 .btn-primary .badge {
-	color: #2196f3;
+	color: #B5DB92;
 	background-color: #ffffff
 }
 
@@ -5241,7 +5241,7 @@ border-radius
 .navbar-nav>li>.dropdown-menu {
 	margin-top: 0;
 	border-top-right-radius: 0;
-	border-top-left-radius: 0
+	border-top-left-radius: 0;
 }
 
 .navbar-fixed-bottom .navbar-nav>li>.dropdown-menu {
@@ -5403,7 +5403,7 @@ border-radius
 }
 
 .navbar-inverse {
-	background-color: #2196f3;
+	background-color: #B5DB92;
 	border-color: transparent
 }
 
@@ -5422,7 +5422,7 @@ border-radius
 }
 
 .navbar-inverse .navbar-nav>li>a {
-	color: #b2dbfb
+	color: white
 }
 
 .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus
@@ -6697,7 +6697,7 @@ a.list-group-item-danger.active, button.list-group-item-danger.active, a.list-gr
 
 .panel-info>.panel-heading {
 	color: #ffffff;
-	background-color: #2196f3;
+	background-color: #B5DB92;
 	border-color: #cba4dd
 }
 
@@ -7860,11 +7860,11 @@ button.close {
 }
 
 .btn-primary:focus {
-	background-color: #2196f3
+	background-color: #B5DB92
 }
 
 .btn-primary:hover, .btn-primary:active:hover {
-	background-color: #0d87e9
+	background-color: #B5DB92
 }
 
 .btn-primary:active {

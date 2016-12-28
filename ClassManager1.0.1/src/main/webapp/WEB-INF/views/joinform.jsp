@@ -57,7 +57,7 @@
 									name="reid" />
 							</div>
 							<div style="float: right; width: 0%;">
-								<input type="button" class="btn btn-primary btn-xs"
+								<input type="button" class="btn btn-primary btn-sm"
 									onclick="idCheck();" value="중복확인"></input>
 							</div>
 
@@ -140,8 +140,8 @@
 								</div>
 								<div>
 									<div style="float: right; width: 0%;">
-										<input class="btn btn-primary btn-xs" type="button"
-											value="교번확인" onclick="teacherCheck();" />
+										<input class="btn btn-primary btn-sm" type="button"
+											value="교번확인" onclick="teacherCheck();" style="font-weight: bold;"/>
 									</div>
 								</div>
 							</div>
@@ -227,9 +227,9 @@
 					<div class="form-group">
 						<div class="col-lg-10 col-lg-offset-2">
 							<input class="btn btn-primary" type="submit"
-								onclick="return joinCheck();" value="가입">
+								onclick="return joinCheck();" value="가입" style="font-weight: bold;">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input  class="btn btn-primary" type="reset" value="초기화"></input>
+							<input  class="btn btn-primary" type="reset" value="초기화" style="font-weight: bold;"></input>
 						</div>
 					</div>
 				</form>

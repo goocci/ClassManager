@@ -26,6 +26,7 @@
 #navRight a:hover, #navRight a:active #navRight a:focus {
 	text-shadow: 0px 2px 2px #000; /* 그림자 지정 */
 	}
+
 </style>
 </head>
 <body>
@@ -45,7 +46,7 @@
 			</div>
 
 			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-2" style="margin-top:20px; margin-bottom: 15px;">
+				id="bs-example-navbar-collapse-2" style="margin-top:20px; margin-bottom: 15px; font-weight: bold;">
 				<ul class="nav navbar-nav" style="font-size: 23px">
 					<li class="dropdown"><a href="student_list">학급관리</a>
 					<li class="dropdown"><a href="board_list">게시판</a>
@@ -53,12 +54,12 @@
 					<li class="dropdown"><a href="calendar">학급일정</a>
 				</ul>
 
-				<ul id="navRight" class="nav navbar-nav navbar-right" style="font-size: 17px;">
+				<ul id="navRight" class="nav navbar-nav navbar-right" style="font-size: 14px; color: gray;">
 					<li><a href="join_modify">수정</a></li>
 					<li><a href="logout">로그아웃</a></li>
 				</ul>
 
-				<p class="navbar-text navbar-right" style="font-size: 15px;">${tname} 선생님 | 담당학급: ${grade} ${classNum}</p>
+				<p class="navbar-text navbar-right" style="font-size: 15px; color: white;">${tname} 선생님 | 담당학급: ${grade} ${classNum}&nbsp;&nbsp;&nbsp;&nbsp;</p>
 
 			</div>
 		</div>
