@@ -126,7 +126,6 @@ public class GalleryController {
 					dto.getStdtGrade(), dto.getStdtClassNum(), rename, title);
 		}
 
-		System.out.println("리다이렉트 전");
 		return "redirect:gallery";
 	}
 
