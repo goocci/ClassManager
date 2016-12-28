@@ -282,7 +282,8 @@ $.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
 		    "valueAxes": [{
 		      "gridAlpha": 0.07,
 		      "position": "left",
-		      "title": "등급"
+		      "title": "등급",
+		      "reversed": true
 		    }],
 		    
 		    "graphs": [{
