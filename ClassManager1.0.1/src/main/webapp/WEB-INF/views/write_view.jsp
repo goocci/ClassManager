@@ -61,16 +61,16 @@
 									<th>글 내용 </br>
 
 									</th>
-									<td><a class="btn btn-default btn-sm"
-										style="background-color: gray; margin-bottom: 10px"
-										href="board_list"> 투표 </a> <a class="btn btn-default btn-sm"
-										style="background-color: gray; margin-bottom: 10px"
-										data-toggle="modal" data-target="#myModal22">파일 첨부</a></br> <textarea
-											name="bContent" rows="10" cols="90"></textarea></br> <input
-										type="file" name="boardFile" id="boardFile"
-										style="float: left">
-									 <input type="hidden" name="boardFileName" id="fileName"
-										value=" "></input></td>
+									<td>
+									<a class="btn btn-default btn-sm" style="background-color: gray; margin-bottom: 10px"
+									    											data-toggle="modal" data-target="#myModal"> 투표 </a> 
+									
+									<a class="btn btn-default btn-sm" style="background-color: gray; margin-bottom: 10px"
+										data-toggle="modal" data-target="#myModal22">파일 첨부</a></br> 
+										<textarea name="bContent" rows="10" cols="90"></textarea></br> 
+										<input type="file" name="boardFile" id="boardFile" style="float: left">
+									 <input type="hidden" name="boardFileName" id="fileName" value=" "></input></td>
+									 <input type="hidden" name="vIdx" id="vIdx" value=" "></input></td>
 								</tr>
 							</tbody>
 						</table>
@@ -88,16 +88,65 @@
 					</div>
 				</div>
 			</form>
+						
+			<!-- 투표 모달 -->
+			<script src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.min.js"></script>
+
+			<form id="createVote" name = "createVote" method="post"  action="createVote"  role="form">
+				<div id="myModal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header"  style="padding-bottom: 1px;">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4>투표</h4>
+							</div>
+							<div class="modal-body"  style="padding-top: 1px;">
+								<div class="form-group" style="margin-top: 5%;">
+									<label for="voteTitle" class="control-label col-md-2"><b>투표제목</b></label>
+									<input type="text"  size ="40px" name="voteTitle" id="voteTitle" required="required" autofocus="autofocus"/>
+								</div>
+								
+								<!--
+								<div class="form-group">
+									<label for="voteEndDate" class="control-label col-md-2"><b>마감일</b></label>
+									<input type="text" size ="50px" id="voteEndDate" name="voteEndDate" required="required" maxlength="10" />
+								</div>
+								-->
+								<div class="form-group">
+									<label for="exampleContent" class="control-label col-md-2"><b>선택지</b></label>
+
+									<input type="text" name="exampleContent1" required="required">
+
+									<a class="btn icon-btn btn-success"
+										onclick="javascript:fn_examplePlus($(this))"> <span
+										class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add
+									</a>
+								</div>
+							</div>
+							<div class="modal-footer">
+					  			<Input Type="hidden" name="exampleSize" value="">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button> 
+								<button type="button" class="btn btn-primary"  name="btnSubmint" id="btnSubmit" onclick="fn_save()"> 등록하기</button>
+								 <!-- ajax로 할때 버튼
+								<button type="button" class="btn btn-primary"  name="btnSubmint" id="btnSubmit" > 등록하기</button>
+								-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
 
 			<script
 				src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 			<script src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.min.js"></script>
 
 			<!-- 모달 -->
-			<script src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.min.js"></script>
+
 			<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 			<script src="<%=cp%>/resources/script/jquery.fileupload.js"></script>
 
+			<!-- 파일 업로드 -->
 			<script type="text/javascript">
 				$(document).ready(function() {
 					$('#boardFile').fileupload({
@@ -140,24 +189,70 @@
 						}
 					});
 				});
+				 
+				//투표 관련 
+				var exampleSize = 1;
 
-				/* 			
-				 $("#uploadbutton").click(function() {
-				 var form = $('form')[0];
-				 var formData = new FormData(form);
-				 $.ajax({
-				 url : 'uploadfile',
-				 processData : false,
-				 contentType : false,
-				 data : formData,
-				 type : 'POST',
-				 success : function(result) {
-				 document.writeForm.boardFileName.value=result;
+				$(document).ready(function() {
+
+					$("#voteEndDate").datepicker({
+						dateFormat : 'yy-mm-dd',
+						changeMonth : true,
+						changeYear : true,
+						yearRange : "1980:2030"
+					});
+
+				});
 				
-				 }
-				 });
-				 });
-				 */
+				/*폼데이터로 넘길라고 했는데 examplesize에 따라서 매핑되는 것들이 달라져서 바로 함수 파라미터에서 받을수가없음
+				$("#btnSubmit").click(function() {
+					// var form = $('form')[0];
+					//var formData = new FormData(form);
+					var params = $("#createVote").serialize() + exampleSize;
+					$.ajax({
+						url : 'createVote',
+						processData : false,
+						contentType : false,
+						data : params,
+						type : 'POST',
+						success : function(result) {
+
+							document.writeForm.vIdx.value = result;
+						}
+					});
+				});
+				*/
+				
+				
+				function fn_save() {
+					if (confirm("등록하시겠습니까?")) {
+				
+
+						alert("투표가 생성되었습니다.");
+						document.createVote.exampleSize.value=exampleSize;
+						$("#createVote").submit();
+					}
+				}
+				function fn_examplePlus(self) {
+					if (exampleSize == 5) {
+						alert("선택지는 최대5개까지만 작성할 수 있습니다.");
+						return;
+					}
+					exampleSize += 1;
+					var exampleHtml = "<div class='form-group' style='margin-left: 95px;''>"
+							+ "<input  type='text' name='exampleContent" + exampleSize + "'' "+ "required='required'>"
+							+ "<a class='btn icon-btn btn-danger' onclick='javascript:fn_exampleMinus($(this))'><span class='glyphicon btn-glyphicon glyphicon-trash img-circle text-danger'></span>Delete</a>"
+							+ "</div>";
+
+					self.parent().parent().append(exampleHtml);
+				}
+
+				function fn_exampleMinus(self) {
+					self.parent().remove();
+
+					exampleSize -= 1;
+
+				}
 			</script>
 
 		</body>

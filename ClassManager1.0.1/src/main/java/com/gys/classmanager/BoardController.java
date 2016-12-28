@@ -113,15 +113,13 @@ public class BoardController {
 		
 		return "redirect:board_list";
 	}
-	
+		
 	@RequestMapping(value = "/uploadfile" ,produces="application/json")
 	@ResponseBody
 	public String uploadfile(HttpServletRequest request, @RequestParam("boardFile") MultipartFile boardFile, Model model, HttpSession session) {
 		System.out.println("uploadfile()");
 		
-		System.out.println("uploadPhoto");
-		String savePath = "/Users/hanyoungsoo/Documents/workspace-sts-3.8.2.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ClassManager1.0.1/resources/assets/img";
-
+		String savePath = "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
 		String originalFilename = boardFile.getOriginalFilename(); // fileName.jpg
 		String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
 		String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg

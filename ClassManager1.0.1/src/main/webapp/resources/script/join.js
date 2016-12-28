@@ -31,8 +31,7 @@ function idCheck() {
 
 	// #11] Id 상태를 점검하기 위해서 IdCheckServlet.doGet으로 이동한다.
 	window.open(url, "_blank_1",
-		"toolbar=no, menubar=no, scrollbars=yes, resizable=no,"
-		+ "width=450, height=200");
+			'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=400,height=190');
 }
 
 // #14번] idCheck.jsp 에서 사용 버튼 누를 때 이 스크립트로 이동한다.

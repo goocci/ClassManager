@@ -51,9 +51,6 @@
 						<h5 style="font-weight:bold; margin-bottom: -2px">[첨부파일]</h5>
 						<a href="filedown?fileName=${dto.boardPhoto}">${dto.boardPhoto}</a>
 						</div>
-						<div align="left" style="margin-left:20px">
-						<img src="<%=cp%>/resources/assets/img/${dto.boardPhoto}" /></br>
-						</div>
 						</c:if>
 						
 						<% pageContext.setAttribute("newLineChar", "\n"); %>
