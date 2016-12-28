@@ -92,7 +92,7 @@ public class GalleryController {
 	public String galleryInput(HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile,
 			@RequestParam("title") String title, Model model, HttpSession session) {
 
-		String savePath = "C:\\Users\\김민구\\workspace-sts-3.8.2.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
+		String savePath =  "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
 		// String savePath = request.getRealPath("folderName");
 
 		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
