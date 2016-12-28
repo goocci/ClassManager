@@ -56,12 +56,12 @@
 					<li class="dropdown"><a href="calendar">학급일정</a>
 				</ul>
 
-				<ul id="navRight" class="nav navbar-nav navbar-right" style="font-size: 17px;">
+				<ul id="navRight" class="nav navbar-nav navbar-right" style="font-size: 14px;">
 					<li><a href="join_modify">수정</a></li>
 					<li><a href="logout">로그아웃</a></li>
 				</ul>
 
-				<p class="navbar-text navbar-right" style="font-size: 15px;">${tname} 선생님 | 담당학급: ${grade} ${classNum}</p>
+				<p class="navbar-text navbar-right" style="font-size: 15px; color: white;">${tname} 선생님 | 담당학급: ${grade} ${classNum}</p>
 
 			</div>
 		</div>
