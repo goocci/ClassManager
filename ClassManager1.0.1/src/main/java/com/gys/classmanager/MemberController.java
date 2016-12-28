@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -50,12 +51,10 @@ public class MemberController {
 	@RequestMapping("/uploadFile")
 	@ResponseBody public String uploadFile(HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile, Model model) {
 		System.out.println("uploadFile");
-		String savePath =  "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
-		String result="";
-		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
-		String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
+		String savePath =  "/Users/hanyoungsoo/Documents/workspace-sts-3.8.2.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ClassManager1.0.1/resources/assets/img";
+		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg			
 		String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
-		String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
+		String rename = "ClassManager_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
 		String fullPath = savePath + "/" + rename;
 
 		if (!imgFile.isEmpty()) {
@@ -67,6 +66,8 @@ public class MemberController {
 			} catch (Exception e) {
 			}
 		}
+		
+		
 		return "{\"filename\": \""+rename+"\","+" \"msg\":\"file upload success.\"}";
 	}
 

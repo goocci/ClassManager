@@ -271,8 +271,10 @@
 			                );
 			            },
 						done : function(e, data) {
-							$('#photo').attr('src', "/classmanager/resources/assets/img/"+data.result.filename);
+							var filename = decodeURIComponent(data.result.filename);
+							$('#photo').attr('src', "/classmanager/resources/assets/img/"+data.result.filename );
 							$('#fileName').attr('value', data.result.filename);
+							alert(filename);
 
 						},
 						fail : function(e, data, result) {
