@@ -19,7 +19,7 @@
 body {
 	background-image: url("<%=cp %>/resources/assets/img/greenboard5.jpg");
 	background-size: cover;
-	min-height: 1000px;
+	min-height: 100%;
 } 
 
 .page-navigation a {
