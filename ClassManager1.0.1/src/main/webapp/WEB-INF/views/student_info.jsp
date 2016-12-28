@@ -37,7 +37,7 @@
 
 						<div class="panel panel-info" style="width: 560px;" align="left">
 							<div class="panel-heading">
-								<h3 class="panel-title">${info.name}</h3>
+								<h3 class="panel-title" style="font-weight: bold;">${info.name}</h3>
 							</div>
 							<div class="panel-body">
 								<div class="row">
@@ -51,7 +51,7 @@
 										<table class="table table-user-information">
 											<tbody>
 												<tr>
-													<td width="60px">학 년 :</td>
+													<td width="70px">학 년 :</td>
 													<td>${info.stdtGrade}</td>
 												</tr>
 												<tr>
@@ -68,7 +68,7 @@
 													<td>${info.phoneNum}</td>
 												</tr>
 												<tr>
-													<td>Email</td>
+													<td>Email :</td>
 													<td><a href="mailto:${info.email }">${info.email }</a></td>
 												</tr>
 											</tbody>
@@ -79,7 +79,7 @@
 							<div class="panel-footer">
 								<h4>
 									상담기록 &nbsp;<a class="btn btn-primary btn-sm"
-										data-toggle="modal" data-target="#myModal">등록하기</a>
+										data-toggle="modal" data-target="#myModal" style="font-weight: bold;">등록하기</a>
 								</h4>
 
 								<table class="table table-striped table-hover" id="consult">

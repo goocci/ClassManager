@@ -50,13 +50,13 @@ public class MemberController {
 	@RequestMapping("/uploadFile")
 	@ResponseBody public String uploadFile(HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile, Model model) {
 		System.out.println("uploadFile");
-		String savePath =  "C:\\Users\\인영\\dev\\ws_sts\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
+		String savePath = "C:\\Users\\KimMinGoo\\Documents\\workspace-sts-3.8.3.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
 		String result="";
 		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
 		String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
 		String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
 		String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
-		String fullPath = savePath + "/" + rename;
+		String fullPath = savePath + "\\" + rename;
 
 		if (!imgFile.isEmpty()) {
 			try {
