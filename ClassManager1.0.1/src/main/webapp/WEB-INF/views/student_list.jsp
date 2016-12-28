@@ -14,6 +14,17 @@
 <link
 	href="<%=cp%>/resources/assets/bootstrap/css/bootstrap_join.min.css"
 	rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
+	
+<style type="text/css">
+
+.container .row{
+
+font-family: 'Hanna', serif;
+}
+
+
+</style>	
 
 <title>Insert title here</title>
 </head>
