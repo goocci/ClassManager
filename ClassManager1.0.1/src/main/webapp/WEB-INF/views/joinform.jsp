@@ -53,11 +53,11 @@
 						<div class="col-lg-10">
 							<div style="float: left; width: 100%;">
 								<input class="form-control" id="inputId" type="text"
-									name="inputId" placeholder="아이디" /><input type="hidden"
+									name="inputId" placeholder="4글자 이상 입력해주세요" /><input type="hidden"
 									name="reid" />
 							</div>
 							<div style="float: right; width: 0%;">
-								<input type="button" class="btn btn-primary btn-sm"
+								<input type="button" class="btn btn-primary btn-xs"
 									onclick="idCheck();" value="중복확인"></input>
 							</div>
 
@@ -67,13 +67,12 @@
 						<label class="col-lg-2 control-label" for="inputPassword">비밀번호</label>
 						<div class="col-lg-10">
 							<input class="form-control" id="inputPassword" type="password"
-								name="pwd" placeholder="비밀번호">
+								name="pwd" placeholder="연속된 숫자나 쉬">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 control-label" for="inputPassword2">비밀번호
-							확인</label>
+						<label class="col-lg-2 control-label" for="inputPassword2"  ">비번확인</label>
 						<div class="col-lg-10">
 							<input class="form-control" id="inputPassword2" type="password"
 								name="pwd_check" placeholder="비밀번호 확인">
@@ -140,8 +139,8 @@
 								</div>
 								<div>
 									<div style="float: right; width: 0%;">
-										<input class="btn btn-primary btn-sm" type="button"
-											value="교번확인" onclick="teacherCheck();" style="font-weight: bold;"/>
+										<input class="btn btn-primary btn-xs" type="button"
+											value="교번확인" onclick="teacherCheck();" />
 									</div>
 								</div>
 							</div>
@@ -227,9 +226,9 @@
 					<div class="form-group">
 						<div class="col-lg-10 col-lg-offset-2">
 							<input class="btn btn-primary" type="submit"
-								onclick="return joinCheck();" value="가입" style="font-weight: bold;">
+								onclick="return joinCheck();" value="가입">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input  class="btn btn-primary" type="reset" value="초기화" style="font-weight: bold;"></input>
+							<input  class="btn btn-primary" type="reset" value="초기화"></input>
 						</div>
 					</div>
 				</form>
@@ -272,8 +271,10 @@
 			                );
 			            },
 						done : function(e, data) {
-							$('#photo').attr('src', "/classmanager/resources/assets/img/"+data.result.filename);
+							var filename = decodeURIComponent(data.result.filename);
+							$('#photo').attr('src', "/classmanager/resources/assets/img/"+data.result.filename );
 							$('#fileName').attr('value', data.result.filename);
+							alert(filename);
 
 						},
 						fail : function(e, data, result) {
