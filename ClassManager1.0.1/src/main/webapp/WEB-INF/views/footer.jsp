@@ -62,7 +62,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12" style="text-align: center;">Copyright
-						© 2016 Designed by GooSooYoung. All rights reserved.</div>
+						© 2016 Designed by JungIm Choi. All rights reserved.</div>
 				</div>
 			</div>
 		</div>
