@@ -263,9 +263,10 @@ body {
 										data-dismiss="modal" role="button">취소</button>
 								</div>
 								<div class="btn-group" role="group">
-									<input type="submit" id="saveImage"
+									<input type="hidden" id="saveHidden" value=""> 
+									<input type="hidden" id="saveImage" 
 										class="btn btn-default btn-hover-green" data-action="save"
-										role="button" value="저장"></input>
+										role="button" value="저장"></input>	
 								</div>
 							</div>
 						</div>

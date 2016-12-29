@@ -92,6 +92,7 @@ if (typeof jQuery === 'undefined') {
         $removeFileButton.on('click', function() {
             $(this).blur();
             resetFileTab($fileTab);
+            $('#saveImage').attr('type','hidden');
         });
 
         $urlTabButton.on('click', function() {
@@ -244,6 +245,8 @@ if (typeof jQuery === 'undefined') {
         $fileTab.find('img').remove();
         $browseFileButton.find('span').text('Browse');
         $removeFileButton.hide();
+        $('#saveImage').attr('type','text');
+        
 
         // Check if file was uploaded.
         if (!($fileInput[0].files && $fileInput[0].files[0])) {
@@ -263,6 +266,7 @@ if (typeof jQuery === 'undefined') {
                     $fileTab.prepend(getImageThumbnailHtml(e.target.result));
                     $browseFileButton.find('span').text('Change');
                     $removeFileButton.css('display', 'inline-block');
+                    $('#saveImage').attr('type', 'submit');
                 };
 
                 fileReader.onerror = function() {
@@ -315,6 +319,7 @@ if (typeof jQuery === 'undefined') {
         $urlTab.find('.alert').remove();
         $urlTab.find('img').remove();
         $removeUrlButton.hide();
+        $('#saveImage').attr('type', 'submit');
 
         var url = $urlInput.val();
         if (!url) {

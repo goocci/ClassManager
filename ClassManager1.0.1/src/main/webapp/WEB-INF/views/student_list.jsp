@@ -47,6 +47,8 @@ font-family: 'Hanna', serif;
 							<div class="card" style="margin-bottom: 20%; margin-left: 1%; height: 210px;" >
 								<canvas class="header-bg" width="250" height="70"
 									id="header-blur"></canvas>
+									
+									
 								<div class="avatar">
 									<img src="<%=cp%>/resources/assets/img/${dto.profilePhoto}" />
 								</div>
