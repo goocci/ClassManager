@@ -51,11 +51,13 @@ public class MemberController {
 	@ResponseBody public String uploadFile(HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile, Model model) {
 		
 		System.out.println("uploadFile");
+
 		String savePath = "C:\\Users\\KimMinGoo\\Documents\\workspace-sts-3.8.3.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
 		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg			
 		String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
 		String rename = "ClassManager_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
 		String fullPath = savePath + "\\" + rename;
+
 
 		if (!imgFile.isEmpty()) {
 			try {

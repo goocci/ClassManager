@@ -8536,7 +8536,7 @@ input[type="checkbox"]:disabled:checked:after, .checkbox input[type="checkbox"]:
 .profile-header-img>img.img-circle {
 	width: 120px;
 	height: 120px;
-	border: 2px solid #51D2B7;
+	border: 3px solid #B5DB92;
 }
 
 .profile-header {
@@ -8553,7 +8553,7 @@ input[type="checkbox"]:disabled:checked:after, .checkbox input[type="checkbox"]:
 }
 
 .label.label-default.rank-label {
-	background-color: rgb(81, 210, 183);
+	background-color: #B5DB92;
 	padding: 5px 10px 5px 10px;
 	border-radius: 27px;
 }
@@ -8571,6 +8571,7 @@ input[type="checkbox"]:disabled:checked:after, .checkbox input[type="checkbox"]:
 	padding: 0;
 	background-color: #e2e3e4;
 	color: rgb(136, 172, 217);
+	border: 1px solid #3d3f30;
 }
 
 .card .header-bg {
@@ -8597,7 +8598,7 @@ input[type="checkbox"]:disabled:checked:after, .checkbox input[type="checkbox"]:
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-	border: 0px solid rgba(0, 0, 30, 0.8);
+	border: 2px solid #B5DB92;
 }
 
 html, body {
