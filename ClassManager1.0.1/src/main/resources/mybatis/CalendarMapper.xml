@@ -23,3 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM CALENDAR WHERE IDX = #{0}
 	</delete>
 </mapper>
+
+<!--  
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * Licensed under the Apache License, Version 2.0 
+ -->

@@ -1,3 +1,11 @@
+/*
+ * Copyrighted by wikiti.
+ * Released under the MIT license
+ * http://www.jqueryscript.net/table/Lightweight-jQuery-Client-side-Pagination-Plugin-paginate-js.html
+ * 
+ */
+
+
 (function($) {
 	'use strict';
 

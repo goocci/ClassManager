@@ -1,3 +1,12 @@
+/*!
+ * Chart.js
+ * http://chartjs.org/
+ * Version: 2.4.0
+ *
+ * Copyrighted 2016 Nick Downie
+ * Released under the MIT license
+ * https://github.com/chartjs/Chart.js/blob/master/LICENSE.md
+ */
 var chartData_univScore1 = new Array();
 var chartData_univScore2 = new Array();
 var chartData_univScore3 = new Array();
