@@ -3,9 +3,9 @@ package com.gys.classmanager.dto;
 public class VoteDto {
 	
 	private int idx;
-	private int boardIdx;
 	private String id;
 	private String topic;
+	private int count;
 	private String choice1;
 	private String choice2;
 	private String choice3;
@@ -21,12 +21,12 @@ public class VoteDto {
 	public VoteDto() {
 		// TODO Auto-generated constructor stub
 	}
-	public VoteDto(int idx, int boardIdx, String id, String topic, String choice1, String choice2, String choice3,
+	public VoteDto(int idx, String id, String topic, int count, String choice1, String choice2, String choice3,
 			String choice4, String choice5, int scoreCh1, int scoreCh2, int scoreCh3, int scoreCh4, int scoreCh5) {
 		this.idx = idx;
-		this.boardIdx = boardIdx;
 		this.id = id;
 		this.topic = topic;
+		this.count = count;
 		this.choice1 = choice1;
 		this.choice2 = choice2;
 		this.choice3 = choice3;
@@ -46,12 +46,6 @@ public class VoteDto {
 	public void setIdx(int idx) {
 		this.idx = idx;
 	}
-	public int getBoardIdx() {
-		return boardIdx;
-	}
-	public void setBoardIdx(int boardIdx) {
-		this.boardIdx = boardIdx;
-	}
 	public String getId() {
 		return id;
 	}
@@ -63,6 +57,13 @@ public class VoteDto {
 	}
 	public void setTopic(String topic) {
 		this.topic = topic;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	public String getChoice1() {
 		return choice1;
