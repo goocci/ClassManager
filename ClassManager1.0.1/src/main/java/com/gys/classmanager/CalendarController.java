@@ -52,13 +52,14 @@ public class CalendarController {
 	@RequestMapping(value = "/calendarInput")
 	public String calendarInput( Model model, HttpServletRequest request,
 			@RequestParam("content_") String content_) {
-		
+		String plan = request.getParameter("plan");
 		String time1 = request.getParameter("time1");
 		String time2 = request.getParameter("time2");
 		String selectDate = request.getParameter("selectDate");
 		StringTokenizer token = new StringTokenizer(selectDate,"-");
 		String day="";
 		String time="";
+		content_+="("+plan+")";
 		while(token.hasMoreTokens()){
 			day=token.nextToken();
 		}

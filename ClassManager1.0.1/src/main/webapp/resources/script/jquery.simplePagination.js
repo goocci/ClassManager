@@ -1,8 +1,9 @@
 /**
- * jquery.simplePagination.js
- * @version: v1.0.0
- * @author: Sebastian Marulanda http://marulanda.me
- * @see: https://github.com/smarulanda/jquery.simplePagination
+ * v1.0.0
+ * Sebastian Marulanda http://marulanda.me
+ * https://github.com/smarulanda/jquery.simplePagination
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
  */
 
 (function($) {
