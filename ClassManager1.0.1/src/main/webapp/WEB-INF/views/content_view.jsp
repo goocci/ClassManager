@@ -24,9 +24,8 @@
 </c:if>
 	<div id="body">
 		<div id="content">
-			<div style="text-align: center">
-				<h1>글</h1>
-			</div>
+		<br/>
+		<br/>
 
 			<!-- 1114_ form으로 묶어주고 action으로 페이지 넘겨줌 -->
 						<div class="col-md-10 col-sm-offset-0 col-md-offset-1 " align="center" style="margin-bottom: 10px; margin-left:28%; ">

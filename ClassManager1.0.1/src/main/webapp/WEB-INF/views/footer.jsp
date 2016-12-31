@@ -27,14 +27,10 @@
 		<div class="main-footer">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12" style="text-align: center;">
+					<div class="col-md-12" style="text-align: center; height: 120px">
 						<img class="logo-footer"
 							src="<%=cp %>/resources/assets/img/logo10.png"
-							alt="compact company" style="width: 420px;">
-						<p>
-							Compact is a clean Templates suitable for corporate, You can
-							customize it <br> very easy to fit your needs
-						</p>
+							alt="compact company" style="width: 300px;">
 						<div class="footer-contact">
 							<ul class="contact-info">
 								<li><i class="fa fa-building-o"></i>379 5th Ave New York,
@@ -43,13 +39,6 @@
 								<li><i class="fa fa-fax"></i>+(112) 345 8796 <span>|</span></li>
 								<li><i class="fa fa-envelope"></i>contact@compact.com</li>
 							</ul>
-						</div>
-						<div class="social-icons-2 clearfix">
-							<a href="#" class="facebook"><i class="fa fa-facebook"></i></a> <a
-								href="#" class="twitter"><i class="fa fa-twitter"></i></a> <a
-								href="#" class="google"><i class="fa fa-google-plus"></i></a> <a
-								href="#" class="youtube"><i class="fa fa-youtube-play"></i></a>
-							<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
 						</div>
 					</div>
 				</div>

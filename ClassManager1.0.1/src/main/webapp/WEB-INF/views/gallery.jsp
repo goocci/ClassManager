@@ -13,6 +13,10 @@
 <link
 	href="<%=cp%>/resources/assets/bootstrap/css/bootstrap-imageupload.min.css"
 	rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
+	
+
+
 <title>ClassManager</title>
 
 <style>
@@ -146,6 +150,11 @@ body {
 	-o-transform: translateY(-50%);
 	-webkit-transform: translateY(-50%);
 }
+
+#h4{
+font-family: 'Hanna', serif;
+}
+
 </style>
 
 
@@ -192,7 +201,7 @@ body {
 					<c:forEach items="${gallery}" var="dto">
 						<li><a href="#img_${dto.idx}" style="text-decoration: none"><span
 								style="float: left">${dto.idx}</span>
-							<h4 align="center">${dto.title}</h4> <img
+							<h4 align="center" id="h4">${dto.title}</h4> <img
 								src="<%=cp%>/resources/assets/img/${dto.photoName}"
 								alt="no image"></a></li>
 						<a href="#_${dto.idx}" class="lightbox trans" id="img_${dto.idx}"><img

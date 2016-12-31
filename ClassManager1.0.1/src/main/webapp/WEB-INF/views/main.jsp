@@ -40,12 +40,12 @@
 				<div class="carousel-inner">
 					<!--슬라이드1-->
 					<div class="item active">
-						<img src="<%=cp %>/resources/assets/img/1.jpg"
+						<img src="<%=cp %>/resources/assets/img/2.jpg"
 							style="width: 100%" alt="First slide">
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>Perfect</h1>
-								<p>여러분의 학급을 완벽하게 만드세요</p>
+								<h5>여러분의 학급을 완벽하게 만드세요</h5>
 							</div>
 						</div>
 					</div>
@@ -53,12 +53,12 @@
 
 					<!--슬라이드2-->
 					<div class="item">
-						<img src="<%=cp %>/resources/assets/img/2.jpg"
+						<img src="<%=cp %>/resources/assets/img/1.jpg"
 							style="width: 100%" data-src="" alt="Second slide">
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>Easy</h1>
-								<p>간편하고 쉽게 학급을 관리하세요</p>
+								<h5>간편하고 쉽게 학급을 관리하세요</h5>
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>Share</h1>
-								<p>정보와 추억을 공유하세요</p>
+								<h5>정보와 추억을 공유하세요</h5>
 							</div>
 						</div>
 					</div>

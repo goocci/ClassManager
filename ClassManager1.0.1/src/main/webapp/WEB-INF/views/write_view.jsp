@@ -25,9 +25,8 @@
 <div id="body">
 	<div id="content">
 		<body>
-			<div style="text-align: center">
-				<h1>글쓰기</h1>
-			</div>
+		<br/>
+		<br/>
 
 			<!-- 1114_ form으로 묶어주고 action으로 페이지 넘겨줌 -->
 			<form id="writeForm" name="writeForm" action="write" method="POST"

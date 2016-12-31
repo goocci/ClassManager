@@ -156,7 +156,7 @@ margin: 0 auto;
 
 display: table;
 
-border: 1px solid #000;
+border: 1px solid lightgrey;
 
 }
 
@@ -229,7 +229,7 @@ th {
 			  </form>
 			  
 			</div>
-			
+			<br/>
 			<br/>
 			<div class="container2">
 			<table class="table2" id="grade1_table" style="width: 100%;">

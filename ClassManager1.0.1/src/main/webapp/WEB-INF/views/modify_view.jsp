@@ -23,9 +23,8 @@
 </c:if>
 	<div id="body">
 		<div id="content">
-			<div style="text-align: center">
-				<h1>글수정</h1>
-			</div>
+		<br/>
+		<br/>
 
 			<!-- 1114_ form으로 묶어주고 action으로 페이지 넘겨줌 -->
 			<form id="writeForm" action="modify?bIdx=${dto.idx}" method="POST">

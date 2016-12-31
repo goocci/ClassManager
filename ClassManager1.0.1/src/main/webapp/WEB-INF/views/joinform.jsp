@@ -67,7 +67,7 @@
 						<label class="col-lg-2 control-label" for="inputPassword">비밀번호</label>
 						<div class="col-lg-10">
 							<input class="form-control" id="inputPassword" type="password"
-								name="pwd" placeholder="연속된 숫자나 쉬">
+								name="pwd" placeholder="비밀번호">
 						</div>
 					</div>
 
