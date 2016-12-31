@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -23,12 +25,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.gys.classmanager.dao.BoardDao;
+import com.gys.classmanager.dao.VoteDao;
 import com.gys.classmanager.dto.BoardDto;
+import com.gys.classmanager.dto.VoteDto;
 
 @Controller
 public class BoardController {
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Autowired
+	private VoteController voteController;
 	
 	@RequestMapping(value = "/board_list")
 	public String board_list(Model model, HttpSession session) {
@@ -43,16 +50,32 @@ public class BoardController {
 	public String content_view(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("content_view()");
 		
-		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-		
-		model.addAttribute("comment_list", dao.listComment(Integer.parseInt(request.getParameter("bIdx"))));
-		dao.upHit(Integer.parseInt(request.getParameter("bIdx")));
-		BoardDto dto = dao.viewBoard(Integer.parseInt(request.getParameter("bIdx")));
-		
 		String id = (String)session.getAttribute("userid");
+		
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		// 보드 불러오기
+		BoardDto dto = dao.viewBoard(Integer.parseInt(request.getParameter("bIdx")));
+		// 조회수 증가
+		dao.upHit(Integer.parseInt(request.getParameter("bIdx")));
+		
+		// 코멘트 리스트 불러오기
+		model.addAttribute("comment_list", dao.listComment(Integer.parseInt(request.getParameter("bIdx"))));
+
 		
 		model.addAttribute("useridd", id);
 		model.addAttribute("dto",dto);	
+	
+		int voteIdx = dto.getVoteIdx();
+		System.out.println(voteIdx);
+		
+		if(voteIdx != 0){
+			VoteDao vdao = sqlSession.getMapper(VoteDao.class);
+			VoteDto vdto = vdao.viewVote(voteIdx);
+			List<Map<String, Object>> choiceArray = voteController.voteList(voteIdx);
+			model.addAttribute("vdto", vdto);
+			model.addAttribute("choice_list", choiceArray);
+		}
+		
 		return "content_view";
 	}
 	
@@ -60,30 +83,65 @@ public class BoardController {
 	public String content_view_cm(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("content_view()");
 		
-		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-		
-		model.addAttribute("comment_list", dao.listComment(Integer.parseInt(request.getParameter("bIdx"))));
-		BoardDto dto = dao.viewBoard(Integer.parseInt(request.getParameter("bIdx")));
-		
 		String id = (String)session.getAttribute("userid");
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		// 보드 불러오기
+		BoardDto dto = dao.viewBoard(Integer.parseInt(request.getParameter("bIdx")));
+		// 코멘트 리스트 불러오기
+		model.addAttribute("comment_list", dao.listComment(Integer.parseInt(request.getParameter("bIdx"))));
+
 		
 		model.addAttribute("useridd", id);
 		model.addAttribute("dto",dto);	
+	
+		int voteIdx = dto.getVoteIdx();
+		System.out.println(voteIdx);
+		
+		if(voteIdx != 0){
+			VoteDao vdao = sqlSession.getMapper(VoteDao.class);
+			VoteDto vdto = vdao.viewVote(voteIdx);
+			List<Map<String, Object>> choiceArray = voteController.voteList(voteIdx);
+
+			model.addAttribute("vdto", vdto);
+			model.addAttribute("choice_list", choiceArray);
+		}
+		
 		return "content_view";
 	}
 		
 	@RequestMapping(value = "/write_view")
-	public String write_view(Model model, HttpSession session) {
+	public String write_view(Model model, HttpSession session, HttpServletRequest request) {
 		
 		String teachername = (String) session.getAttribute("tname");
+		String studentname = (String) session.getAttribute("sname");
 		String writer;
-		
+
 		if (teachername != null) {
 			writer = (String)session.getAttribute("tname");
 		} else {
-			writer = (String)session.getAttribute("sname");
+			writer = studentname;
 		}
 		
+		
+		model.addAttribute("writer", writer);
+
+		return "write_view";
+	}
+	
+	@RequestMapping(value = "/write_viewV")
+	public String write_viewV(Model model, HttpSession session, HttpServletRequest request) {
+		
+		String teachername = (String) session.getAttribute("tname");
+		String studentname = (String) session.getAttribute("sname");
+		String writer;
+
+		if (teachername != null) {
+			writer = (String)session.getAttribute("tname");
+		} else {
+			writer = studentname;
+		}
+		
+		model.addAttribute("vIdx", (Integer.parseInt(request.getParameter("vIdx"))));
 		model.addAttribute("writer", writer);
 
 		return "write_view";
@@ -99,16 +157,31 @@ public class BoardController {
 		String id = (String)session.getAttribute("userid");
 		
 		String boardFileName= (String) request.getParameter("boardFileName");
-		System.out.println(boardFileName);
+		System.out.println("("+ boardFileName+ ")파일이름");
+		String vIdx = (String)request.getParameter("vIdx");
+		System.out.println("("+ vIdx + ")투표아이디");
 		
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		
-		if (boardFileName != null) {
+		if (!(boardFileName.equals("")) &&!( vIdx.equals(""))) {
+			System.out.println("PV");
+			int voteIdx = (Integer.parseInt(vIdx));
+			dao.writeBoardPV(request.getParameter("bCategory"), request.getParameter("bTitle"),
+					request.getParameter("bContent"), request.getParameter("bWriter"), id, 1, stdtGrade, stdtClassNum, teacherNum, boardFileName, voteIdx);
+		} else if(!(boardFileName.equals(""))){
+			System.out.println("P");
 			dao.writeBoardP(request.getParameter("bCategory"), request.getParameter("bTitle"),
 					request.getParameter("bContent"), request.getParameter("bWriter"), id, 1, stdtGrade, stdtClassNum, teacherNum, boardFileName);
-		} else {
+		}else if(!( vIdx.equals(""))){
+			System.out.println("V");
+			int voteIdx = (Integer.parseInt(vIdx));
+			dao.writeBoardV(request.getParameter("bCategory"), request.getParameter("bTitle"),
+					request.getParameter("bContent"), request.getParameter("bWriter"), id, 1, stdtGrade, stdtClassNum, teacherNum, voteIdx);
+		}else{
+			System.out.println("X");
 			dao.writeBoard(request.getParameter("bCategory"), request.getParameter("bTitle"),
 					request.getParameter("bContent"), request.getParameter("bWriter"), id, 1, stdtGrade, stdtClassNum, teacherNum);
+			
 		}
 		
 		return "redirect:board_list";

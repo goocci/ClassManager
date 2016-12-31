@@ -44,14 +44,38 @@
 							<hr style= "border:1px dashed gray;">
 							
 							
-						<!-- 첨부 파일 보이는 곳 -->
+						<!-- 첨부 파일이 있다면 -->
 						<c:if test="${dto.boardPhoto != null}">	
 						<div align="right" style="margin-right:20px">
 						<h5 style="font-weight:bold; margin-bottom: -2px">[첨부파일]</h5>
 						<a href="filedown?fileName=${dto.boardPhoto}">${dto.boardPhoto}</a>
 						</div>
 						</c:if>
+						<!-- 투표를 등록했다면 -->
+						<c:if test="${choice_list != null}">	
+						<div class="panel panel-primary "  >
+								<div class="panel-heading">
+									<h3 class="panel-title">  주제 : ${vdto.topic} </h3>
+								</div>
+								<div class="panel-body">
+									<ul class="list-group">
+										<c:forEach items="${choice_list}" var="list" varStatus="status">
+										<li class="list-group-item">
+											<div class="radio">
+												<label> <input name="rdoBtn" type="radio" name="optionsRadios" value=${status.index}> ${list.choice} </label>
+												<label >현재까지 투표수 ${list.score} </label>
+											</div>
+										</li>
+										</c:forEach>
+									</ul>
+								</div>
+								<div class="panel-footer">
+									<button type="button" id="voteBtn" class="btn btn-primary btn-lg">Vote</button>
+								</div>
+							</div>
+						</c:if>
 						
+						<!-- 글 내용 -->
 						<% pageContext.setAttribute("newLineChar", "\n"); %>
 						<p align="left" style="margin-top: -5px; margin-left: 20px; margin-right:20px;font-size: 20px">${fn:replace(dto.content, newLineChar, '<br/>')}</p>
 							<hr style="border: 1px solid gray;">
@@ -64,7 +88,7 @@
 								<input id="btn-write" type="submit"
 									class="btn btn-default btn-sm"
 									style="margin-bottom: 28px; border-width: 1px; border-style: solid; background-color: gray;"
-									value="댓글 등록" onclick="return writeCheck();"> </input>
+									value="댓글 등록" onclick="return writeCheck();"> 
 							</div>
 						</form>
 
@@ -82,9 +106,26 @@
 				</div>
 			</div>
 
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 			<script src="<%=cp%>/resources/assets/js/bootstrap.min.js"></script>
+			
+				<script type="text/javascript">
+  				  $(document).ready(function() {
+   				 	var vIdx = ${vdto.idx};
+
+      				  $("#voteBtn").click(function(){
+       				 	var exampleNo = $(":input[name='rdoBtn']:checked").val();
+
+       				 	if(exampleNo == undefined){
+      				  		alert("항목을 선택해주세요.");
+      				  		return false;
+      				  	}else{
+        						location.href = "vote?vIdx=" + vIdx + "&exampleNo=" + exampleNo + "&bIdx=" + ${dto.idx};
+      				  	}
+       				 });
+  				  });
+
+    </script>
 		</div>
 	</div>
 </body>

@@ -68,8 +68,10 @@
 										data-toggle="modal" data-target="#myModal22">파일 첨부</a></br> 
 										<textarea name="bContent" rows="10" cols="90"></textarea></br> 
 										<input type="file" name="boardFile" id="boardFile" style="float: left">
-									 <input type="hidden" name="boardFileName" id="fileName" value=" "></input></td>
-									 <input type="hidden" name="vIdx" id="vIdx" value=" "></input></td>
+									 <input type="hidden" name="boardFileName" id="fileName" value=""></input></td>
+									 
+									 <input type="hidden" name="vIdx" id="vIdx" value="${vIdx}"></td>
+									
 								</tr>
 							</tbody>
 						</table>

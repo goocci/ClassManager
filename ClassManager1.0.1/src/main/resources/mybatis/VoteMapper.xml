@@ -8,41 +8,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="createVote1">
 		INSERT
 		INTO
-		vote (id, topic, choice1, scoreCh1)
+		vote (id, topic, count, choice1, scoreCh1)
 		VALUES
-		(#{param1}, #{param2}, #{param3}, #{param4})
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
 	</insert>
 	
 	<insert id="createVote2">
 		INSERT
 		INTO
-		vote (id, topic, choice1, choice2, scoreCh1, scoreCh2)
+		vote (id, topic, count, choice1, choice2, scoreCh1, scoreCh2)
 		VALUES
-		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7})
 	</insert>
 	
 	<insert id="createVote3">
 		INSERT
 		INTO
-		vote (id, topic, choice1, choice2, choice3, scoreCh1, scoreCh2, scoreCh3)
+		vote (id, topic, count, choice1, choice2, choice3, scoreCh1, scoreCh2, scoreCh3)
 		VALUES
-		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8})
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9})
 	</insert>
 	
 	<insert id="createVote4">
 		INSERT
 		INTO
-		vote (id, topic, choice1, choice2, choice3, choice4, scoreCh1, scoreCh2, scoreCh3, scoreCh4)
+		vote (id, topic, count, choice1, choice2, choice3, choice4, scoreCh1, scoreCh2, scoreCh3, scoreCh4)
 		VALUES
-		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9}, #{param10})
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9}, #{param10}, #{param11})
 	</insert>
 	
 	<insert id="createVote5">
 		INSERT
 		INTO
-		vote (id, topic, choice1, choice2, choice3, choice4, choice5, scoreCh1, scoreCh2, scoreCh3, scoreCh4, scoreCh5)
+		vote (id, topic, count, choice1, choice2, choice3, choice4, choice5, scoreCh1, scoreCh2, scoreCh3, scoreCh4, scoreCh5)
 		VALUES
-		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, #{param12})
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, #{param12}, #{param13})
 	</insert>
 
 
@@ -55,7 +55,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DESC limit 1;
 	</select>
 
+<<<<<<< HEAD
 </mapper>
+=======
+	<select id="viewVote" resultType="com.gys.classmanager.dto.VoteDto">
+		SELECT
+		*
+		FROM
+		vote
+		WHERE IDX = #{param1}
+	</select>
+	
+	<update id="upScore1">
+		UPDATE
+		vote
+		SET ScoreCh1 = ScoreCh1 + 1
+		WHERE idx = #{param1}
+	</update>
+	
+	<update id="upScore2">
+		UPDATE
+		vote
+		SET ScoreCh2 = ScoreCh2 + 1
+		WHERE idx = #{param1}
+	</update>
+	
+	<update id="upScore3">
+		UPDATE
+		vote
+		SET ScoreCh3 = ScoreCh3 + 1
+		WHERE idx = #{param1}
+	</update>
+	
+	<update id="upScore4">
+		UPDATE
+		vote
+		SET ScoreCh4 = ScoreCh4 + 1
+		WHERE idx = #{param1}
+	</update>
+	
+	<update id="upScore5">
+		UPDATE
+		vote
+		SET ScoreCh5 = ScoreCh5 + 1
+		WHERE idx = #{param1}
+	</update>
+>>>>>>> 6c5623bca2a68f195d7477d8bddd97620f8bff7d
 
 
 <!--  
