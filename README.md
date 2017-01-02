@@ -20,7 +20,7 @@ Preview
 
 Architecture
 =====
-![architecture2](https://cloud.githubusercontent.com/assets/10272119/19626023/9f6b6876-9962-11e6-9303-332e02aadfbf.png)
+![architecture](https://trello-attachments.s3.amazonaws.com/58218cdde26981ea109d015b/586660a24b157f9ea275caa9/97c1f10f4a6fa04fdf42543a99a453ef/Application_architecture.png)
 
 Opensource List
 =====
