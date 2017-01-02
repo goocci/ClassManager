@@ -157,10 +157,7 @@
 						add : function(e, data) {
 							var uploadFile = data.files[0];
 							var isValid = true;
-							if (!(/png|jpe?g|gif/i).test(uploadFile.name)) {
-								alert('png, jpg, gif 만 가능합니다');
-								isValid = false;
-							} else if (uploadFile.size > 5000000) { // 5mb
+							if (uploadFile.size > 5000000) { // 5mb
 								alert('파일 용량은 5메가를 초과할 수 없습니다.');
 								isValid = false;
 							}
