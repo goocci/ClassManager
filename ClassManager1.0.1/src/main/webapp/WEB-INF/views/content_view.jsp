@@ -53,8 +53,9 @@
 						</c:if>
 						<!-- 투표를 등록했다면 -->
 						<c:if test="${choice_list != null}">	
-						<div class="panel panel-primary "  >
-								<div class="panel-heading">
+						<div align="left" style="margin-left:20px">
+						<div class="panel panel-success " style="width: 40%;" align="center">
+								<div class="panel-heading ">
 									<h3 class="panel-title">  주제 : ${vdto.topic} </h3>
 								</div>
 								<div class="panel-body">
@@ -62,16 +63,18 @@
 										<c:forEach items="${choice_list}" var="list" varStatus="status">
 										<li class="list-group-item">
 											<div class="radio">
-												<label> <input name="rdoBtn" type="radio" name="optionsRadios" value=${status.index}> ${list.choice} </label>
-												<label >현재까지 투표수 ${list.score} </label>
+												<label style="font-weight:bold;"> <input name="rdoBtn" type="radio" name="optionsRadios" value=${status.index}> ${list.choice} </label>
+												<br>
+												<label style="font-weight:lighter;" >현재까지 투표수 ${list.score} </label>
 											</div>
 										</li>
 										</c:forEach>
 									</ul>
 								</div>
-								<div class="panel-footer">
+								<div class="panel-footer ">
 									<button type="button" id="voteBtn" class="btn btn-primary btn-lg">Vote</button>
 								</div>
+							</div>
 							</div>
 						</c:if>
 						
