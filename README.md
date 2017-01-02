@@ -39,7 +39,7 @@ chart
 calendar
  * Copyright by black-lotus
  * Released under the MIT license
- * https:http://www.jqueryscript.net/time-clock/Super-Simple-Event-Calendar-Plugin-For-jQuery-dnCalendar.html
+ * http://www.jqueryscript.net/time-clock/Super-Simple-Event-Calendar-Plugin-For-jQuery-dnCalendar.html
  
 jquery-pagination
  * Copyrighted by wikiti.
