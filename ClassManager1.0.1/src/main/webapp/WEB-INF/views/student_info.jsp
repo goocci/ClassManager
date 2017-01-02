@@ -30,6 +30,7 @@
 	<div id="body">
 		<div id="content">
 			<jsp:include page="left.jsp" flush="true"></jsp:include>
+			<br/>
 			<div class="container">
 				<div class="row">
 					<div
