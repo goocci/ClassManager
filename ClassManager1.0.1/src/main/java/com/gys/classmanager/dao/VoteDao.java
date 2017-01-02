@@ -1,7 +1,5 @@
 package com.gys.classmanager.dao;
 
-import java.util.ArrayList;
-
 import com.gys.classmanager.dto.VoteDto;
 
 public interface VoteDao {
@@ -23,5 +21,7 @@ public interface VoteDao {
 	public void upScore3(int idx);
 	public void upScore4(int idx);
 	public void upScore5(int idx);
+	
+	public void updatepId(int idx, String id);
 
 }

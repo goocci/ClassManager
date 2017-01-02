@@ -98,6 +98,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE idx = #{param1}
 	</update>
 	
+	<update id="updatepId">
+		UPDATE VOTE SET PID = CONCAT(IFNULL(PID,''), #{1}) WHERE IDX = #{0}
+	
+	
+	</update>
+	
 </mapper>
 
 <!--  

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,9 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gys.classmanager.dao.VoteDao;
 import com.gys.classmanager.dto.VoteDto;
+import com.mysql.jdbc.BlobFromLocator;
 
 
 @Controller
@@ -25,12 +28,13 @@ public class VoteController {
 	private SqlSession sqlSession;
 
 	@RequestMapping("/createVote")
-	public String createVote(HttpServletRequest request, Model model, HttpSession session) {
+	@ResponseBody public String createVote(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("createVote()");
 		
 		
 		int idx;
 		int exampleSize = Integer.parseInt (request.getParameter("exampleSize"));
+		System.out.println(exampleSize);
 		String id = (String)session.getAttribute("userid");
 		String topic = request.getParameter("voteTitle");
 		
@@ -41,9 +45,10 @@ public class VoteController {
 		if(exampleSize==1){
 			
 			String choice1 = request.getParameter("exampleContent1");
-			dao.createVote1( id, topic, 1, choice1, 0);	
+			dao.createVote1( id, topic, 1, choice1, 0);
 			VoteDto dto = dao.lastListVote();
 			idx = dto.getIdx();
+	
 			
 		}else if(exampleSize==2){
 			
@@ -53,6 +58,10 @@ public class VoteController {
 			VoteDto dto = dao.lastListVote();
 			idx = dto.getIdx();
 			
+			System.out.println(choice1);
+			System.out.println(choice2);
+
+			
 		}else if(exampleSize==3){
 			
 			String choice1 = request.getParameter("exampleContent1");
@@ -61,7 +70,7 @@ public class VoteController {
 			dao.createVote3( id, topic, 3, choice1, choice2, choice3 , 0 , 0 , 0);	
 			VoteDto dto = dao.lastListVote();
 			idx = dto.getIdx();
-			
+	
 		}else if(exampleSize==4){
 			
 			String choice1 = request.getParameter("exampleContent1");
@@ -71,6 +80,7 @@ public class VoteController {
 			dao.createVote4( id, topic, 4, choice1, choice2, choice3, choice4, 0 , 0, 0, 0);	
 			VoteDto dto = dao.lastListVote();
 			idx = dto.getIdx();
+		
 			
 		}else{
 			
@@ -82,13 +92,14 @@ public class VoteController {
 			dao.createVote5( id, topic, 5, choice1, choice2, choice3, choice4, choice5, 0, 0, 0, 0, 0);	
 			VoteDto dto = dao.lastListVote();
 			idx = dto.getIdx();
+
 			
 		}
 		
 		String idxx = String.valueOf(idx);
 		model.addAttribute("vIdx", idxx);
 		
-		return "redirect:write_viewV";
+		return idxx;
 	}
 	
 	public List<Map<String, Object>> voteList(int voteIdx){
@@ -192,24 +203,81 @@ public class VoteController {
 	
 	@RequestMapping("/vote")
 	public String vote(HttpServletRequest request, Model model, HttpSession session) {
+		String id = (String)session.getAttribute("userid");
 		System.out.println("vote()");
-		System.out.println();
 		int vIdx = Integer.parseInt (request.getParameter("vIdx"));
 		String count = request.getParameter("exampleNo");
 		model.addAttribute("bIdx", request.getParameter("bIdx"));
-		
 		VoteDao vdao = sqlSession.getMapper(VoteDao.class);
-				
-		if(count.equals("0")){
-			vdao.upScore1(vIdx);
+		
+		sqlSession.getMapper(VoteDao.class).updatepId(vIdx,"");
+		String pids= vdao.viewVote(vIdx).getpId();
+		StringTokenizer token = new StringTokenizer(pids,",");
+		
+	
+		boolean toggle = true ; 
+		if(count.equals("0")){				
+			while(token.hasMoreElements()){
+				if(token.nextToken().equals(id)){
+					System.out.println("이미 등록한 사용자입니다.!");
+					toggle = false;
+				}
+			}
+			if (toggle) {
+				vdao.upScore1(vIdx);
+				String pid = "," + id;
+				sqlSession.getMapper(VoteDao.class).updatepId(vIdx, pid);
+			}
+	
 		}else if(count.equals("1")) {
-			vdao.upScore2(vIdx);
+			while(token.hasMoreElements()){
+				if(token.nextToken().equals(id)){
+					System.out.println("이미 등록한 사용자입니다.!");
+					toggle = false;
+				}
+			}
+			if (toggle) {
+				vdao.upScore2(vIdx);
+				String pid = "," + id;
+				sqlSession.getMapper(VoteDao.class).updatepId(vIdx, pid);
+			}
 		}else if(count.equals("2")){
-			vdao.upScore3(vIdx);
+			while(token.hasMoreElements()){
+				if(token.nextToken().equals(id)){
+					System.out.println("이미 등록한 사용자입니다.!");
+					toggle = false;
+				}
+			}
+			if (toggle) {
+				vdao.upScore3(vIdx);
+				String pid = "," + id;
+				sqlSession.getMapper(VoteDao.class).updatepId(vIdx, pid);
+			}
 		}else if(count.equals("3")){
-			vdao.upScore4(vIdx);
+			while(token.hasMoreElements()){
+				if(token.nextToken().equals(id)){
+					System.out.println("이미 등록한 사용자입니다.!");
+					toggle = false;
+				}
+			}
+			if (toggle) {
+				vdao.upScore4(vIdx);
+				String pid = "," + id;
+				sqlSession.getMapper(VoteDao.class).updatepId(vIdx, pid);
+			}
 		}else{
 			vdao.upScore5(vIdx);
+			while(token.hasMoreElements()){
+				if(token.nextToken().equals(id)){
+					System.out.println("이미 등록한 사용자입니다.!");
+					toggle = false;
+				}
+			}
+			if (toggle) {
+				vdao.upScore5(vIdx);
+				String pid = "," + id;
+				sqlSession.getMapper(VoteDao.class).updatepId(vIdx, pid);
+			}
 		}
 		return "redirect:content_view_cm";
 	}
