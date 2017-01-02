@@ -16,13 +16,14 @@ public class VoteDto {
 	private int scoreCh3;
 	private int scoreCh4;
 	private int scoreCh5;
+	private String pId;
 	
 	
 	public VoteDto() {
 		// TODO Auto-generated constructor stub
 	}
 	public VoteDto(int idx, String id, String topic, int count, String choice1, String choice2, String choice3,
-			String choice4, String choice5, int scoreCh1, int scoreCh2, int scoreCh3, int scoreCh4, int scoreCh5) {
+			String choice4, String choice5, int scoreCh1, int scoreCh2, int scoreCh3, int scoreCh4, int scoreCh5, String pId) {
 		this.idx = idx;
 		this.id = id;
 		this.topic = topic;
@@ -37,6 +38,7 @@ public class VoteDto {
 		this.scoreCh3 = scoreCh3;
 		this.scoreCh4 = scoreCh4;
 		this.scoreCh5 = scoreCh5;
+		this.pId = pId;
 	}
 	
 	
@@ -125,8 +127,11 @@ public class VoteDto {
 	public void setScoreCh5(int scoreCh5) {
 		this.scoreCh5 = scoreCh5;
 	}
+	public String getpId() {
+		return pId;
+	}
+	public void setpId(String pId) {
+		this.pId = pId;
+	}
 	
-	
-	
-
 }

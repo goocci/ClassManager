@@ -94,7 +94,7 @@
 			<!-- 투표 모달 -->
 			<script src="<%=cp%>/resources/assets/bootstrap/js/bootstrap.min.js"></script>
 
-			<form id="createVote" name = "createVote" method="post"  action="createVote"  role="form">
+			<form id="createVote" name = "createVote" role="form">
 				<div id="myModal" class="modal fade">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -129,7 +129,7 @@
 					  			<Input Type="hidden" name="exampleSize" value="">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">Close</button> 
-								<button type="button" class="btn btn-primary"  name="btnSubmint" id="btnSubmit" onclick="fn_save()"> 등록하기</button>
+								<input type="button" class="btn btn-primary" name="btnSubmint" id="btnSubmit"  value="제출하기"> 
 								 <!-- ajax로 할때 버튼
 								<button type="button" class="btn btn-primary"  name="btnSubmint" id="btnSubmit" > 등록하기</button>
 								-->
@@ -192,7 +192,7 @@
 				//투표 관련 
 				var exampleSize = 1;
 
-				$(document).ready(function() {
+	/* 			$(document).ready(function() {
 
 					$("#voteEndDate").datepicker({
 						dateFormat : 'yy-mm-dd',
@@ -201,32 +201,44 @@
 						yearRange : "1980:2030"
 					});
 
-				});
+				}); */
 				
-				/*폼데이터로 넘길라고 했는데 examplesize에 따라서 매핑되는 것들이 달라져서 바로 함수 파라미터에서 받을수가없음
+				
+				
+				/* $('#execute').bind("click",function(){
+					$.ajax({
+						url : 'schooltest_input',
+						data : $('form').serialize(),
+						success : function(data) {
+			                $('#result').html("입력성공 : "+ $("#grade").val()+ " "+ $("#semester").val() +" / <strong>"+ $("#subject").val() + "</strong> : "+$('#schoolrate').val()+"등급");
+						}
+						,error:function(request,status,error){
+							$('#result').html("입력실패! 다시 입력해 보세요!");  }  
+					})
+				}) */
+				
+				
+			
 				$("#btnSubmit").click(function() {
-					// var form = $('form')[0];
-					//var formData = new FormData(form);
-					var params = $("#createVote").serialize() + exampleSize;
+					var form = $('form')[0];
+				    var formData = new FormData(form);
+					var params = $("#createVote").serialize()+exampleSize;
+					console.log(params);
 					$.ajax({
 						url : 'createVote',
 						processData : false,
 						contentType : false,
 						data : params,
-						type : 'POST',
 						success : function(result) {
-
-							document.writeForm.vIdx.value = result;
+							$('#vIdx').attr('value', result);
+							$("#myModal .close").click();
 						}
 					});
 				});
-				*/
-				
+			
 				
 				function fn_save() {
 					if (confirm("등록하시겠습니까?")) {
-				
-
 						alert("투표가 생성되었습니다.");
 						document.createVote.exampleSize.value=exampleSize;
 						$("#createVote").submit();
@@ -248,7 +260,6 @@
 
 				function fn_exampleMinus(self) {
 					self.parent().remove();
-
 					exampleSize -= 1;
 
 				}
