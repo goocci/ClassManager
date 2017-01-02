@@ -66,7 +66,7 @@
 						</c:if>
 						<!-- 투표를 등록했다면 -->
 						<c:if test="${choice_list != null}">	
-						<div class="panel panel-info"  >
+						<div class="panel panel-info"  style="width: 70%">
 								<div class="panel-heading">
 									<h3 class="panel-title" style="font-weight: bold;">  주제 : ${vdto.topic} </h3>
 								</div>
@@ -76,11 +76,11 @@
 										<li class="list-group-item">
 											<div class="radio">
 												<label> <input name="rdoBtn" type="radio" name="optionsRadios" value=${status.index}> ${list.choice} </label>
-												<label >투표수 : ${list.score} </label>
+												
 												<br/>
 												<br/>
-												<div class="chart" align="left" style="margin-left: 30%">
-  													<div style="width: ${list.score}vw;">${list.score}</div>
+												<div class="chart" align="left" style="margin-left: 5%">
+  													<div style="width: ${list.score}rem;">${list.score}</div>
   												</div>
 											</div>
 										</li>
