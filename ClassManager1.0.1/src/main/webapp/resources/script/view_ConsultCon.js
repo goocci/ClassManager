@@ -9,6 +9,6 @@ function viewConsultContents(idx){
 		// #11] Id 상태를 점검하기 위해서 IdCheckServlet.doGet으로 이동한다.
 		window.open(url, "_blank_1",
 			"toolbar=no, menubar=no, scrollbars=yes, resizable=no,top=300,left=300,"
-			+ "width=500, height=340");
+			+ "width=500, height=380");
 	
 }
