@@ -13,6 +13,19 @@
 
 <link href="<%=cp%>/resources/assets/bootstrap/css/bootstrap_join.min.css" rel="stylesheet">
 
+<style type="text/css">
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: #6ab7f2;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+</style>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -53,9 +66,9 @@
 						</c:if>
 						<!-- 투표를 등록했다면 -->
 						<c:if test="${choice_list != null}">	
-						<div class="panel panel-primary "  >
+						<div class="panel panel-info"  >
 								<div class="panel-heading">
-									<h3 class="panel-title">  주제 : ${vdto.topic} </h3>
+									<h3 class="panel-title" style="font-weight: bold;">  주제 : ${vdto.topic} </h3>
 								</div>
 								<div class="panel-body">
 									<ul class="list-group">
@@ -63,7 +76,12 @@
 										<li class="list-group-item">
 											<div class="radio">
 												<label> <input name="rdoBtn" type="radio" name="optionsRadios" value=${status.index}> ${list.choice} </label>
-												<label >현재까지 투표수 ${list.score} </label>
+												<label >투표수 : ${list.score} </label>
+												<br/>
+												<br/>
+												<div class="chart" align="left" style="margin-left: 30%">
+  													<div style="width: ${list.score}vw;">${list.score}</div>
+  												</div>
 											</div>
 										</li>
 										</c:forEach>
@@ -107,7 +125,6 @@
 			</div>
 
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-			<script src="<%=cp%>/resources/assets/js/bootstrap.min.js"></script>
 			
 				<script type="text/javascript">
   				  $(document).ready(function() {
@@ -125,7 +142,8 @@
        				 });
   				  });
 
-    </script>
+    			</script>
+    			
 		</div>
 	</div>
 </body>
