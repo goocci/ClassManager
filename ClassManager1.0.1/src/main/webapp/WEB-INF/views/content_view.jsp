@@ -66,23 +66,15 @@
 						</c:if>
 						<!-- 투표를 등록했다면 -->
 						<c:if test="${choice_list != null}">	
-<<<<<<< HEAD
 						<div class="panel panel-info"  >
 								<div class="panel-heading">
 									<h3 class="panel-title" style="font-weight: bold;">  주제 : ${vdto.topic} </h3>
-=======
-						<div align="left" style="margin-left:20px">
-						<div class="panel panel-success " style="width: 40%;" align="center">
-								<div class="panel-heading ">
-									<h3 class="panel-title">  주제 : ${vdto.topic} </h3>
->>>>>>> 79ea8857083aca6a1801623d6dd5e526d51f220f
 								</div>
 								<div class="panel-body">
 									<ul class="list-group">
 										<c:forEach items="${choice_list}" var="list" varStatus="status">
 										<li class="list-group-item">
 											<div class="radio">
-<<<<<<< HEAD
 												<label> <input name="rdoBtn" type="radio" name="optionsRadios" value=${status.index}> ${list.choice} </label>
 												<label >투표수 : ${list.score} </label>
 												<br/>
@@ -90,11 +82,6 @@
 												<div class="chart" align="left" style="margin-left: 30%">
   													<div style="width: ${list.score}vw;">${list.score}</div>
   												</div>
-=======
-												<label style="font-weight:bold;"> <input name="rdoBtn" type="radio" name="optionsRadios" value=${status.index}> ${list.choice} </label>
-												<br>
-												<label style="font-weight:lighter;" >현재까지 투표수 ${list.score} </label>
->>>>>>> 79ea8857083aca6a1801623d6dd5e526d51f220f
 											</div>
 										</li>
 										</c:forEach>
@@ -103,7 +90,6 @@
 								<div class="panel-footer ">
 									<button type="button" id="voteBtn" class="btn btn-primary btn-lg">Vote</button>
 								</div>
-							</div>
 							</div>
 						</c:if>
 						
