@@ -184,7 +184,11 @@ font-family: 'Hanna', serif;
 				}
 			 	else if (isNaN(idx) === true) {
 					return ;
-				} 
+				}
+			 	else if(idx==""){
+			 		return;
+			 	}
+				
 				else {
 					location.href = "gallerydel?idx=" + idx;
 				}
