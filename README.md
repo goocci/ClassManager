@@ -22,7 +22,7 @@ Application Architecture
 =====
 ![architecture](https://trello-attachments.s3.amazonaws.com/58218cdde26981ea109d015b/586660a24b157f9ea275caa9/97c1f10f4a6fa04fdf42543a99a453ef/Application_architecture.png)
 
-Opensource List
+Open Source List
 =====
 bootstrap-imageupload
  * https://github.com/egonolieux/bootstrap-imageupload
@@ -36,6 +36,11 @@ chart
  * Released under the MIT license
  * https://github.com/chartjs/Chart.js/blob/master/LICENSE.md
  
+chart
+ * https://www.amcharts.com/
+ * Single website license
+ * Copyright © 2006-2017, amCharts. All rights reserved. 
+
 calendar
  * Copyright by black-lotus
  * Released under the MIT license
@@ -90,3 +95,9 @@ Datepicker for Bootstrap
 mybatis
  * http://www.apache.org/licenses/LICENSE-2.0 
  * Licensed under the Apache License, Version 2.0
+ 
+Handsontable
+ * https://handsontable.com
+ * released under the MIT license
+ * Copyright (c) 2015 Handsoncode sp. z o.o. <hello@handsoncode.net>
+ * Copyright (c) 2012-2014 Marcin Warpechowski
