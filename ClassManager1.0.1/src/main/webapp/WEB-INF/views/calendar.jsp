@@ -67,7 +67,12 @@ span {
 						<div class="modal-body">
 							<label for="selectDate">선택일 : </label> <input type="text"
 								id="selectDate" name="selectDate" style="width: 180px;"
-								readonly="readonly"> <br> <label for="time1">시&nbsp;&nbsp;간
+								readonly="readonly"> <br>
+								<label for="selectDate">구&nbsp;&nbsp; 분 : </label>	
+							<input type="radio" name="plan" id="plan" value="학교일정" required="required"/>학교일정 
+							<input type="radio" name="plan" id="plan" value="학급일정" />학급일정
+							<br/>
+								<label for="time1">시&nbsp;&nbsp;간
 								: </label> <input type="text" id="time1" name="time1"
 								style="width: 60px; text-align: center">~<input
 								type="text" id="time2" name="time2"
@@ -75,6 +80,8 @@ span {
 							<label for="content_">내&nbsp;&nbsp;용 : </label> <input
 								type="text" id="content_" name="content_" style="width: 200px;"
 								required="required">
+	 
+															
 						</div>
 						<div class="modal-footer">
 							<input type="submit" class="btn btn-default" value="저 장 ">

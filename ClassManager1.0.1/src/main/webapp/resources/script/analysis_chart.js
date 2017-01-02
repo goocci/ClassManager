@@ -1,3 +1,8 @@
+/*
+ * https://www.amcharts.com/
+ * Single website license
+ * Copyright © 2006-2017, amCharts. All rights reserved.
+ * */
 var chartData_univScore1 = new Array();
 var chartData_univScore2 = new Array();
 var chartData_univScore3 = new Array();
@@ -92,6 +97,12 @@ $.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
 	/**
 	* Create the Handsontable editable grid
 	*/
+	/*
+	 * https://handsontable.com
+	 * released under the MIT license
+	 * Copyright (c) 2015 Handsoncode sp. z o.o. hello@handsoncode.net
+	 * Copyright (c) 2012-2014 Marcin Warpechowski
+	 * */
 	AmCharts.ready(function() {
 
 	var container = document.getElementById("data1");
@@ -282,7 +293,8 @@ $.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
 		    "valueAxes": [{
 		      "gridAlpha": 0.07,
 		      "position": "left",
-		      "title": "등급"
+		      "title": "등급",
+		      "reversed": true
 		    }],
 		    
 		    "graphs": [{

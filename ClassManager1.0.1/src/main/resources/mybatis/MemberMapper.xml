@@ -32,3 +32,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE MEMBER SET PWD = #{1}, PHONENUM= #{2}, ADDRESS = #{3}, EMAIL=#{4}, STUDENTNUM=#{5},PROFILEPHOTO = #{6},STDTGRADE = #{7},STDTCLASSNUM = #{8}  WHERE ID =#{0} 
 	</update>
 </mapper>
+
+<!--  
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * Licensed under the Apache License, Version 2.0 
+ -->

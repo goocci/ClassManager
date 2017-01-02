@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gys.classmanager.dao.VoteDao">
+
+	<insert id="createVote1">
+		INSERT
+		INTO
+		vote (id, topic, count, choice1, scoreCh1)
+		VALUES
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+	</insert>
+	
+	<insert id="createVote2">
+		INSERT
+		INTO
+		vote (id, topic, count, choice1, choice2, scoreCh1, scoreCh2)
+		VALUES
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7})
+	</insert>
+	
+	<insert id="createVote3">
+		INSERT
+		INTO
+		vote (id, topic, count, choice1, choice2, choice3, scoreCh1, scoreCh2, scoreCh3)
+		VALUES
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9})
+	</insert>
+	
+	<insert id="createVote4">
+		INSERT
+		INTO
+		vote (id, topic, count, choice1, choice2, choice3, choice4, scoreCh1, scoreCh2, scoreCh3, scoreCh4)
+		VALUES
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9}, #{param10}, #{param11})
+	</insert>
+	
+	<insert id="createVote5">
+		INSERT
+		INTO
+		vote (id, topic, count, choice1, choice2, choice3, choice4, choice5, scoreCh1, scoreCh2, scoreCh3, scoreCh4, scoreCh5)
+		VALUES
+		(#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, #{param12}, #{param13})
+	</insert>
+
+
+	<select id="lastListVote" resultType="com.gys.classmanager.dto.VoteDto">
+		SELECT
+		*
+		FROM
+		vote
+		ORDER BY idx
+		DESC limit 1;
+	</select>
+
+	<select id="viewVote" resultType="com.gys.classmanager.dto.VoteDto">
+		SELECT
+		*
+		FROM
+		vote
+		WHERE IDX = #{param1}
+	</select>
+	
+	<update id="upScore1">
+		UPDATE
+		vote
+		SET ScoreCh1 = ScoreCh1 + 1
+		WHERE idx = #{param1}
+	</update>
+	
+	<update id="upScore2">
+		UPDATE
+		vote
+		SET ScoreCh2 = ScoreCh2 + 1
+		WHERE idx = #{param1}
+	</update>
+	
+	<update id="upScore3">
+		UPDATE
+		vote
+		SET ScoreCh3 = ScoreCh3 + 1
+		WHERE idx = #{param1}
+	</update>
+	
+	<update id="upScore4">
+		UPDATE
+		vote
+		SET ScoreCh4 = ScoreCh4 + 1
+		WHERE idx = #{param1}
+	</update>
+	
+	<update id="upScore5">
+		UPDATE
+		vote
+		SET ScoreCh5 = ScoreCh5 + 1
+		WHERE idx = #{param1}
+	</update>
+	
+	<update id="updatepId">
+		UPDATE VOTE SET PID = CONCAT(IFNULL(PID,''), #{1}) WHERE IDX = #{0}
+	
+	
+	</update>
+	
+</mapper>
+
+<!--  
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * Licensed under the Apache License, Version 2.0 
+ -->

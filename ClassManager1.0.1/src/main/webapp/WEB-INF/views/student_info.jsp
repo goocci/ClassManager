@@ -30,28 +30,38 @@
 	<div id="body">
 		<div id="content">
 			<jsp:include page="left.jsp" flush="true"></jsp:include>
+			<br/>
 			<div class="container">
 				<div class="row">
 					<div
 						class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 
-						<div class="panel panel-info" style="width: 500px;" align="left">
+						<div class="panel panel-info" style="width: 560px;" align="left">
 							<div class="panel-heading">
-								<h3 class="panel-title">${info.name}</h3>
+								<h3 class="panel-title" style="font-weight: bold;">${info.name}</h3>
 							</div>
 							<div class="panel-body">
 								<div class="row">
+									<div class="profile-header-container" style="float: left;margin-left: 1%;">
+										<div class="profile-header-img" style="padding: 1%;">
+											<img alt="User Pic"
+											src="<%=cp%>/resources/assets/img/${info.profilePhoto}"
+											class="img-circle img-responsive">
+										</div>
+									</div>
+
+<%-- 
 									<div class="col-md-3 col-lg-3 " align="center">
 										<img alt="User Pic"
 											src="<%=cp%>/resources/assets/img/${info.profilePhoto}"
 											class="img-circle img-responsive">
-									</div>
+									</div> --%>
 
 									<div class=" col-md-9 col-lg-9 ">
 										<table class="table table-user-information">
 											<tbody>
 												<tr>
-													<td width="60px">학 년 :</td>
+													<td width="70px">학 년 :</td>
 													<td>${info.stdtGrade}</td>
 												</tr>
 												<tr>
@@ -68,7 +78,7 @@
 													<td>${info.phoneNum}</td>
 												</tr>
 												<tr>
-													<td>Email</td>
+													<td>Email :</td>
 													<td><a href="mailto:${info.email }">${info.email }</a></td>
 												</tr>
 											</tbody>
@@ -79,7 +89,8 @@
 							<div class="panel-footer">
 								<h4>
 									상담기록 &nbsp;<a class="btn btn-primary btn-sm"
-										data-toggle="modal" data-target="#myModal">등록하기</a>
+										data-toggle="modal" data-target="#myModal"
+										style="font-weight: bold;">등록하기</a>
 								</h4>
 
 								<table class="table table-striped table-hover" id="consult">
@@ -128,11 +139,14 @@
 									<option value="성적문제">성적문제</option>
 									<option value="가족문제">가족문제</option>
 									<option value="개인문제">개인문제</option>
-								</select> <br><br> <label for="dateRangePicker" style="float: left;">상담일 : &nbsp;&nbsp; </label>
+								</select> <br>
+								<br> <label for="dateRangePicker" style="float: left;">상담일
+									: &nbsp;&nbsp; </label>
 								<div class="input-group input-append date" id="dateRangePicker">
 									<div>
-										<span class="glyphicon glyphicon-calendar" style="float: left;"></span><input
-											type='text' name="consultdate" class="form-control"/> <span
+										<span class="glyphicon glyphicon-calendar"
+											style="float: left;"></span><input type='text'
+											name="consultdate" class="form-control" /> <span
 											class="input-group-addon"> </span>
 									</div>
 								</div>

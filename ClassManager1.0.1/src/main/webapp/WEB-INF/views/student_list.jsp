@@ -14,6 +14,17 @@
 <link
 	href="<%=cp%>/resources/assets/bootstrap/css/bootstrap_join.min.css"
 	rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet">
+	
+<style type="text/css">
+
+.container .row{
+
+font-family: 'Hanna', serif;
+}
+
+
+</style>	
 
 <title>Insert title here</title>
 </head>
@@ -36,6 +47,8 @@
 							<div class="card" style="margin-bottom: 20%; margin-left: 1%; height: 210px;" >
 								<canvas class="header-bg" width="250" height="70"
 									id="header-blur"></canvas>
+									
+									
 								<div class="avatar">
 									<img src="<%=cp%>/resources/assets/img/${dto.profilePhoto}" />
 								</div>

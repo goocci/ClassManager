@@ -53,7 +53,7 @@
 						<div class="col-lg-10">
 							<div style="float: left; width: 100%;">
 								<input class="form-control" id="inputId" type="text"
-									name="inputId" placeholder="아이디" /><input type="hidden"
+									name="inputId" placeholder="4글자 이상 입력해주세요" /><input type="hidden"
 									name="reid" />
 							</div>
 							<div style="float: right; width: 0%;">
@@ -72,8 +72,7 @@
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 control-label" for="inputPassword2">비밀번호
-							확인</label>
+						<label class="col-lg-2 control-label" for="inputPassword2"  ">비번확인</label>
 						<div class="col-lg-10">
 							<input class="form-control" id="inputPassword2" type="password"
 								name="pwd_check" placeholder="비밀번호 확인">
@@ -272,8 +271,10 @@
 			                );
 			            },
 						done : function(e, data) {
-							$('#photo').attr('src', "/classmanager/resources/assets/img/"+data.result.filename);
+							var filename = decodeURIComponent(data.result.filename);
+							$('#photo').attr('src', "/classmanager/resources/assets/img/"+data.result.filename );
 							$('#fileName').attr('value', data.result.filename);
+							alert(filename);
 
 						},
 						fail : function(e, data, result) {

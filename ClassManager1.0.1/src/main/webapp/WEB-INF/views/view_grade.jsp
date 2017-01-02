@@ -13,6 +13,22 @@
 
 <link href="<%=cp%>/resources/assets/bootstrap/css/bootstrap_join.min.css" rel="stylesheet">
 
+<style type="text/css">
+
+/* 모의고사 영역별 틀 */
+ #wrapper3 {
+
+width: 800px;
+
+margin: 0 auto;
+
+display: table;
+
+border: 1px solid #000;
+
+}
+
+</style>
 <title>Insert title here</title>
 </head>
 <c:if test="${isStudent eq true }">

@@ -150,16 +150,29 @@
 
 #wrapper {
 
-width: 1500px;
+width: 85%;
 
 margin: 0 auto;
 
 display: table;
 
-border: 1px solid #000;
+border: 1px solid lightgrey;
 
 }
 
+table2 {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+th, td {
+  padding: 10px;
+  border: 1px solid #c6c9cc;
+  text-align: center;
+}
+th {
+  background: #eee;
+  text-align: center;
+}
 </style>
 
 <title>Insert title here</title>
@@ -182,8 +195,9 @@ border: 1px solid #000;
 			<br/>
 
 			<div class="container" align="center">
+			<h6 style="font: bold; color: red;">※아래 정보는 참고자료일 뿐 실제 합격 여부를 결정하지 않습니다※ </h6>
 			  <form action="search_univ_name" class="searchform">
-			  
+
 				  <div class="search-field">
 				    <input autocomplete="off" class="search-field__input" name="univName" placeholder="대학명을 입력하세요" type="search">
 				  </div>
@@ -200,6 +214,8 @@ border: 1px solid #000;
 				  <input type="radio" name="univName" value="${dto.name}" checked="checked" hidden="true"><h5 style="background-color: lightgrey">${dto.name}</h5>
 				  </c:forEach>
 				  
+				  <hr style="background-color: black; height: 1px; border: none" width=100% />
+				  
 				  <select name="univMajor" id="univMajor" style="width: 89%; height: 40px;">
 				  	<c:forEach items="${univNamelist}" var="dto">
 						<option>${dto.major}</option>
@@ -213,12 +229,12 @@ border: 1px solid #000;
 			  </form>
 			  
 			</div>
-			
-			
-			<div class="container2" align="center">
-			<table class="table" id="grade1_table" style="width: 100%; background-color: #efefef;">
+			<br/>
+			<br/>
+			<div class="container2">
+			<table class="table2" id="grade1_table" style="width: 100%;">
                     <thead>
-				        <tr>
+				        <tr style="background-color: lightgrey;">
 				          <th>학교</th>
 				          <th>학과</th>
 				          <th>계열</th>
@@ -266,7 +282,7 @@ border: 1px solid #000;
 						  <td>${dto.rate}</td>
 						  <td>${dto.banyoungSubject}</td>
 						  <td><input type="radio" name="univId" id="univId" value="${dto.id}" checked="checked" hidden="true">
-						  	  <input type="submit" value="조회" class="btn btn-default btn"/>
+						  	  <input type="submit" value="조회" class="btn btn-primary btn"/>
 						  </td>
 						</tr>
 						</form>
@@ -280,24 +296,24 @@ border: 1px solid #000;
 		     <br/>
 		     <br/>
 		     <div id="wrapper">
-		     <h3 style="margin-left: 680px">표준점수</h3>
-			 <div class="container3" style="width: 90%;">
+		     <h3 style="text-align: center;">표준점수</h3>
+			 <div class="container3" style="width: 85%;">
 				<div id="chartdiv1"></div>
 				<div id="data1"></div>
 			 </div>
 			 </div>
 			 
 			 <div id="wrapper">
-		     <h3 style="margin-left: 700px">백분위</h3>
-			 <div class="container3" style="width: 90%;">
+		     <h3 style="text-align: center;">백분위</h3>
+			 <div class="container3" style="width: 85%;">
 				<div id="chartdiv2"></div>
 				<div id="data2"></div>
 			 </div>
 			 </div>
 			 
 			 <div id="wrapper">
-		     <h3 style="margin-left: 720px">등급</h3>
-			 <div class="container3" style="width: 90%;">
+		     <h3 style="text-align: center;">등급</h3>
+			 <div class="container3" style="width: 85%;">
 				<div id="chartdiv3"></div>
 				<div id="data3"></div>
 			 </div>

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
@@ -89,10 +90,17 @@ public class GalleryController {
 	}
 
 	@RequestMapping(value = "/galleryInput")
-	public String galleryInput(HttpServletRequest request, @RequestParam("imgFile") MultipartFile imgFile,
-			@RequestParam("title") String title, Model model, HttpSession session) {
-
-		String savePath = "C:\\Users\\김민구\\workspace-sts-3.8.2.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
+	public String galleryInput(HttpServletRequest request, Model model, HttpSession session) {
+		String title = request.getParameter("title");
+		System.out.println(title);
+		 
+		MultipartRequest multipartReq = (MultipartRequest) request;
+		MultipartFile imgFile = multipartReq.getFile("imgFile");
+		if(imgFile.isEmpty()){
+		System.out.println(imgFile);
+		System.out.println("galleryInput()");}
+		
+		String savePath =  "C:\\Users\\KimMinGoo\\Documents\\workspace-sts-3.8.3.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
 		// String savePath = request.getRealPath("folderName");
 
 		String originalFilename = imgFile.getOriginalFilename(); // fileName.jpg
@@ -100,7 +108,7 @@ public class GalleryController {
 		String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
 
 		String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
-		String fullPath = savePath + "/" + rename;
+		String fullPath = savePath + "\\" + rename;
 		System.out.println(rename);
 
 		if (!imgFile.isEmpty()) {
@@ -126,7 +134,6 @@ public class GalleryController {
 					dto.getStdtGrade(), dto.getStdtClassNum(), rename, title);
 		}
 
-		System.out.println("리다이렉트 전");
 		return "redirect:gallery";
 	}
 

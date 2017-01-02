@@ -34,7 +34,7 @@
 										<span class="label label-default rank-label">profile</span>
 									</div>
 									<div align="right">
-										<input type="file" name="imgFile">
+										<input type="file" name="imgFile" id="profilepic">
 									</div>
 								</div>
 							</div>

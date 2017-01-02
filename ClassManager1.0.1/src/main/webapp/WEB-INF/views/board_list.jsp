@@ -15,6 +15,7 @@
 	href="<%=cp%>/resources/assets/bootstrap/css/bootstrap_join.min.css"
 	rel="stylesheet">
 <style>
+
 .page-navigation a {
 margin-left:200px;
  align: center;
@@ -22,13 +23,13 @@ margin-left:200px;
   display: inline-block;
   padding: 3px 10px;
   color: #ffffff;
-  background-color: #70b7ec;
+  background-color: #B5DB92;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
 }
 
-.page-navigation a[data-selected] { background-color: #3d9be0; }
+.page-navigation a[data-selected] { background-color: #B5DB92; }
 
 .page-navigation {
 text-align: center;
@@ -44,9 +45,11 @@ text-align: center;
 </c:if>
 <body>
 <div id="body">
+<br>
 	<div id="content">
 			<div style="text-align: center">
-				<h1>게시판</h1>
+				<!-- <h1>게시판</h1> -->
+				<%-- <img src="<%=cp %>/resources/assets/img/board.jpeg" style="height: 100px"/> --%>
 				<br />
 			</div>
 
@@ -54,9 +57,9 @@ text-align: center;
 			<form id="listForm" action="write_view" method="POST">
 				<div class="container">
 					<div class="col-lg-12">
-						<table id = "myTable" class="table" border="1">
+						<table id = "myTable" class="table">
 							<thead>
-								<tr bgcolor="lightgray">
+								<tr bgcolor="#B5DB92" style="color: black;">
 									<th width="50">번호</th>
 									<th width="80">말머리</th>
 									<th width="400">제목</th>
@@ -68,20 +71,20 @@ text-align: center;
 							<tbody>
 								<c:forEach items="${board_list}" var="dto">
 								<c:if test="${dto.teacherNum != '0'}">
-									<tr style="font-weight: bolder; font-size: medium;">
+									<tr style="font-weight: bolder; font-size: medium; color: black; text-align: center;">
 										<td>${dto.idx}</td>
 										<td>${dto.category}</td>
-										<td><a href="content_view?bIdx=${dto.idx}" style="color: black;">${dto.title}</a></td>
+										<td align="left"><a href="content_view?bIdx=${dto.idx}" style="color: black;">${dto.title}</a></td>
 										<td>${dto.writer}</td>
 										<td>${dto.created_at}</td>
 										<td>${dto.hit}</td>
 									</tr>
 								</c:if>
 								<c:if test="${dto.teacherNum == '0'}">
-									<tr>
+									<tr style="color: black; text-align: center;">
 										<td>${dto.idx}</td>
 										<td>${dto.category}</td>
-										<td><a href="content_view?bIdx=${dto.idx}" style="color: black;">${dto.title}</a></td>
+										<td align="left"><a href="content_view?bIdx=${dto.idx}" style="color: black;">${dto.title}</a></td>
 										<td>${dto.writer}</td>
 										<td>${dto.created_at}</td>
 										<td>${dto.hit}</td>
@@ -112,7 +115,7 @@ text-align: center;
 				
 					// Paginate it
 					$('#myTable').paginate({
-						limit : 10,
+						limit : 15,
 						onSelect : function(obj, page) {
 							console.log('Page ' + page + ' selected!');
 						}

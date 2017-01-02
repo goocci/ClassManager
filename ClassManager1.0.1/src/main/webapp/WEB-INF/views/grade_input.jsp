@@ -58,14 +58,14 @@ color: #7a328c
 			</c:if>
 			
       
-   
+   			<br/>
 			<div class="container">
 				<div class="row">
 					<div
 						class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 						<div class="panel panel-info">
 							<div class="panel-heading">
-								<h3 class="panel-title">성적입력</h3>
+								<h3 class="panel-title" style="font-weight: bold;">성적입력</h3>
 							</div>
 							<div class="panel-body" align="left">
 								<div class="form-group">
@@ -110,7 +110,7 @@ color: #7a328c
 													<option>9</option>
 											</select>&emsp;&emsp;&emsp;<input
 											id="execute" type="button" class="btn btn-primary btn" value="저장" 
-											onclick="return checkschoolinput();"/>
+											onclick="return checkschoolinput();" style="font-weight: bold;"/>
 											</span>
 										</div>
 									</form>
@@ -175,7 +175,7 @@ color: #7a328c
 												name="standard" required="required" style="width: 25%">백분위 :<input
 												type="text" id="percent" name="percent" required="required" style="width: 25%">
 												&nbsp; <input type="button" class="btn btn-primary btn"
-												id="execute2" value="저장" onclick="return checkmokinput();" />
+												id="execute2" value="저장" onclick="return checkmokinput();" style="font-weight: bold;"/>
 											</span>
 										</div>
 									</form>

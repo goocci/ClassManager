@@ -21,3 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 		
 </mapper>
+
+<!--  
+ * http://www.apache.org/licenses/LICENSE-2.0 
+ * Licensed under the Apache License, Version 2.0 
+ -->
