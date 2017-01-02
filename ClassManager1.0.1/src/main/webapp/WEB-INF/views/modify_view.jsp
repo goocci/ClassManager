@@ -35,11 +35,14 @@
 							<tbody>
 								<tr>
 									<th width="100">말머리</th>
-									<td><select id="selectbox" name="bCategory" title="말머리" style="width: 60px;">
+									<td><select id="selectbox" name="bCategory" title="말머리" style="width: 100px;">
 											<option selected="selected" size="45">${dto.category}</option>
+											<option>공지사항</option>
 											<option>공부</option>
 											<option>고민</option>
 											<option>취미</option>
+											<option>투표</option>
+											<option>기타</option>
 									</select></td>
 								</tr>
 								<tr>
@@ -52,7 +55,7 @@
 								</tr>
 								<tr>
 									<th>글 제목</th>
-									<td><input type="text" name="bTitle" size="90" value=${dto.title}></td>
+									<td><input type="text" name="bTitle" size="90" value= "${dto.title}" /></td>
 								</tr>
 								<tr>
 									<th>글 내용</th>									

@@ -39,11 +39,14 @@
 								<tr>
 									<th width="100">말머리</th>
 									<td><select id="selectbox" name="bCategory" title="말머리"
-										style="width: 60px;">
+										style="width: 100px;">
 											<option selected="selected" size="45"></option>
+											<option>공지사항</option>
 											<option>공부</option>
 											<option>고민</option>
 											<option>취미</option>
+											<option>투표</option>
+											<option>기타</option>
 									</select></td>
 								</tr>
 								<tr>
@@ -61,11 +64,9 @@
 
 									</th>
 									<td>
-									<a class="btn btn-default btn-sm" style="background-color: gray; margin-bottom: 10px"
+									<a class="btn btn-primary btn-sm" style="margin-bottom: 10px"
 									    											data-toggle="modal" data-target="#myModal"> 투표 </a> 
-									
-									<a class="btn btn-default btn-sm" style="background-color: gray; margin-bottom: 10px"
-										data-toggle="modal" data-target="#myModal22">파일 첨부</a></br> 
+									</br> 
 										<textarea name="bContent" rows="10" cols="90"></textarea></br> 
 										<input type="file" name="boardFile" id="boardFile" style="float: left">
 									 <input type="hidden" name="boardFileName" id="fileName" value=""></input></td>
@@ -157,10 +158,7 @@
 						add : function(e, data) {
 							var uploadFile = data.files[0];
 							var isValid = true;
-							if (!(/png|jpe?g|gif/i).test(uploadFile.name)) {
-								alert('png, jpg, gif 만 가능합니다');
-								isValid = false;
-							} else if (uploadFile.size > 5000000) { // 5mb
+							if (uploadFile.size > 5000000) { // 5mb
 								alert('파일 용량은 5메가를 초과할 수 없습니다.');
 								isValid = false;
 							}
