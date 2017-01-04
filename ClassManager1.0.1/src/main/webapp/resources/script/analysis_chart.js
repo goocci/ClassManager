@@ -11,7 +11,7 @@ var chartData_MyScore1 = new Array();
 var chartData_MyScore2 = new Array();
 var chartData_MyScore3 = new Array();
 
-$.getJSON("http://localhost:8080/classmanager/UnivScore", function(data) {
+$.getJSON("http://192.168.219.104:8080/classmanager/UnivScore", function(data) {
 	$.each(data, function(inx, obj) {
 		chartData_univScore1.push(obj.standard);
 		chartData_univScore2.push(obj.percent);
@@ -19,7 +19,7 @@ $.getJSON("http://localhost:8080/classmanager/UnivScore", function(data) {
 	});
 });
 // 표준점수
-$.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
+$.getJSON("http://192.168.219.104:8080/classmanager/MyScore", function(data) {
 	$.each(data, function(inx, obj) {
 		chartData_MyScore1.push(obj.standard);
 	});
@@ -149,7 +149,7 @@ $.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
 	
 });
 // 백분위
-$.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
+$.getJSON("http://192.168.219.104:8080/classmanager/MyScore", function(data) {
 	$.each(data, function(inx, obj) {
 		chartData_MyScore2.push(obj.percent);
 	});
@@ -272,7 +272,7 @@ $.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
 	
 });
 // 등급
-$.getJSON("http://localhost:8080/classmanager/MyScore", function(data) {
+$.getJSON("http://192.168.219.104:8080/classmanager/MyScore", function(data) {
 	$.each(data, function(inx, obj) {
 		chartData_MyScore3.push(obj.rate);
 	});

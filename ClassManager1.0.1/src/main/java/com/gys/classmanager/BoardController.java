@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.gys.classmanager.dao.BoardDao;
 import com.gys.classmanager.dao.VoteDao;
 import com.gys.classmanager.dto.BoardDto;
@@ -192,13 +192,13 @@ public class BoardController {
 	public String uploadfile(HttpServletRequest request, @RequestParam("boardFile") MultipartFile boardFile, Model model, HttpSession session) {
 		System.out.println("uploadfile()");
 		
-		String savePath = "C:\\Users\\KimMinGoo\\Documents\\workspace-sts-3.8.3.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
+		String savePath = "/Users/hanyoungsoo/Documents/workspace-sts-3.8.2.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ClassManager1.0.1/resources/assets/img";
 		String originalFilename = boardFile.getOriginalFilename(); // fileName.jpg
 		String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
 		String extension = originalFilename.substring(originalFilename.indexOf(".")); // .jpg
 
 		String rename = onlyFileName + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
-		String fullPath = savePath + "\\" + rename;
+		String fullPath = savePath + "/" + rename;
 		System.out.println(rename);
 
 		if (!boardFile.isEmpty()) {
@@ -233,9 +233,9 @@ public class BoardController {
 	public void getFile(@RequestParam Map<String,Object> map, HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
 		
 		System.out.println("filedown");
-		String filePath = "C:\\Users\\KimMinGoo\\Documents\\workspace-sts-3.8.3.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ClassManager1.0.1\\resources\\assets\\img";
+		String filePath = "/Users/hanyoungsoo/Documents/workspace-sts-3.8.2.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ClassManager1.0.1/resources/assets/img";
 		String stfileName = request.getParameter("fileName");
-		String fullPath = filePath+"\\"+ stfileName;
+		String fullPath = filePath+"/"+ stfileName;
 		
 	    byte fileByte[] = FileUtils.readFileToByteArray(new File(fullPath));
 	    
