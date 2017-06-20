@@ -1,4 +1,4 @@
-package com.gys.classmanager;
+package com.gys.classmanager.controller;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;

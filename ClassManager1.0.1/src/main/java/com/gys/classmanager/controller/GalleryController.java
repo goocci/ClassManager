@@ -1,4 +1,4 @@
-package com.gys.classmanager;
+package com.gys.classmanager.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

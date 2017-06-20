@@ -1,4 +1,4 @@
-package com.gys.classmanager;
+package com.gys.classmanager.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

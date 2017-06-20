@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="classmanager:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="classmanager-1.0.0-BUILD-SNAPSHOT.war">
+      <element id="artifact" artifact-name="classmanager:war exploded" />
+    </root>
+  </artifact>
+</component>
